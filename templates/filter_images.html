@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Filtered Images</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/filter_images.css') }}">
+</head>
+<body>
+	<div class="header">
+		<h1>Filtered Images</h1>
+	</div>
+	<div class="container">
+		{% for image in image_list %}
+			<div class="image">
+				<img src="{{ url_for('static', filename='images/' + image) }}" alt="{{ image }}">
+			</div>
+		{% endfor %}
+	</div>
+</body>
+</html>

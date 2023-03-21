@@ -1,0 +1,14 @@
+<!-- Imrpove this looping by using templates so that we don't have to wait for f(n) images to be processed.-->
+      {% for item in image_list %}
+      <a href="/img/{{ loop.index - 1 }}">
+        <img src="{{ item.thumbnail_src }}" alt="{{ item.alt_text }}"
+          class="thumbnail {% if item.is_current %}highlighted{% endif %}" data-full-src="{{ item.full_src }}">
+      </a>
+      {% endfor %}
+
+
+      if ($(".thumbnail-container .highlighted:visible")) {
+        var highlighted = $(".thumbnail-container .highlighted");
+        $('.thumbnail-container').animate({ scrollTop: highlighted.offset().top }, 0.5);
+      }
+      

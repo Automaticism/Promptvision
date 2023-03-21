@@ -1,0 +1,6 @@
+.csv
+.DS_Store
+.venv
+venv
+.log
+metadata/*

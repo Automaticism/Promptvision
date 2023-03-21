@@ -1,0 +1,6 @@
+<!-- templates/form.html -->
+<form action="/change_dir" method="post">
+    <label for="file_path">File Path:</label>
+    <input type="text" id="file_path" name="file_path" required pattern="^(/[^\0]+)+$">
+    <button type="submit">Submit</button>
+</form>

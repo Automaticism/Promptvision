@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Filter Images</title>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+</head>
+
+<body>
+    <h1>Filter Images</h1>
+
+    <!-- Filter form -->
+    <form id="filter-form">
+        <label for="search-query">Search:</label>
+        <input type="text" id="search-query" name="search_query"><br><br>
+
+        <label for="min-size">Minimum size:</label>
+        <input type="range" id="min-size" name="min_size" min="0" max="100" step="10" value="0">
+        <label for="max-size">Maximum size:</label>
+        <input type="range" id="max-size" name="max_size" min="0" max="100" step="10" value="100"><br><br>
+
+        <label for="file-type">File type:</label>
+        <select id="file-type" name="file_type">
+            <option value="">All types</option>
+            <option value="jpg">JPG</option>
+            <option value="png">PNG</option>
+            <option value="gif">GIF</option>
+        </select><br><br>
+        <label for="has-tags">Has tags:</label>
+        <input type="checkbox" id="has-tags" name="has_tags" value="True"><br><br>
+
+        <input type="submit" value="Filter">
+    </form>
+
+    <!-- Button to trigger the modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#filter-modal">
+    Filter Images
+  </button>
+  
+  <!-- Modal -->
+  <div class="modal fade" id="filter-modal" tabindex="-1" role="dialog" aria-labelledby="filter-modal-label" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="filter-modal-label">Filter Images</h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <!-- Filter form -->
+          <form id="filter-form">
+            <div class="form-group">
+              <label for="search-query">Search:</label>
+              <input type="text" class="form-control" id="search-query" name="search_query">
+            </div>
+  
+            <div class="form-group">
+              <label for="min-size">Minimum size:</label>
+              <input type="range" class="form-control-range" id="min-size" name="min_size" min="0" max="100" step="10" value="0">
+              <label for="max-size">Maximum size:</label>
+              <input type="range" class="form-control-range" id="max-size" name="max_size" min="0" max="100" step="10" value="100">
+            </div>
+  
+            <div class="form-group">
+              <label for="file-type">File type:</label>
+              <select class="form-control" id="file-type" name="file_type">
+                <option value="">All types</option>
+                <option value="jpg">JPG</option>
+                <option value="png">PNG</option>
+                <option value="gif">GIF</option>
+              </select>
+            </div>
+  
+            <div class="form-group form-check">
+              <input type="checkbox" class="form-check-input" id="has-tags" name="has_tags" value="True">
+              <label class="form-check-label" for="has-tags">Has tags</label>
+            </div>
+  
+            <button type="submit" class="btn btn-primary">Filter</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+
+    <!-- Image gallery -->
+    <div id="image-gallery">
+        {% for image in images %}
+        <div class="image">
+            <img src="{{ image.path }}" alt="{{ image.filename }}">
+            <p>{{ image.filename }}</p>
+        </div>
+        {% endfor %}
+    </div>
+
+    <script>
+        $(document).ready(function () {
+            // Submit the filter form via AJAX
+            $("#filter-form").submit(function (event) {
+                event.preventDefault();
+                $.ajax({
+                    url: "/filter_images",
+                    type: "POST",
+                    data: $(this).serialize(),
+                    success: function (data) {
+                        $("#image-gallery").html(data);
+                    },
+                    error: function (xhr, status, error) {
+                        console.error(error);
+                    }
+                });
+            });
+        });
+    </script>

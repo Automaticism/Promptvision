@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{{ title }}</title>
+  <link href="https://unpkg.com/@primer/css@^20.2.4/dist/primer.css" rel="stylesheet" />
+</head>
+
+<body class="bg-gray-light">
+  <div class="container-lg">
+    <div class="Box-row Box-row--condensed">
+      <div id="thumbnails" class="d-flex flex-wrap flex-justify-center"></div>
+      <div class="text-center p-5 image-viewer-container">
+        <img class="img-responsive" id="active-image" src="{{ image_src }}" alt="{{ image_alt }}" />
+      </div>
+      <div class="metadata">
+        <table class="table table-striped">
+          <tr>
+            <td class="p-0" colspan="2">
+              <div id="star-rating" class="d-flex flex-justify-center">
+                {% for i in range(1, 6) %}
+                {% if i <= metadata.Rating | int %} <span class="material-icons star" data-rating="{{ i }}">
+                  star</span>
+                  {% else %}
+                  <span class="material-icons" data-rating="{{ i }}">star_border</span>
+                  {% endif %}
+                  {% endfor %}
+              </div>
+            </td>
+          </tr>
+          <tr>
+            <td class="pr-5 font-weight-bold">Favorite
+              <form id="favorite-form" method="POST">
+                <input type="hidden" name="_method" value="PUT">
+                <button type="submit" class="btn-link link-gray-dark">
+                  {% if metadata.Favorites %}
+                  <i class="material-icons text-yellow">favorite</i>
+                  {% else %}
+                  <i class="material-icons">favorite_border</i>
+                  {% endif %}
+                </button>
+              </form>
+            </td>
+            <td class="d-flex flex-justify-end">
+              {% if image_index == 0 %}
+              <a class="btn btn-primary mr-2" href='/img/{{ (maxindex - 1) }}'>Previous</a>
+              {% else %}
+              <a class="btn btn-primary mr-2" href='/img/{{ (image_index - 1) }}'>Previous</a>
+              {% endif %}
+              <a class="btn btn-primary" href='/img/{{ (image_index + 1) }}'>Next</a>
+            </td>
+          </tr>
+          <tr>
+            <td class="pr-5 font-weight-bold">Positive prompt</td>
+            <td>{{ exif_list['Positive prompt'] }}</td>
+          </tr>
+          <tr>
+            <td class="pr-5 font-weight-bold">Negative prompt</td>
+            <td>{{ exif_list['Negative prompt'] }}</td>
+          </tr>
+          <tr>
+            <td class="pr-5 font-weight-bold">Steps</td>
+            <tr>
+              <td class="TableObject-item TableObject-item--primary">Steps</td>
+              <td class="TableObject-item">{{ exif_list['Steps'] }}</td>
+            </tr>
+            <tr>
+              <td class="TableObject-item TableObject-item--primary">Sampler</td>
+              <td class="TableObject-item">{{ exif_list['Sampler'] }}</td>
+            </tr>
+            <tr>
+              <td class="TableObject-item TableObject-item--primary">CFG scale</td>
+              <td class="TableObject-item">{{ exif_list['CFG scale'] }}</td>
+            </tr>
+            <tr>
+              <td class="TableObject-item TableObject-item--primary">Seed</td>
+              <td class="TableObject-item">{{ exif_list['Seed'] }}</td>
+            </tr>
+            <tr>
+              <td class="TableObject-item TableObject-item--primary">Size</td>
+              <td class="TableObject-item">{{ exif_list['Size'] }}</td>
+            </tr>
+            <tr>
+              <td class="TableObject-item TableObject-item--primary">Model hash</td>
+              <td class="TableObject-item">{{ exif_list['Model hash'] }}</td>
+            </tr>
+            <tr>
+              <td class="TableObject-item TableObject-item--primary">Model</td>
+              <td class="TableObject-item">{{ exif_list['Model'] }}</td>
+            </tr>
+            <tr>
+              <td class="TableObject-item TableObject-item--primary">Postprocessing</td>
+              <td class="TableObject-item">{{ exif_list['Postprocessing'] }}</td>
+            </tr>
+            <tr>
+              <td class="TableObject-item TableObject-item--primary">Extras</td>
+              <td class="TableObject-item">{{ exif_list['Extras'] }}</td>
+            </tr>        
+        <tr>
+          <td>
+            <form class="Subhead" id="tag-form">
+              <input class="form-control input-contrast" type="text" name="tags" id="tags" required pattern="[a-zA-Z0-9\s]+">
+              <input class="btn btn-primary" type="submit" value="Add Tags">
+            </form>
+          </td>
+          <td class="col-6 col-lg-4">
+            <ul class="list-style-none" id="tags-list">
+              {% if metadata.Tags is defined and metadata.Tags is string %}
+              {% for tag in metadata.Tags.split(',') %}
+              <li class="tag-item">{{ tag.strip("[ ' ]") }}</li>
+              {% endfor %}
+              {% elif metadata.Tags is defined and metadata.Tags is iterable %}
+              {% for tag in metadata.Tags %}
+              <li class="tag-item">{{ tag }}</li>
+              {% endfor %}
+              {% endif %}
+            </ul>
+          </td>
+          </tr>
+          <tr>
+            <td class="col-6 col-lg-4">
+              <form class="SelectMenu" id="category-form">
+                <input class="form-control" type="text" name="category" id="category" required pattern="[a-zA-Z0-9\s]+">
+                <button type="submit" class="btn btn-sm btn-primary" value="Assign Category">Assign Category</button>
+              </form>
+            </td>
+            <td class="col-12 col-lg-8">
+              <ul class="list-style-none" id="category-list">
+                {% if metadata.Categorization is defined and metadata.Categorization is string %}
+                {% for category in metadata.Categorization.split(',') %}
+                <li class="category-item">{{ category.strip("[ ' ]") }}</li>
+                {% endfor %}
+                {% elif metadata.Categorization is defined and metadata.Categorization is iterable %}
+                {% for category in metadata.Categorization %}
+                <li class="category-item">{{ category }}</li>
+                {% endfor %}
+                {% endif %}
+              </ul>
+            </td>
+          </tr> 
+          <tr>
+            <td class="header">
+              <form class="Subhead--actions" id="save-form">
+                <button class="btn btn-primary" type="submit">Save metadata</button>
+              </form>
+            </td>
+            <td>
+              <form action="{{ url_for('browse') }}" method="post">
+                <label for="folder_path" class="d-block">Change image directory:</label>
+                <div class="input-group">
+                  <input type="text" id="folder_path" name="folder_path" required class="form-control input-sm" title="Please enter a valid path to a directory containing images">
+                  <div class="input-group-button">
+                    <button class="btn" type="submit">Change</button>
+                  </div>
+                </div>
+              </form>
+            </td>
+          </tr>
+          <tr>
+            <td>
+              <details class="dropdown details-reset">
+                <summary class="btn">
+                  Choose Style
+                </summary>
+                <ul class="dropdown-menu dropdown-menu-sw">
+                  <li>
+                    <a href="#" class="dropdown-item" onclick="setStyle('default')" id="default-style">Default</a>
+                  </li>
+                  <li>
+                    <a href="#" class="dropdown-item" onclick="setStyle('dark')" id="dark-style">Dark</a>
+                  </li>
+                  <li>
+                    <a href="#" class="dropdown-item" onclick="setStyle('light')" id="light-style">Light</a>
+                  </li>
+                </ul>
+              </details>
+            </td>
+          </tr> 
+      </table>
+      <form id="filter-form">
+      <div class="form-group">
+        <label for="search-query" class="form-label">Search query:</label>
+        <input type="text" class="form-control" id="search-query" name="search_query">
+      </div>
+  
+      <div class="form-group">
+        <label for="favorites" class="form-label">Favorites:</label>
+        <select class="form-select" id="favorites" name="favorites">
+          <option value="">Any</option>
+          <option value="True">Yes</option>
+          <option value="False">No</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="rating" class="form-label">Rating:</label>
+        <select class="form-select" id="rating" name="rating">
+          <option value="">Any</option>
+          <option value="5">5 stars</option>
+          <option value="4">4 stars</option>
+          <option value="3">3 stars</option>
+          <option value="2">2 stars</option>
+          <option value="1">1 star</option>
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="tags" class="form-label">Tags:</label>
+        <select class="form-select" id="tags" name="tags">
+          <option value="">Any</option>
+          {% if complete_metadata.Tags is defined and complete_metadata.Tags is string %}
+          {% for tag in complete_metadata.Tags.split(',') %}
+          <option value="{{ tag }}">{{ tag.strip("[ ' ]") }}</option>
+          {% endfor %}
+          {% elif complete_metadata.Tags is defined and complete_metadata.Tags is iterable %}
+          {% for tag in complete_metadata.Tags %}
+          <option value="{{ tag }}">{{ tag.strip("[ ' ]") }}</option>
+          {% endfor %}
+          {% endif %}
+        </select>
+      </div>
+  
+      <div class="form-group">
+        <label for="categories" class="form-label">Categorization:</label>
+        <select class="form-select" id="categories" name="categories">
+          <option value="">Any</option>
+          {% if complete_metadata.Categorization is defined and complete_metadata.Categorization is string %}
+          {% for category in complete_metadata.Categorization.split(',') %}
+          {% if category|length > 0 %}
+          <option value="{{ category }}">{{ category.strip("[ ' ]") }}</option>
+          {% endif %}
+          {% endfor %}
+          {% elif complete_metadata.Categorization is defined and complete_metadata.Categorization is iterable %}
+          {% for category in complete_metadata.Categorization %}
+          {% if category|length > 0 %}
+          <option value="{{ category }}">{{ category.strip("[ ' ]") }}</option>
+          {% endif %}
+          {% endfor %}
+          {% endif %}
+        </select>
+      </div>
+  
+      <button type="submit" class="btn btn-primary">Filter</button>
+    </form>
+    </div>
+  </div>
+</body>
+
+</html>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>

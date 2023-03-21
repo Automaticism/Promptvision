@@ -1,0 +1,4 @@
+<!-- thumbnail_partial.html -->
+{% for thumbnail in thumbnails %}
+    <a href="{{ thumbnail.image_src }}"><img src="data:image/jpeg;base64,{{ thumbnail.response.data|b64encode }}" /></a>
+{% endfor %}

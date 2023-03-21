@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>{{ title }}</title>
+  {% set theme = request.cookies.get('theme') %}
+  {% if theme == 'dark' %}
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/dark.css') }}">
+  {% elif theme == 'light' %}
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/light.css') }}">
+  {% else %}
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/default.css') }}">
+  {% endif %}
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+  <div class="filterbar">
+    <form id="filter-form">
+      <div class="form-group">
+        <label for="search-query">Search query:</label>
+        <input type="text" class="form-control" id="search-query" name="search_query">
+      </div>
+      <div class="form-group">
+        <label for="favorites">Favorites:</label>
+        <select class="form-control" id="favorites" name="favorites">
+          <option value="">Any</option>
+          <option value="True">Yes</option>
+          <option value="False">No</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="rating">Rating:</label>
+        <select class="form-control" id="rating" name="rating">
+          <option value="">Any</option>
+          <option value="5">5 stars</option>
+          <option value="4">4 stars</option>
+          <option value="3">3 stars</option>
+          <option value="2">2 stars</option>
+          <option value="1">1 star</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="tags">Tags:</label>
+        <select class="form-control" id="tags" name="tags">
+          <option value="">Any</option>
+          {% if complete_metadata.Tags is defined and complete_metadata.Tags is string %}
+          {% for tag in complete_metadata.Tags.split(',') %}
+          <option value="{{ tag }}">{{ tag.strip("[ \' ]") }}</option>
+          {% endfor %}
+          {% elif complete_metadata.Tags is defined and complete_metadata.Tags is iterable %}
+          {% for tag in complete_metadata.Tags %}
+          <option value="{{ tag }}">{{ tag.strip("[ \' ]") }}</option>
+          {% endfor %}
+          {% endif %}
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="categories">Categorization:</label>
+        <select class="form-control" id="categories" name="categories">
+          <option value="">Any</option>
+          {% if complete_metadata.Categorization is defined and complete_metadata.Categorization is string %}
+          {% for category in complete_metadata.Categorization.split(',') %}
+          {% if category|length > 0 %}
+          <option value="{{ category }}">{{ category.strip("[ \' ]") }}</option>
+          {% endif %}
+          {% endfor %}
+          {% elif complete_metadata.Categorization is defined and complete_metadata.Categorization is iterable %}
+          {% for category in complete_metadata.Categorization %}
+          {% if category|length > 0 %}
+          <option value="{{ category }}">{{ category.strip("[ \' ]") }}</option>
+          {% endif %}
+          {% endfor %}
+          {% endif %}
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Filter</button>
+    </form>
+  </div> 
+  <button class="filterbtn" id="filter-toggle">Filters</button>
+  <div class="main-container">
+    <div id="thumbnails" class="thumbnail-container"></div>
+    <div class="image-viewer-container">
+      <img class="img" id="active-image" src="{{ image_src }}" alt="{{ image_alt }}" />
+    </div>
+    <div class="metadata">
+      <table class="metadata-table">
+        <tr>
+          <td class="" colspan="2">
+            <div id="star-rating">
+              {% for i in range(1, 6) %}
+              {% if i <= metadata.Rating | int %} <span class="material-icons star-icon" data-rating="{{ i }}">
+                star</span>
+                {% else %}
+                <span class="material-icons" data-rating="{{ i }}">star_border</span>
+                {% endif %}
+                {% endfor %}
+            </div>
+          </td>
+        </tr>
+        <tr>
+          <td class="">
+            <form id="favorite-form" method="POST">
+              <input type="hidden" name="_method" value="PUT">
+              <button type="submit" class="favorite-toggle">
+                {% if metadata.Favorites %}
+                <span class="material-icons">favorite</span>
+                {% else %}
+                <span class="material-icons">favorite_border</span>
+                {% endif %}
+              </button>
+            </form>
+          </td>
+          <td class="nav-buttons">
+            {% if image_index == 0 %}
+            <button class="nav-button prev-button" id="previous" onclick="location.href='/img/{{ (maxindex - 1) }}'">
+              {% else %}
+              <button class="nav-button prev-button" id="previous"
+                onclick="location.href='/img/{{ (image_index - 1) }}'">
+                {% endif %}
+                <span class="material-icons">arrow_circle_left</span>
+              </button>
+              <button class="nav-button next-button" id="next" onclick="location.href='/img/{{ (image_index + 1) }}'">
+                <span class="material-icons">arrow_circle_right</span>
+              </button>
+          </td>
+        </tr>
+        <tr>
+          <td class="header">Positive prompt</td>
+          <td>{{ exif_list['Positive prompt'] }}</td>
+        </tr>
+        <tr>
+          <td class="header">Negative prompt</td>
+          <td>{{ exif_list['Negative prompt'] }}</td>
+        </tr>
+        <tr>
+          <td class="header">Steps</td>
+          <td>{{ exif_list['Steps'] }}</td>
+        </tr>
+        <tr>
+          <td class="header">Sampler</td>
+          <td>{{ exif_list['Sampler'] }}</td>
+        </tr>
+        <tr>
+          <td class="header">CFG scale</td>
+          <td>{{ exif_list['CFG scale'] }}</td>
+        </tr>
+        <tr>
+          <td class="header">Seed</td>
+          <td>{{ exif_list['Seed'] }}</td>
+        </tr>
+        <tr>
+          <td class="header">Size</td>
+          <td>{{ exif_list['Size'] }}</td>
+        </tr>
+        <tr>
+          <td class="header">Model hash</td>
+          <td>{{ exif_list['Model hash'] }}</td>
+        </tr>
+        <tr>
+          <td class="header">Model</td>
+          <td>{{ exif_list['Model'] }}</td>
+        </tr>
+        <tr>
+          <td class="header">Postprocessing</td>
+          <td>{{ exif_list['Postprocessing'] }}</td>
+        </tr>
+        <tr>
+          <td class="header">Extras</td>
+          <td>{{ exif_list['Extras'] }}</td>
+        </tr>
+        <tr>
+          <td>
+            <form id="tag-form">
+              <input type="text" name="tags" id="tags" required pattern="[a-zA-Z0-9\s]+">
+              <input type="submit" value="Add Tags">
+            </form>
+          </td>
+          <td>
+            <ul id="tags-list">
+              {% if metadata.Tags is defined and metadata.Tags is string %}
+              {% for tag in metadata.Tags.split(',') %}
+              <li class="tag-item">{{ tag.strip("[ ' ]") }}</li>
+              {% endfor %}
+              {% elif metadata.Tags is defined and metadata.Tags is iterable %}
+              {% for tag in metadata.Tags %}
+              <li class="tag-item">{{ tag }}</li>
+              {% endfor %}
+              {% endif %}
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="header">
+            <form id="category-form">
+              <input type="text" name="category" id="category" required pattern="[a-zA-Z0-9\s]+">
+              <input type="submit" value="Assign Category">
+            </form>
+          </td>
+          <td>
+            <ul id="category-list">
+              {% if metadata.Categorization is defined and metadata.Categorization is string %}
+              {% for category in metadata.Categorization.split(',') %}
+              <li class="category-item">{{ category.strip("[ ' ]") }}</li>
+              {% endfor %}
+              {% elif metadata.Categorization is defined and metadata.Categorization is iterable %}
+              {% for category in metadata.Categorization %}
+              <li class="category-item">{{ category }}</li>
+              {% endfor %}
+              {% endif %}
+            </ul>
+          </td>
+        </tr>
+        <tr>
+          <td class="header">
+            <form id="save-form">
+              <input type="submit" value="Save metadata">
+            </form>
+          </td>
+          <td>
+            <form action="{{ url_for('browse') }}" method="post">
+              <input type="text" id="folder_path" name="folder_path" required
+                title="Please enter a valid path to a directory containing images">
+              <input type="submit" value="Change image directory">
+            </form>
+          </td>
+        </tr>
+        <tr>
+          <td>
+            <div class="dropdown">
+              <button>Choose Style</button>
+              <div class="dropdown-content">
+                <a href="#" onclick="setStyle('default')" id="default-style">Default</a>
+                <a href="#" onclick="setStyle('dark')" id="dark-style">Dark</a>
+                <a href="#" onclick="setStyle('light')" id="light-style">Light</a>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </table>
+    </div>
+  </div>
+</body>
+
+</html>
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="{{ url_for('static', filename='js/app.js') }}"></script>

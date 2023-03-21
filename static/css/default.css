@@ -1,0 +1,446 @@
+html,
+body {
+    height: 100%;
+    width: 100%;
+    margin: 0;
+    background-color: #717171;
+}
+
+/* Main container */
+.main-container {
+    display: grid;
+    grid-template-columns: 50% 40% 10%;
+    /* 3 columns with 60%, 1fr, and 1fr widths respectively */
+    grid-template-rows: repeat(1, 1fr);
+    /* 1 row */
+    gap: 10px;
+    max-width: 1600px;
+    margin: 0 auto;
+    height: 100vh;
+}
+
+/* Image viewer container */
+.image-viewer-container {
+    grid-column: 1 / 2;
+    grid-row: 1 / 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    max-height: 80vh;
+}
+
+.metadata {
+    grid-column: 2 / 3;
+    grid-row: 1 / 1;
+    padding: 20px;
+    background-color: #717171;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
+    overflow-y: auto;
+}
+
+.metadata h2 {
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+    font-weight: 600;
+}
+
+.metadata p {
+    font-size: 0.9rem;
+    line-height: 1.4;
+    margin-bottom: 20px;
+}
+
+.thumbnail-container {
+	max-width: 1600px;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+    grid-auto-rows: minmax(120px, 1fr);
+    gap: 10px;
+    overflow-y: auto;
+    padding: 10px;
+    background-color: #717171;
+    box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
+    grid-template-areas: 
+      "thumb thumb thumb";
+}
+
+.thumbnail {
+    grid-area: thumb;
+}
+
+.thumbnail img {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    border-radius: 5px;
+    max-width: 70px;
+}
+
+
+/* Hide default dropdown */
+#style-selector {
+    display: none;
+}
+
+/* Create custom dropdown */
+.dropdown {
+    display: inline-block;
+    position: relative;
+}
+
+/* Style dropdown button */
+.dropdown button {
+    background-color: #3c3c3c;
+    color: #ffffff;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+/* Style dropdown content */
+.dropdown-content {
+    display: none;
+    position: absolute;
+    background-color: #626262;
+    min-width: 100%;
+    z-index: 1;
+}
+
+/* Style dropdown options */
+.dropdown-content a {
+    color: rgb(255, 255, 255);
+    padding: 12px 16px;
+    display: block;
+}
+
+/* Show dropdown content on hover */
+.dropdown:hover .dropdown-content {
+    display: block;
+}
+
+/* Style the form container */
+#filter-form {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #6d6d6d;
+    border-radius: 12px;
+    max-width: 700px;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+/* Style the form-group container */
+.form-group {
+    flex-basis: 100%;
+    margin-bottom: 20px;
+}
+
+/* Style the form labels */
+label {
+    display: block;
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 5px;
+    color: #ffffff;
+}
+
+/* Style the form inputs and selects */
+.form-control {
+    display: block;
+    width: 100%;
+    height: 44px;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 12px;
+    border: none;
+    background-color: #FFF;
+    box-sizing: border-box;
+    color: #333;
+    font-weight: 500;
+}
+
+/* Style the submit button */
+.btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px;
+    min-width: 100px;
+    font-size: 16px;
+    font-weight: 500;
+    text-align: center;
+    text-decoration: none;
+    background-color: #676767;
+    color: #FFF;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+/* Set max-width and center the form */
+form#filter-form {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Style form group labels */
+.form-group label {
+    display: block;
+    margin-bottom: 5px;
+    font-weight: 500;
+    color: #ffffff;
+}
+
+/* Style form control select elements */
+select.form-control {
+    height: 44px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-repeat: no-repeat;
+    background-position: right 20px center;
+    background-size: 10px 6px;
+}
+
+/* Style form control select elements on hover and focus */
+select.form-control:hover,
+select.form-control:focus {
+    outline: none;
+    border: none;
+}
+
+/* Style form control select elements when an option is selected */
+select.form-control option:checked {
+    background-color: #464646;
+    color: #FFF;
+}
+
+/* Style the filter button */
+button.btn.btn-primary {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    height: 44px;
+    margin-top: 20px;
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: #FFF;
+    background-color: #464646;
+    border-radius: 12px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    min-width: 100px;
+    padding: 0 16px;
+}
+
+/* Style metadata table */
+.metadata-table {
+    width: 100%;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border-collapse: separate;
+    border-spacing: 0;
+    border: none;
+}
+
+/* Style table headers */
+.metadata-table th {
+    font-weight: bold;
+    color: #333;
+    text-align: left;
+    padding: 12px 16px;
+    background-color: #464646;
+    border: none;
+}
+
+/* Style table rows */
+.metadata-table tr {
+    border-bottom: 1px solid #E5E5E5;
+}
+
+/* Style table data cells */
+.metadata-table td {
+    padding: 12px 16px;
+    color: #333;
+    border: none;
+}
+
+/* Set max-width and center the form */
+form#tag-form {
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+/* Style form control input elements */
+input[type="text"],
+input[type="submit"] {
+    border: 1px solid #C8C8C8;
+    padding: 10px;
+    font-size: 14px;
+    font-weight: 400;
+    color: #555555;
+    border-radius: 6px;
+    box-shadow: none;
+    transition: all 0.2s ease-in-out;
+}
+
+/* Style form control input elements on hover and focus */
+input[type="text"]:hover,
+input[type="text"]:focus,
+input[type="submit"]:hover,
+input[type="submit"]:focus {
+    border: 1px solid #ffffff;
+    color: #898989;
+    outline: none;
+}
+
+/* Style form control input elements when valid */
+input[type="text"]:valid {
+    border: 1px solid #34C759;
+    color: #34C759;
+}
+
+/* Style form control submit input element */
+input[type="submit"] {
+    background-color: #464646;
+    border-color: #464646;
+    color: #FFFFFF;
+    font-weight: 500;
+    text-transform: uppercase;
+}
+
+/* Style form control submit input element on hover and focus */
+input[type="submit"]:hover,
+input[type="submit"]:focus {
+    background-color: #464646;
+    border-color: #464646;
+    color: #FFFFFF;
+    outline: none;
+}
+
+/* Style option fields */
+option {
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 12px;
+    border: none;
+    background-color: #444444;
+    box-sizing: border-box;
+    color: #333;
+    font-weight: 500;
+}
+
+/* Set uniform height for text input and option fields */
+input[type="text"],
+select.form-control {
+    height: 44px;
+}
+
+/* Set uniform padding for text input and option fields */
+input[type="text"],
+select.form-control,
+option {
+    padding: 12px;
+}
+
+/* Set uniform border radius for text input and option fields */
+input[type="text"],
+select.form-control,
+option {
+    border-radius: 12px;
+}
+
+/* Set uniform margin bottom for form groups */
+.form-group {
+    margin-bottom: 24px;
+}
+
+.metadata-table #tags-list,
+.metadata-table #category-list {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.metadata-table #tags-list li,
+.metadata-table #category-list li {
+    margin-right: 5px;
+    margin-bottom: 5px;
+    background-color: #e9e9e9;
+    padding: 5px;
+    border-radius: 4px;
+    font-size: 14px;
+    color: #333;
+}
+
+.metadata-table #tags-list li::before,
+.metadata-table #category-list li::before {
+    content: '#';
+    margin-right: 5px;
+    font-weight: bold;
+}
+
+::-webkit-scrollbar {
+    display: none;
+}
+
+.favorite-toggle span {
+    font-size: 24px; /* Adjust font size as needed */
+    color: #333; /* Adjust color as needed */
+    vertical-align: middle; /* Align icon in the center */
+  }
+
+  .favorite-toggle {
+    background-color: transparent;
+    border: transparent;
+  }
+
+  .nav-button {
+    background-color: transparent;
+    border: none;
+  }
+
+  .filterbar{
+    display: flex;
+    width: 100%;
+    overflow-x: auto; 
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1;  
+  }
+
+  .filterbtn {
+    position: relative;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 5px 5px;
+  font-weight: bold;
+  text-align: center;
+  text-decoration: none;
+  white-space: nowrap;
+  color: #fff;
+  background-color: #464646;
+  border-radius: 4px;
+  box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
+  border: none;
+  cursor: pointer;
+  }

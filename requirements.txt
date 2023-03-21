@@ -1,0 +1,5 @@
+flask
+jinja2
+pillow
+colorlog
+pandas
