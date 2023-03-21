@@ -151,7 +151,7 @@ favoriteForms.forEach(form => {
                 if (formMethodInput) {
                     formMethodInput.value = formMethod;
                 }
-                currentForm.querySelector('.favorite-toggle').innerHTML = newFavorite ? '<i class="material-icons">favorite</i>' : '<i class="material-icons">favorite_border</i>'; // Update button label with heart icon
+                currentForm.querySelector('.favorite-toggle').innerHTML = newFavorite ? '<span class="material-icons">favorite</span>' : '<span class="material-icons">favorite_border</span>' ; // Update button label with heart icon
             }
         };
         xhr.send();
