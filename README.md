@@ -27,7 +27,7 @@ Run the application:
 Replace <image folder> with the path to the folder containing your images.
 
 ```
-python .\gallery.py --imagedir "F:\stable-diffusion-webui\outputs\txt2img-images\2023-03-21\rpg females"
+python .\gallery.py --imagedir "F:\stable-diffusion-webui\outputs\txt2img-images\2023-03-21\rpg"
 ```
 
 **Note**: on launch it will extract exif data from all images and initialize metadata for all images. It will also create thumbnails. Everything will be placed in a metadata folder in the current working directory. Under this a folder for the <image folder> will be created.
@@ -38,4 +38,4 @@ python .\gallery.py --imagedir "F:\stable-diffusion-webui\outputs\txt2img-images
 The following URL routes are available:
 - ```/```: Redirects to the image_viewer route with a randomly selected image.
 - ```/img/<image_name>```: Goes to image by name e.g. "00250-13343234.png" in your <image folder>
-- ``/img/<index>```: Goes to image by index in <image folder>. `0` is the first image.
+- ```/img/<index>```: Goes to image by index in <image folder>. `0` is the first image.
