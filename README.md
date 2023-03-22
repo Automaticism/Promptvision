@@ -36,6 +36,6 @@ python .\gallery.py --imagedir "F:\stable-diffusion-webui\outputs\txt2img-images
 
 ### URL routes
 The following URL routes are available:
-- ```/```: Redirects to the image_viewer route with a randomly selected image.
-- ```/img/<image_name>```: Goes to image by name e.g. "00250-13343234.png" in your <image folder>
-- ```/img/<index>```: Goes to image by index in <image folder>. `0` is the first image.
+- `/`: Redirects to the image_viewer route with a randomly selected image.
+- `/img/<image_name>`: Goes to image by name e.g. "00250-13343234.png" in your <image folder>
+- `/img/<index>`: Goes to image by index in <image folder>. `0` is the first image.
