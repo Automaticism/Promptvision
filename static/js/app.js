@@ -210,7 +210,10 @@ addTagsForm.addEventListener('submit', event => {
     event.preventDefault();
 
     const image_name = document.getElementById('active-image').alt;
-    const tags = document.getElementById('tags').value.trim().split(',');
+    const tags = document.getElementById('tagsinput').value.trim().split(/\s*,\s*/);
+    
+    console.log('image_name:', image_name);
+    console.log('tags:', tags);
 
     const xhr = new XMLHttpRequest();
     xhr.open('PUT', `/add-tags/${image_name}`);

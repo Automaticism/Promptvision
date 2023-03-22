@@ -1,0 +1,63 @@
+<div class="filterbar">
+    <form id="filter-form">
+      <div class="form-group">
+        <label for="search-query">Search query:</label>
+        <input type="text" class="form-control" id="search-query" name="search_query">
+      </div>
+      <div class="form-group">
+        <label for="favorites">Favorites:</label>
+        <select class="form-control" id="favorites" name="favorites">
+          <option value="">Any</option>
+          <option value="True">Yes</option>
+          <option value="False">No</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="rating">Rating:</label>
+        <select class="form-control" id="rating" name="rating">
+          <option value="">Any</option>
+          <option value="5">5 stars</option>
+          <option value="4">4 stars</option>
+          <option value="3">3 stars</option>
+          <option value="2">2 stars</option>
+          <option value="1">1 star</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="tags">Tags:</label>
+        <select class="form-control" id="tags" name="tags">
+          <option value="">Any</option>
+          {% if complete_metadata.Tags is defined and complete_metadata.Tags is string %}
+          {% for tag in complete_metadata.Tags.split(',') %}
+          <option value="{{ tag }}">{{ tag.strip("[ \' ]") }}</option>
+          {% endfor %}
+          {% elif complete_metadata.Tags is defined and complete_metadata.Tags is iterable %}
+          {% for tag in complete_metadata.Tags %}
+          <option value="{{ tag }}">{{ tag.strip("[ \' ]") }}</option>
+          {% endfor %}
+          {% endif %}
+        </select>
+      </div>
+      <div class="form-group">
+        <label for="categories">Categorization:</label>
+        <select class="form-control" id="categories" name="categories">
+          <option value="">Any</option>
+          {% if complete_metadata.Categorization is defined and complete_metadata.Categorization is string %}
+          {% for category in complete_metadata.Categorization.split(',') %}
+          {% if category|length > 0 %}
+          <option value="{{ category }}">{{ category.strip("[ \' ]") }}</option>
+          {% endif %}
+          {% endfor %}
+          {% elif complete_metadata.Categorization is defined and complete_metadata.Categorization is iterable %}
+          {% for category in complete_metadata.Categorization %}
+          {% if category|length > 0 %}
+          <option value="{{ category }}">{{ category.strip("[ \' ]") }}</option>
+          {% endif %}
+          {% endfor %}
+          {% endif %}
+        </select>
+      </div>
+      <button type="submit" class="btn btn-primary">Filter</button>
+    </form>
+  </div>
+  <button class="filterbtn" id="filter-toggle">Filters</button>

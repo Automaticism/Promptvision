@@ -44,6 +44,7 @@ body {
     background-color: #3b414a;
     box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
     overflow-y: auto;
+    color: #FFF;
 }
 
 .metadata h2 {
@@ -171,25 +172,6 @@ label {
     font-weight: 500;
 }
 
-/* Style the submit button */
-.btn {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 12px;
-    min-width: 100px;
-    font-size: 16px;
-    font-weight: 500;
-    text-align: center;
-    text-decoration: none;
-    background-color: #3b414a;
-    color: #FFF;
-    border-radius: 12px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
 /* Set max-width and center the form */
 form#filter-form {
     max-width: 800px;
@@ -239,7 +221,7 @@ button.btn.btn-primary {
     font-weight: 500;
     line-height: 1.2;
     color: #FFF;
-    background-color: #3b414a;
+    background-color: #646e7c;
     border-radius: 12px;
     border: none;
     cursor: pointer;
@@ -261,7 +243,7 @@ button.btn.btn-primary {
 /* Style table headers */
 .metadata-table th {
     font-weight: bold;
-    color: #333;
+    color: #fff;
     text-align: left;
     padding: 12px 16px;
     background-color: #3b414a;
@@ -290,13 +272,13 @@ form#tag-form {
 /* Style form control input elements */
 input[type="text"],
 input[type="submit"] {
-    border: 1px solid #C8C8C8;
+    border: 1px solid #8390a5;
     padding: 10px;
     font-size: 14px;
     font-weight: 400;
-    color: #3b414a;
+    color: #fff;
     border-radius: 6px;
-    box-shadow: none;
+    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.1);
     transition: all 0.2s ease-in-out;
 }
 
@@ -305,15 +287,15 @@ input[type="text"]:hover,
 input[type="text"]:focus,
 input[type="submit"]:hover,
 input[type="submit"]:focus {
-    border: 1px solid #3b414a;
-    color: #ffffff;
+    border: 1px solid #8ab9ff;
+    color: #fff;
     outline: none;
 }
 
 /* Style form control input elements when valid */
 input[type="text"]:valid {
-    border: 1px solid #34C759;
-    color: #34C759;
+    border: 1px solid #bcfdcd;
+    color: #fff;
 }
 
 /* Style form control submit input element */
@@ -328,8 +310,8 @@ input[type="submit"] {
 /* Style form control submit input element on hover and focus */
 input[type="submit"]:hover,
 input[type="submit"]:focus {
-    background-color: #3b414a;
-    border-color: #3b414a;
+    background-color: #2e353d;
+    border-color: #2e353d;
     color: #FFFFFF;
     outline: none;
 }
@@ -443,6 +425,10 @@ option {
     position: sticky;
     top: 0;
     z-index: 1;
+}
+
+.filterbar.hidden {
+    display: none;
 }
 
 .filterbtn {

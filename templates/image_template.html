@@ -172,8 +172,8 @@
         <tr>
           <td>
             <form id="tag-form">
-              <input type="text" name="tags" id="tags" required pattern="[a-zA-Z0-9\s]+">
-              <input type="submit" value="Add Tags">
+              <input class="form-control" type="text" id="tagsinput" required pattern="[a-zA-Z0-9\s]+">
+              <input class="form-control" type="submit" value="Add Tags">
             </form>
           </td>
           <td>
@@ -193,8 +193,8 @@
         <tr>
           <td class="header">
             <form id="category-form">
-              <input type="text" name="category" id="category" required pattern="[a-zA-Z0-9\s]+">
-              <input type="submit" value="Assign Category">
+              <input class="form-control" type="text" name="category" id="category" required pattern="[a-zA-Z0-9\s]+">
+              <input class="form-control" type="submit" value="Assign Category">
             </form>
           </td>
           <td>
@@ -214,14 +214,14 @@
         <tr>
           <td class="header">
             <form id="save-form">
-              <input type="submit" value="Save metadata">
+              <input class="form-control" type="submit" value="Save metadata">
             </form>
           </td>
           <td>
             <form action="{{ url_for('browse') }}" method="post">
-              <input type="text" id="folder_path" name="folder_path" required
+              <input class="form-control" type="text" id="folder_path" name="folder_path" required
                 title="Please enter a valid path to a directory containing images">
-              <input type="submit" value="Change image directory">
+              <input class="form-control" type="submit" value="Change image directory">
             </form>
           </td>
         </tr>
@@ -241,7 +241,6 @@
     </div>
   </div>
 </body>
-
 </html>
 
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>

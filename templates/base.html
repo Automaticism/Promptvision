@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {% set theme = request.cookies.get('theme') %}
+    {% if theme == 'dark' %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/dark.css') }}">
+    {% elif theme == 'light' %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/light.css') }}">
+    {% else %}
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='css/default.css') }}">
+    {% endif %}
+    <meta charset="utf-8">
+    <title>Promptviewer</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/default.css') }}">
+    <link rel="shortcut icon" type="image/x-icon" href="{{ url_for('static', filename='favicon.ico') }}">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+  </head>
+  <body>
+    
+    <header>
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+        </ul>
+      </nav>
+    </header>
+      {% block content %}
+      {% endblock %}
+    <footer>
+      <p>&copy; 2023 Promptviewer</p>
+    </footer>
+  </body>
+</html>

@@ -57,7 +57,7 @@ formatter = ColoredFormatter(
 #logging.basicConfig(level=logging.DEBUG, format='', datefmt='%Y-%m-%d %H:%M:%S')
 logging.getLogger().setLevel(logging.DEBUG) # Add this line to set the root logger level to DEBUG
 console_handler = logging.StreamHandler()
-console_handler.setLevel(logging.DEBUG)
+console_handler.setLevel(logging.ERROR)
 console_handler.setFormatter(formatter)
 logging.getLogger().addHandler(console_handler)
 logger = logging.getLogger(__name__)
@@ -571,6 +571,7 @@ def set_rating(image_name):
 
 @app.route("/add-tags/<image_name>", methods=["PUT"])
 def add_tags(image_name):
+    logger.debug(request.json)
     tags = request.json.get("tags")
     logger.debug(tags)
     row = imgview_data.loc[hashlib.sha256(image_name.encode()).hexdigest()]
