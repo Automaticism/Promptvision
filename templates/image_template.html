@@ -162,12 +162,24 @@
           <td>{{ exif_list['Model'] }}</td>
         </tr>
         <tr>
+          <td class="header">Eta</td>
+          <td>{{ exif_list['Eta'] }}</td>
+        </tr>
+        <tr>
+          <td class="header">Hashes</td>
+          <td>{{ exif_list['Hashes'] }}</td>
+        </tr>
+        <tr>
           <td class="header">Postprocessing</td>
           <td>{{ exif_list['Postprocessing'] }}</td>
         </tr>
         <tr>
           <td class="header">Extras</td>
           <td>{{ exif_list['Extras'] }}</td>
+        </tr>
+        <tr>
+          <td class="header">File</td>
+          <td>{{ image_alt }}</td>
         </tr>
         <tr>
           <td>
@@ -228,7 +240,7 @@
         <tr>
           <td>
             <div class="dropdown">
-              <button>Choose Style</button>
+              <button>Choose theme for Promptviewer</button>
               <div class="dropdown-content">
                 <a href="#" onclick="setStyle('default')" id="default-style">Default</a>
                 <a href="#" onclick="setStyle('dark')" id="dark-style">Dark</a>
