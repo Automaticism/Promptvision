@@ -860,7 +860,15 @@ def read_exif_data(image):
     parsed_data = {
         'Positive prompt': 'No data found',
         'Negative prompt': 'No data found',
-        'Sampler settings': 'No data found',
+        'Steps': 'No data found', 
+        'Sampler': 'No data found', 
+        'CFG scale': 'No data found', 
+        'Seed': 'No data found', 
+        'Size': 'No data found', 
+        'Model hash': 'No data found', 
+        'Model': 'No data found', 
+        'Eta': 'No data found',
+        'Hashes': 'No data found',
         'Postprocessing': 'No data found',
         'Extras': 'No data found'
     }
