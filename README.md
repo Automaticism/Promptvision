@@ -34,6 +34,12 @@ python .\gallery.py --imagedir "F:\stable-diffusion-webui\outputs\txt2img-images
 
 ![image](https://user-images.githubusercontent.com/20763070/226762754-72c1254f-890d-4768-ad93-6fa1d3e7f3ac.png)
 
+### Keybinds
+- `s` for save
+- `1 ... 5` for rating
+- `f` for favorite
+- `left` arrow key for previous, `right` arrow key for next
+
 ### URL routes
 The following URL routes are available:
 - `/`: Redirects to the image_viewer route with a randomly selected image.
