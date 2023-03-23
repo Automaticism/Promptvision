@@ -245,8 +245,6 @@ def filter_images():
     filtered_image_list = filtered_df.index.tolist()
     if len(filtered_image_list) > 0:
         global filtered_images
-        image_folder = Path(image_folder)
-        #filtered_images = [f.name for f in image_folder.iterdir() if f.is_file() and is_valid_image_extension(f.name)]
         filtered_images = filter_images_in_image_folder_path()
         found_images = [(hashlib.sha256(elem.encode()).hexdigest(), elem) for elem in get_image_names_in_image_dir() if search_query in elem]
         filtered_images = [x[1] for x in found_images if x[0] in filtered_image_list]
