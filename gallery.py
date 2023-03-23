@@ -38,30 +38,6 @@ import threading
 
 app = Flask(__name__)
 
-formatter = ColoredFormatter(
-	"%(log_color)s%(levelname)-8s%(asctime)s [%(levelname)s][%(funcName)s] line:%(lineno)d %(message)s",
-	datefmt=None,
-	reset=True,
-	log_colors={
-		'DEBUG':    'cyan',
-		'INFO':     'green',
-		'WARNING':  'yellow',
-		'ERROR':    'red',
-		'CRITICAL': 'red,bg_white',
-	},
-	secondary_log_colors={},
-	style='%'
-)
-
-# Set up the root logger with a custom formatter and a console handler
-#logging.basicConfig(level=logging.DEBUG, format='', datefmt='%Y-%m-%d %H:%M:%S')
-logging.getLogger().setLevel(logging.DEBUG) # Add this line to set the root logger level to DEBUG
-console_handler = logging.StreamHandler()
-console_handler.setLevel(logging.DEBUG)
-console_handler.setFormatter(formatter)
-logging.getLogger().addHandler(console_handler)
-logger = logging.getLogger(__name__)
-
 def dir_path(string):
     """Validate and return a directory path.
 
@@ -101,6 +77,8 @@ def get_args() -> argparse.Namespace:
         description="Image viewer built sith Flask.")
     parser.add_argument('--imagedir', type=dir_path)
     parser.add_argument('--port', default=8000, type=int)
+    parser.add_argument('--log', dest='loglevel', choices=['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'],
+                    help='Set the logging level', default='ERROR')
     return parser.parse_args()
 
 bulk_exif_data = {}
@@ -113,6 +91,30 @@ thumbnail_folder = ""
 thumbnails_sent = []
 filtered_images = []
 args = get_args()
+
+logger = logging.getLogger(__name__)
+formatter = ColoredFormatter(
+    "%(log_color)s%(levelname)-8s%(asctime)s [%(levelname)s][%(funcName)s] line:%(lineno)d %(message)s",
+    datefmt=None,
+    reset=True,
+    log_colors={
+        'DEBUG':    'cyan',
+        'INFO':     'green',
+        'WARNING':  'yellow',
+        'ERROR':    'red',
+        'CRITICAL': 'red,bg_white',
+    },
+    secondary_log_colors={},
+    style='%'
+)
+
+# Set up the root logger with a custom formatter and a console handler
+#logging.basicConfig(level=logging.DEBUG, format='', datefmt='%Y-%m-%d %H:%M:%S')
+logging.getLogger().setLevel(args.loglevel) # Add this line to set the root logger level to DEBUG
+console_handler = logging.StreamHandler()
+console_handler.setLevel(args.loglevel)
+console_handler.setFormatter(formatter)
+logging.getLogger().addHandler(console_handler)
 
 def b64encode(data):
     """Encode binary data in base64.
@@ -970,6 +972,8 @@ def dict_to_rows(inputdict):
         rows.append(row_dict)
     return rows
 
+
+    
 if __name__ == '__main__':
     start_time = time.time()
     if args.imagedir:
@@ -977,7 +981,7 @@ if __name__ == '__main__':
         logger.debug(f"Sat image_folder from args.imagedir: {image_folder}")
     else:
         raise ValueError("No image folder defined. Please supply image folder. use --h to see help.")
-
+    
     metadata_folder = Path("metadata")
     metadata_folder.mkdir(parents=True, exist_ok=True)
     metadata_subdir = metadata_folder / image_folder.name
