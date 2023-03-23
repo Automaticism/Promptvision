@@ -18,7 +18,7 @@ import ast
 from logging.handlers import RotatingFileHandler
 import os
 import sys
-from flask import Flask, url_for, render_template, send_from_directory,redirect, request, make_response, stream_template, jsonify
+from flask import Flask, url_for, render_template, send_from_directory,redirect, request, make_response, stream_template, jsonify, send_file
 import logging
 from jinja2 import Environment, FileSystemLoader
 import random
@@ -57,7 +57,7 @@ formatter = ColoredFormatter(
 #logging.basicConfig(level=logging.DEBUG, format='', datefmt='%Y-%m-%d %H:%M:%S')
 logging.getLogger().setLevel(logging.DEBUG) # Add this line to set the root logger level to DEBUG
 console_handler = logging.StreamHandler()
-console_handler.setLevel(logging.ERROR)
+console_handler.setLevel(logging.DEBUG)
 console_handler.setFormatter(formatter)
 logging.getLogger().addHandler(console_handler)
 logger = logging.getLogger(__name__)
@@ -80,6 +80,15 @@ def dir_path(string):
         return string
     else:
         raise NotADirectoryError(string)
+
+#filtered_images = [f.name for f in image_folder.iterdir() if f.is_file() and is_valid_image_extension(f.name)]
+def filter_images_in_image_folder_path():
+    logger.debug(image_folder)
+    filtered_images = []
+    for f in image_folder.glob('**/*'):
+        if f.is_file() and is_valid_image_extension(f.name):
+            filtered_images.append(str(f))  # convert Path object to string
+    return filtered_images
 
 def get_args() -> argparse.Namespace:
     """Parse command-line arguments.
@@ -128,7 +137,7 @@ app.jinja_env.filters['strip_chars'] = strip_chars
 app.jinja_env.filters['json_loads'] = json.loads
 app.jinja_env.globals['type'] = type
 
-def get_thumbnail_from_image(image_name):
+def get_thumbnail_from_image(image):
     """Get the thumbnail of an image.
 
     Args:
@@ -138,14 +147,15 @@ def get_thumbnail_from_image(image_name):
         io.BytesIO: The thumbnail image.
 
     """
-    thumbnail_folder = metadata_folder / 'thumbnails'
+    thumbnail_folder = metadata_subdir / 'thumbnails'
     thumbnail_folder.mkdir(parents=True, exist_ok=True)
 
-    thumbnail_name = image_name[:-4] + '_thumbnail.jpg'
+    thumbnail_name = Path(image).name[:-4] + '_thumbnail.jpg'
     thumbnail_path = thumbnail_folder / thumbnail_name
+    logger.debug(f"Thumbnail folder: {thumbnail_folder} Thumbnail path:{thumbnail_path}")
 
     if not thumbnail_path.exists():
-        image_file = Path(image_folder) / image_name
+        image_file = image
         img = Image.open(image_file)
         ratio = img.width / img.height
         img.thumbnail((int(256 * ratio), 256), Image.LANCZOS)
@@ -233,8 +243,9 @@ def filter_images():
     filtered_image_list = filtered_df.index.tolist()
     if len(filtered_image_list) > 0:
         global filtered_images
-        image_folder_path = Path(image_folder)
-        filtered_images = [f.name for f in image_folder_path.iterdir() if f.is_file() and is_valid_image_extension(f.name)]
+        image_folder = Path(image_folder)
+        #filtered_images = [f.name for f in image_folder.iterdir() if f.is_file() and is_valid_image_extension(f.name)]
+        filtered_images = filter_images_in_image_folder_path()
         found_images = [(hashlib.sha256(elem.encode()).hexdigest(), elem) for elem in get_image_names_in_image_dir() if search_query in elem]
         filtered_images = [x[1] for x in found_images if x[0] in filtered_image_list]
         logger.debug(filtered_images)
@@ -320,9 +331,9 @@ def image_data(image_name):
     Returns:
         flask.Response: The HTTP response containing the image data.
     """
-    response = make_response(send_from_directory(image_folder, image_name))
+    response = make_response(send_file(Path(image_name)))
     response.headers.set('Content-Type', 'image/jpeg')
-    response.headers.set('Content-Disposition', 'inline', filename=image_name)
+    response.headers.set('Content-Disposition', 'inline', filename=Path(image_name).name)
     response.headers.set('Cache-Control', 'public,max-age=1209600')
     return response
 
@@ -336,18 +347,25 @@ def browse():
     """
     if not request.form.get('folder_path'):
         return bad_request_error('folder_path is empty or not present in form data')
+    incoming_image_folder_path = Path(request.form.get('folder_path'))
+    logger.debug(f"Incodming image folder path: {incoming_image_folder_path}")
     global image_folder
-    image_folder = Path(request.form.get('folder_path'))
+    if image_folder == incoming_image_folder_path:
+        logger.warning(f"We are already in this folder.")
+        return zen("We are already in this folder.")
+    image_folder = incoming_image_folder_path
     logger.debug(image_folder)
     global metadata_subdir
     metadata_subdir = metadata_folder / image_folder.name
     metadata_subdir.mkdir(parents=True, exist_ok=True)
+    logger.debug(metadata_subdir)
     global thumbnail_folder
     thumbnail_folder = metadata_subdir / 'thumbnails'
     thumbnail_folder.mkdir(parents=True, exist_ok=True)
-    image_folder_path = Path(image_folder)
+    logger.debug(thumbnail_folder)
     global filtered_images
-    filtered_images = [f.name for f in image_folder_path.iterdir() if f.is_file() and is_valid_image_extension(f.name)]
+    #filtered_images = [f.name for f in image_folder.iterdir() if f.is_file() and is_valid_image_extension(f.name)]
+    filtered_images = filter_images_in_image_folder_path()
     logger.debug(f"filtered_images: {filtered_images}")
     start_time = time.time()
     
@@ -362,7 +380,7 @@ def browse():
     else:
         logger.debug("Creating bulk exif data")
         # Read EXIF data for images
-        bulk_exif_data = mp_bulk_exif_read(image_folder)
+        bulk_exif_data = mp_bulk_exif_read(filtered_images)
     
     global imgview_data
     # Check if metadata already exists
@@ -502,7 +520,8 @@ def image_viewer(image_name):
         metadata_for_filtered_images = imgview_data.loc[[hashlib.sha256(path.encode()).hexdigest() for path in filtered_images]].to_dict()
     except KeyError as e:
         logger.error(e)
-        filtered_images = [f.name for f in image_folder_path.iterdir() if f.is_file() and is_valid_image_extension(f.name)]
+        #filtered_images = [f.name for f in image_folder.iterdir() if f.is_file() and is_valid_image_extension(f.name)]
+        filtered_images = filter_images_in_image_folder_path()
         logger.debug(f"filtered_images: {filtered_images}")
         metadata_for_filtered_images = imgview_data.loc[[hashlib.sha256(path.encode()).hexdigest() for path in filtered_images]].to_dict()
          
@@ -543,8 +562,10 @@ def set_theme_cookie():
     return response
 
 # Define a route to handle the toggle request
-@app.route("/toggle/<image_name>", methods=["PUT"])
-def toggle(image_name):
+@app.route("/toggle", methods=["PUT"])
+def toggle():
+    data = request.json
+    image_name = data.get("image_name")
     logger.debug("Toggling favorite")
     logger.debug(image_name)
     # Find the row that matches the image name
@@ -561,19 +582,23 @@ def toggle(image_name):
     # Return a success message with the new value
     return jsonify(new_favorite)
 
-@app.route("/set-rating/<image_name>", methods=["PUT"])
-def set_rating(image_name):
-    rating = request.json.get("rating")
+@app.route("/set-rating", methods=["PUT"])
+def set_rating():
+    data = request.json
+    rating = data.get("rating")
+    image_name = data.get("image_name")
     logger.debug(rating)
     imgview_data.loc[hashlib.sha256(image_name.encode()).hexdigest(), "Rating"] = rating
+    logger.debug(imgview_data.loc[hashlib.sha256(image_name.encode()).hexdigest(), "Rating"])
     # Return a success message with the new tags
     return jsonify(rating=rating)
 
-@app.route("/add-tags/<image_name>", methods=["PUT"])
-def add_tags(image_name):
-    logger.debug(request.json)
-    tags = request.json.get("tags")
+@app.route("/add-tags", methods=["PUT"])
+def add_tags():
+    data = request.json
+    tags = data.get("tags")
     logger.debug(tags)
+    image_name = data.get("image_name")
     row = imgview_data.loc[hashlib.sha256(image_name.encode()).hexdigest()]
     # If no row is found, return an error message
     if row.empty:
@@ -590,10 +615,12 @@ def add_tags(image_name):
     # Return a success message with the new tags
     return jsonify(tags=new_tags_list)
 
-@app.route("/remove-tags/<image_name>", methods=["PUT"])
-def remove_tags(image_name):
+@app.route("/remove-tags", methods=["PUT"])
+def remove_tags():
+    data = request.json
+    image_name = data.get("image_name")
     logger.debug("removing tags")
-    tags_to_remove = request.json.get("tag")
+    tags_to_remove = data.get("tag")
     logger.debug(tags_to_remove)
     row = imgview_data.loc[hashlib.sha256(image_name.encode()).hexdigest()]
     # If no row is found, return an error message
@@ -613,9 +640,11 @@ def remove_tags(image_name):
     # Return a success message with the updated tags
     return jsonify(tags=new_tags_list)
 
-@app.route("/assign-category/<image_name>", methods=["PUT"])
-def assign_category(image_name):
-    category = request.json.get("categories")
+@app.route("/assign-category", methods=["PUT"])
+def assign_category():
+    data = request.json
+    image_name = data.get("image_name")
+    category = data.get("categories")
     logger.debug(category)
     row = imgview_data.loc[hashlib.sha256(image_name.encode()).hexdigest()]
     # If no row is found, return an error message
@@ -636,10 +665,12 @@ def assign_category(image_name):
     # Return a success message with the new value
     return jsonify(category=new_category_list)
 
-@app.route("/remove-category/<image_name>", methods=["PUT"])
-def remove_categories(image_name):
+@app.route("/remove-category", methods=["PUT"])
+def remove_categories():
+    data = request.json
+    image_name = data.get("image_name")
     logger.debug("removing tags")
-    category_to_remove = request.json.get("category")
+    category_to_remove = data.get("category")
     logger.debug(category_to_remove)
     row = imgview_data.loc[hashlib.sha256(image_name.encode()).hexdigest()]
     # If no row is found, return an error message
@@ -677,8 +708,9 @@ def get_selected_image_by_index(image_id):
     logging.debug("------------")
     return images[int(image_id)]
 
-@app.route('/get-metadata/<image_name>')
-def get_metadata(image_name):
+@app.route('/get-metadata')
+def get_metadata():
+    image_name = request.args.get("image_name")
     metadata_dict = imgview_data.loc[hashlib.sha256(image_name.encode()).hexdigest()].to_dict()
     tags_str = metadata_dict['Tags'].strip('[]').replace("'", '').split(', ')
     metadata_dict['Tags'] = tags_str
@@ -811,7 +843,7 @@ def update_metadata():
 
     return updated_df
 
-def read_exif_data(image, image_folder):
+def read_exif_data(image):
     """
     Extracts the EXIF data from an image file.
 
@@ -823,8 +855,7 @@ def read_exif_data(image, image_folder):
     """
     logger.debug(image)
     #image = os.path.join(image_folder, image)
-    image_file = Path(image_folder) / image
-    img = Image.open(image_file)
+    img = Image.open(image)
     parsed_data = {
         'Positive prompt': 'No data found',
         'Negative prompt': 'No data found',
@@ -835,6 +866,7 @@ def read_exif_data(image, image_folder):
     try:
         exif_data = img.text
     except AttributeError as e:
+        logger.error(img)
         logger.error(e)
         return pd.DataFrame(parsed_data, index=["exifdataindex"])
 
@@ -852,6 +884,8 @@ def read_exif_data(image, image_folder):
             parsed_data['Size'] = sampler_settings[4].split(": ")[1]
             parsed_data['Model hash'] = sampler_settings[5].split(": ")[1]
             parsed_data['Model'] = sampler_settings[6].split(": ")[1]
+            parsed_data['Eta'] = sampler_settings[7].split(": ")[1]
+            parsed_data['Hashes'] = str(sampler_settings[8:])
         else:
             parsed_data['Positive prompt'] = key_value
 
@@ -865,9 +899,10 @@ def read_exif_data(image, image_folder):
     if extras:
         parsed_data['Extras'] = extras
 
+    logger.debug(parsed_data)
     return pd.DataFrame(parsed_data, index=["exifdataindex"])
     
-def mp_bulk_exif_read(image_folder):
+def mp_bulk_exif_read(filtered_images):
     """
     Reads the EXIF data from all image files in parallel using multiprocessing.
 
@@ -876,8 +911,9 @@ def mp_bulk_exif_read(image_folder):
     """
     pool = mp.Pool(mp.cpu_count())
     results = []
-    for image in get_image_names_in_image_dir():
-        result = pool.apply_async(read_exif_data, args=(image,image_folder))
+    for image in filtered_images:
+        logger.debug(image)
+        result = pool.apply_async(read_exif_data, args=(image,))
         results.append(result)
 
     pool.close()
@@ -887,10 +923,11 @@ def mp_bulk_exif_read(image_folder):
 
     df = pd.DataFrame(columns=['Positive prompt', 'Negative prompt', 'Sampler settings',
                                'Steps', 'Sampler', 'CFG scale', 'Seed', 'Size', 'Model hash',
-                               'Model', 'Postprocessing', 'Extras'])
+                               'Model', 'Eta', 'Hashes', 'Postprocessing', 'Extras'])
     df.index.name = "sha256"
 
-    for result, image in zip(results, get_image_names_in_image_dir()):
+    for result, image in zip(results, filtered_images):
+        logger.debug(f"result: {result}, image: {image}")
         row = result.get()
         logger.debug(row.to_string())
         df.loc[hashlib.sha256(image.encode()).hexdigest()] = row.loc['exifdataindex']
@@ -947,8 +984,8 @@ if __name__ == '__main__':
     metadata_subdir.mkdir(parents=True, exist_ok=True)
     thumbnail_folder = metadata_subdir / 'thumbnails'
     thumbnail_folder.mkdir(parents=True, exist_ok=True)
-    image_folder_path = Path(image_folder)
-    filtered_images = [f.name for f in image_folder_path.iterdir() if f.is_file() and is_valid_image_extension(f.name)]
+    #filtered_images = [f.name for f in image_folder.iterdir() if f.is_file() and is_valid_image_extension(f.name)]
+    filtered_images = filter_images_in_image_folder_path()
     # Check if EXIF data already exists
     exif_df_path = metadata_subdir.joinpath("exif_df.csv")
     if exif_df_path.exists():
@@ -956,14 +993,14 @@ if __name__ == '__main__':
         bulk_exif_data.set_index('sha256', inplace=True)
         #bulk_exif_data['Sampler settings'] = pd.array(bulk_exif_data['Sampler settings'].tolist())
         logger.warning(len(bulk_exif_data))
-        if len(os.listdir(image_folder_path)) == len(bulk_exif_data):
+        if len(filtered_images) == len(bulk_exif_data):
             pass
         else:
-            bulk_exif_data = mp_bulk_exif_read(image_folder)
+            bulk_exif_data = mp_bulk_exif_read(filtered_images)
     else:
         logger.debug("Creating bulk exif data")
         # Read EXIF data for images
-        bulk_exif_data = mp_bulk_exif_read(image_folder)
+        bulk_exif_data = mp_bulk_exif_read(filtered_images)
     
     # Check if metadata already exists
     metadata_path = metadata_subdir.joinpath("imgview_metadata.csv")
@@ -971,7 +1008,7 @@ if __name__ == '__main__':
         imgview_data = pd.read_csv(metadata_path)
         imgview_data.set_index('sha256', inplace=True)
         logger.warning(len(imgview_data))
-        if len(os.listdir(image_folder_path)) == len(imgview_data):
+        if len(os.listdir(image_folder)) == len(imgview_data):
             pass
         else:
             imgview_data = update_metadata()

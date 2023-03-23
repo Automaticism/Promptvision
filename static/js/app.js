@@ -21,23 +21,28 @@ function keyhandler(event) {
             const rating = numPressed;
             const image_name = document.getElementById('active-image').alt;
             const xhr = new XMLHttpRequest();
-            xhr.open('PUT', `/set-rating/${image_name}`);
+            xhr.open('PUT', '/set-rating');
             xhr.setRequestHeader('Content-Type', 'application/json');
+            const starIcons = document.querySelectorAll('.star-icon');
             xhr.onreadystatechange = function () {
-                if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-                    console.log('Rating set!');
-                    
-                    // Update the star icons to reflect the new rating
-                    starIcons.forEach((icon) => {
-                        if (icon.getAttribute('data-rating') <= rating) {
-                            icon.textContent = 'star';
-                        } else {
-                            icon.textContent = 'star_border';
-                        }
-                    });
-                }
+              if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                const response = JSON.parse(this.responseText);
+                const rating = response.rating; // update rating with new value returned from server
+                // Update the star icons to reflect the new rating
+                starIcons.forEach((icon) => {
+                  if (icon.getAttribute('data-rating') <= rating) {
+                    icon.textContent = 'star';
+                  } else {
+                    icon.textContent = 'star_border';
+                  }
+                  if (rating >= 4 && icon.getAttribute('data-rating') > rating) {
+                    icon.textContent = 'star_border';
+                  }
+                });
+              }
             };
-            xhr.send(JSON.stringify({ rating: rating }));
+            xhr.send(JSON.stringify({ rating: rating, image_name: image_name }));
+  xhr.send(JSON.stringify({ rating: rating, image_name: image_name }));
         }  else if ((event.ctrlKey || event.metaKey) && event.key === "s") {
             // Prevent the default behavior of the key combination
             event.preventDefault();
@@ -139,7 +144,7 @@ favoriteForms.forEach(form => {
         const image_name = document.getElementById('active-image').alt;
         console.log(image_name)
         const xhr = new XMLHttpRequest();
-        xhr.open('PUT', `/toggle/${image_name}`);
+        xhr.open('PUT', `/toggle`);
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onreadystatechange = function () {
             if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
@@ -154,7 +159,7 @@ favoriteForms.forEach(form => {
                 currentForm.querySelector('.favorite-toggle').innerHTML = newFavorite ? '<span class="material-icons">favorite</span>' : '<span class="material-icons">favorite_border</span>' ; // Update button label with heart icon
             }
         };
-        xhr.send();
+        xhr.send(JSON.stringify({image_name: image_name}));
     });
 });
 
@@ -167,14 +172,14 @@ starIcons.forEach((starIcon) => {
         const rating = starIcon.getAttribute('data-rating');
         const image_name = document.getElementById('active-image').alt;
         const xhr = new XMLHttpRequest();
-        xhr.open('PUT', `/set-rating/${image_name}`);
+        xhr.open('PUT', '/set-rating');
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onreadystatechange = function () {
             if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
                 console.log('Rating set!');
             }
         };
-        xhr.send(JSON.stringify({ rating: rating }));
+        xhr.send(JSON.stringify({ rating: rating, image_name: image_name }));
         // Update the star icons to reflect the new rating
         starIcons.forEach((icon) => {
             if (icon.getAttribute('data-rating') <= rating) {
@@ -193,14 +198,14 @@ starIcons.forEach((starIcon) => {
         const rating = 0;
         const image_name = document.getElementById('active-image').alt;
         const xhr = new XMLHttpRequest();
-        xhr.open('PUT', `/set-rating/${image_name}`);
+        xhr.open('PUT', '/set-rating');
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onreadystatechange = function () {
             if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
                 console.log('Rating reset!');
             }
         };
-        xhr.send(JSON.stringify({ rating: rating }));
+        xhr.send(JSON.stringify({ rating: rating, image_name: image_name }));
     });
 });
 
@@ -216,14 +221,14 @@ addTagsForm.addEventListener('submit', event => {
     console.log('tags:', tags);
 
     const xhr = new XMLHttpRequest();
-    xhr.open('PUT', `/add-tags/${image_name}`);
+    xhr.open('PUT', `/add-tags`);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onreadystatechange = function () {
         if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
             console.log("Tags added");
             // Get updated metadata for image
             const xhr2 = new XMLHttpRequest();
-            xhr2.open('GET', `/get-metadata/${image_name}`);
+            xhr2.open('GET', `/get-metadata?image_name=${image_name}`);
             xhr2.onreadystatechange = function () {
                 if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
                     const metadata = JSON.parse(this.responseText);
@@ -245,20 +250,20 @@ addTagsForm.addEventListener('submit', event => {
             xhr2.send();
         }
     };
-    xhr.send(JSON.stringify({ tags: tags }));
+    xhr.send(JSON.stringify({ tags: tags, image_name: image_name }));
 });
 
 // Function to remove tag from image
 function removeTag(image_name, tag) {
     const xhr = new XMLHttpRequest();
-    xhr.open('PUT', `/remove-tags/${image_name}`);
+    xhr.open('PUT', `/remove-tags`);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onreadystatechange = function () {
         if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
             console.log("Tag removed");
             // Get updated metadata for image
             const xhr2 = new XMLHttpRequest();
-            xhr2.open('GET', `/get-metadata/${image_name}`);
+            xhr2.open('GET', `/get-metadata?image_name=${image_name}`);
             xhr2.onreadystatechange = function () {
                 if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
                     const metadata = JSON.parse(this.responseText);
@@ -280,7 +285,7 @@ function removeTag(image_name, tag) {
             xhr2.send();
         }
     };
-    xhr.send(JSON.stringify({ tag: tag }));
+    xhr.send(JSON.stringify({ tag: tag, image_name: image_name }));
 }
 
 // Function to add click event listeners to each tag item to remove tags
@@ -307,48 +312,48 @@ categoryForm.addEventListener('submit', (event) => {
     const categories = document.getElementById('category').value.trim().split(',').map(category => category.trim());
     console.log(categories)
     const xhr = new XMLHttpRequest();
-    xhr.open('PUT', `/assign-category/${image_name}`);
+    xhr.open('PUT', `/assign-category`);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onreadystatechange = function () {
         if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
             console.log('Category assigned!');
             // Get updated metadata for image
             const xhr2 = new XMLHttpRequest();
-            xhr2.open('GET', `/get-metadata/${image_name}`);
+            xhr2.open('GET', `/get-metadata?image_name=${image_name}`);
             xhr2.onreadystatechange = function () {
-                if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-                    const metadata = JSON.parse(this.responseText);
-                    console.log(metadata)
-                    // Update the category in the HTML
-                    const categoryList = document.querySelector('#category-list');
-                    categoryList.innerHTML = '';
-                    metadata.Categorization.forEach(category => {
-                        const categoryItem = document.createElement('li');
-                        categoryItem.textContent = category;
-                        categoryList.appendChild(categoryItem);
-                        categoryItem.addEventListener('click', function () {
-                            removeCategory(image_name, category);
-                        });
-                    });
-                }
+            if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                const metadata = JSON.parse(this.responseText);
+                console.log(metadata)
+                // Update the category in the HTML
+                const categoryList = document.querySelector('#category-list');
+                categoryList.innerHTML = '';
+                metadata.Categorization.forEach(category => {
+                const categoryItem = document.createElement('li');
+                categoryItem.textContent = category;
+                categoryList.appendChild(categoryItem);
+                categoryItem.addEventListener('click', function () {
+                    removeCategory(image_name, category);
+                });
+                });
+            }
             };
             xhr2.send();
         }
     };
-    xhr.send(JSON.stringify({ categories: categories }));
+    xhr.send(JSON.stringify({ categories: categories, image_name: image_name }));
 });
 
 // Function to remove category from image
 function removeCategory(image_name, category) {
     const xhr = new XMLHttpRequest();
-    xhr.open('PUT', `/remove-category/${image_name}`);
+    xhr.open('PUT', `/remove-category`);
     xhr.setRequestHeader('Content-Type', 'application/json');
     xhr.onreadystatechange = function () {
         if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
             console.log("Category removed");
             // Get updated metadata for image
             const xhr2 = new XMLHttpRequest();
-            xhr2.open('GET', `/get-metadata/${image_name}`);
+            xhr2.open('GET', `/get-metadata?image_name=${image_name}`);
             xhr2.onreadystatechange = function () {
                 if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
                     const metadata = JSON.parse(this.responseText);
@@ -368,7 +373,7 @@ function removeCategory(image_name, category) {
             xhr2.send();
         }
     };
-    xhr.send(JSON.stringify({ category: category }));
+    xhr.send(JSON.stringify({ category: category, image_name: image_name }));
 }
 
 // Call addClickListenersToCategories to add event listeners to categories when the page loads
@@ -402,7 +407,7 @@ function saveData() {
 // Send an autosave request every 5 minutes
 setInterval(function() {
     var xhr = new XMLHttpRequest();
-    xhr.open('POST', '/autosave');
+    xhr.open('PUT', '/save');
     xhr.onload = function () {
         if (xhr.status === 200) {
             console.log('Autosave successful');
