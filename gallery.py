@@ -880,12 +880,12 @@ def read_exif_data(image):
         logger.error(e)
         return pd.DataFrame(parsed_data, index=["exifdataindex"])
 
-    regex = r'(\w+( \w+)*):\s*([\w{}:]+)'
-
+    regex = r'(\w+( \w+)*):\s*([\w{}":,]+)'
+    
     for key_value in exif_data['parameters'].split('\n'):
         if 'Negative prompt:' in key_value:
             parsed_data['Negative prompt'] = key_value.split(': ')[1]
-        elif all(x in key_value for x in ['Steps:', 'Sampler:', 'CFG scale:', 'Seed:', 'Size:', 'Model hash:', 'Model:', 'Hashes:']):
+        elif all(x in key_value for x in ['Steps:', 'Sampler:', 'CFG scale:', 'Seed:', 'Size:', 'Model hash:', 'Model:']):
             logger.debug(key_value)
             matches = re.findall(regex, key_value)
             for match in matches:
@@ -909,6 +909,7 @@ def read_exif_data(image):
                     parsed_data['Hashes'] = match[2]
         else:
             parsed_data['Positive prompt'] = key_value
+
 
     # Parse the "postprocessing" key
     postprocessing = exif_data.get('postprocessing', '')
