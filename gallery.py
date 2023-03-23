@@ -876,50 +876,54 @@ def read_exif_data(image):
         exif_data = img.text
         logger.debug(f"-------\nexif_data:{exif_data}\nexif_data_type:{type(exif_data)}----------\n")
     except AttributeError as e:
-        logger.error(img)
-        logger.error(e)
+        logger.warning(img)
+        logger.warning(e)
         return pd.DataFrame(parsed_data, index=["exifdataindex"])
 
-    regex = r'(\w+( \w+)*):\s*([\w{}":,]+)'
-    
-    for key_value in exif_data['parameters'].split('\n'):
-        if 'Negative prompt:' in key_value:
-            parsed_data['Negative prompt'] = key_value.split(': ')[1]
-        elif all(x in key_value for x in ['Steps:', 'Sampler:', 'CFG scale:', 'Seed:', 'Size:', 'Model hash:', 'Model:']):
-            logger.debug(key_value)
-            matches = re.findall(regex, key_value)
-            for match in matches:
-                if match[0] == 'Steps':
-                    parsed_data['Steps'] = match[2]
-                elif match[0] == 'Sampler':
-                    parsed_data['Sampler'] = match[2]
-                elif match[0] == 'CFG scale':
-                    parsed_data['CFG scale'] = match[2]
-                elif match[0] == 'Seed':
-                    parsed_data['Seed'] = match[2]
-                elif match[0] == 'Size':
-                    parsed_data['Size'] = match[2]
-                elif match[0]== 'Model hash':
-                    parsed_data['Model hash'] = match[2]
-                elif match[0] == 'Model':
-                    parsed_data['Model'] = match[2]
-                elif match[0] == 'Eta':
-                    parsed_data['Eta'] = match[2]
-                elif match[0] == 'Hashes':
-                    parsed_data['Hashes'] = match[2]
-        else:
-            parsed_data['Positive prompt'] = key_value
+    try:
+        regex = r'(\w+( \w+)*):\s*([\w{}":,]+)'
+        for key_value in exif_data['parameters'].split('\n'):
+            if 'Negative prompt:' in key_value:
+                parsed_data['Negative prompt'] = key_value.split(': ')[1]
+            elif all(x in key_value for x in ['Steps:', 'Sampler:', 'CFG scale:', 'Seed:', 'Size:', 'Model hash:', 'Model:']):
+                logger.debug(key_value)
+                matches = re.findall(regex, key_value)
+                for match in matches:
+                    if match[0] == 'Steps':
+                        parsed_data['Steps'] = match[2].rstrip(',')
+                    elif match[0] == 'Sampler':
+                        parsed_data['Sampler'] = match[2].rstrip(',')
+                    elif match[0] == 'CFG scale':
+                        parsed_data['CFG scale'] = match[2].rstrip(',')
+                    elif match[0] == 'Seed':
+                        parsed_data['Seed'] = match[2].rstrip(',')
+                    elif match[0] == 'Size':
+                        parsed_data['Size'] = match[2].rstrip(',')
+                    elif match[0]== 'Model hash':
+                        parsed_data['Model hash'] = match[2].rstrip(',')
+                    elif match[0] == 'Model':
+                        parsed_data['Model'] = match[2].rstrip(',')
+                    elif match[0] == 'Eta':
+                        parsed_data['Eta'] = match[2].rstrip(',')
+                    elif match[0] == 'Hashes':
+                        parsed_data['Hashes'] = match[2].rstrip(',')
+            else:
+                parsed_data['Positive prompt'] = key_value
 
 
-    # Parse the "postprocessing" key
-    postprocessing = exif_data.get('postprocessing', '')
-    if postprocessing:
-        parsed_data['Postprocessing'] = postprocessing
+        # Parse the "postprocessing" key
+        postprocessing = exif_data.get('postprocessing', '')
+        if postprocessing:
+            parsed_data['Postprocessing'] = postprocessing
 
-    # Parse the "extras" key
-    extras = exif_data.get('extras', '')
-    if extras:
-        parsed_data['Extras'] = extras
+        # Parse the "extras" key
+        extras = exif_data.get('extras', '')
+        if extras:
+            parsed_data['Extras'] = extras
+    except KeyError as e:
+        logger.warning(e)
+        logger.debug(parsed_data)
+        return pd.DataFrame(parsed_data, index=["exifdataindex"])
 
     logger.debug(parsed_data)
     return pd.DataFrame(parsed_data, index=["exifdataindex"])
