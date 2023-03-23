@@ -23,26 +23,21 @@ function keyhandler(event) {
             const xhr = new XMLHttpRequest();
             xhr.open('PUT', '/set-rating');
             xhr.setRequestHeader('Content-Type', 'application/json');
-            const starIcons = document.querySelectorAll('.star-icon');
+            const starIcons = document.querySelectorAll('.rating-icon');
             xhr.onreadystatechange = function () {
-              if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-                const response = JSON.parse(this.responseText);
-                const rating = response.rating; // update rating with new value returned from server
-                // Update the star icons to reflect the new rating
-                starIcons.forEach((icon) => {
-                  if (icon.getAttribute('data-rating') <= rating) {
-                    icon.textContent = 'star';
-                  } else {
-                    icon.textContent = 'star_border';
-                  }
-                  if (rating >= 4 && icon.getAttribute('data-rating') > rating) {
-                    icon.textContent = 'star_border';
-                  }
-                });
-              }
+                if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                    const response = JSON.parse(this.responseText);
+                    // Update the star icons to reflect the new rating
+                    starIcons.forEach((icon, index) => {
+                        if (index< response.rating) {
+                            icon.textContent = 'star';
+                        } else {
+                            icon.textContent = 'star_border';
+                        }
+                    });
+                }
             };
             xhr.send(JSON.stringify({ rating: rating, image_name: image_name }));
-  xhr.send(JSON.stringify({ rating: rating, image_name: image_name }));
         }  else if ((event.ctrlKey || event.metaKey) && event.key === "s") {
             // Prevent the default behavior of the key combination
             event.preventDefault();

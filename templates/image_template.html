@@ -89,10 +89,10 @@
           <td class="" colspan="2">
             <div id="star-rating">
               {% for i in range(1, 6) %}
-              {% if i <= metadata.Rating | int %} <span class="material-icons star-icon" data-rating="{{ i }}">
+              {% if i <= metadata.Rating | int %} <span class="material-icons rating-icon star-icon" data-rating="{{ i }}">
                 star</span>
                 {% else %}
-                <span class="material-icons" data-rating="{{ i }}">star_border</span>
+                <span class="material-icons rating-icon" data-rating="{{ i }}">star_border</span>
                 {% endif %}
                 {% endfor %}
             </div>
