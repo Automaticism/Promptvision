@@ -23,9 +23,6 @@ Install the required dependencies using pip:
 
 ### Usage
 Run the application:
-```python app.py --imagedir <image folder>```
-Replace <image folder> with the path to the folder containing your images.
-
 ```
 python .\gallery.py --imagedir "F:\stable-diffusion-webui\outputs\txt2img-images\2023-03-21\rpg"
 ```
