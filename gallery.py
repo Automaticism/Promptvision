@@ -311,7 +311,7 @@ def thumbnails():
     if imgsrc == None:
         pass
     else:
-        offset = get_image_index_by_name(imgsrc[1:])
+        offset = get_image_index_by_name(imgsrc)
     if offset == None:
         offset = 0
     # Fetch thumbnail data from the server
@@ -795,6 +795,7 @@ def get_selected_image_index_by_name():
         return None
     
 def get_image_index_by_name(image_name):
+    logger.debug(image_name)
     images = get_image_names_in_image_dir()
     if images[0][0] == "/":
         logger.debug("Found /")

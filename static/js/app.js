@@ -487,6 +487,14 @@ function setThemeCookieXHR(theme) {
     }
   }
   
+  function navigate(direction) {
+    const img = document.getElementById('active-image');
+    const imgsrc = img.getAttribute('alt');
+    var imageName = encodeURIComponent(imgsrc);
+    var url = "/imagedirection?direction=" + direction + "&image_name=" + imageName;
+    location.href = url;
+  }
+
   // Call setThemeFromCookie() on page load
   window.addEventListener('load', setThemeFromCookie);
   
