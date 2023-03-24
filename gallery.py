@@ -31,7 +31,7 @@ import hashlib
 import base64
 from datetime import datetime
 from colorlog import ColoredFormatter
-import multiprocessing as mp
+import multiprocessing
 import time
 import json
 import re
@@ -107,9 +107,6 @@ def get_args(argv=None) -> argparse.Namespace:
                 args.port = app_config['port']
             if 'log' in app_config:
                 args.log = app_config['log']
-
-    if not args.imagedir:
-        raise ValueError("No image folder defined. Please supply image folder. use --h to see help.")
 
     return args
 
@@ -566,34 +563,40 @@ def image_viewer():
             'exif_key': "Initialized exif structure",
             'exif_info': "",
             }]
-
+    metadata_found = False
     try:
         # Try to get the EXIF data for the current image.
         # Look up the image in a pre-computed dataframe of EXIF data.
         # Convert the dataframe to a dictionary.
         exif_data = bulk_exif_data.loc[hashlib.sha256(image_src.encode()).hexdigest()].to_dict()
-
-        # Try to convert the "Sampler settings" key in exif_data to a dictionary.
-        # If it fails, set "Sampler settings" to "No data found".
-        """
-        try:
-            exif_data['Sampler settings'] = ast.literal_eval(exif_data['Sampler settings'])
-        except SyntaxError as e:
-            logger.error(e)
-            exif_data['Sampler settings'] = "No data found"
-        """
+        metadata_found = True
 
     except KeyError as e:
         # If the image is not found in the EXIF data, log a warning message.
         logger.warning(e)
         logger.warning(image_src)
-        logger.warning(bulk_exif_data['sha256'])
         logger.warning(bulk_exif_data.index)
+        exif_data =  {
+        'Positive prompt': 'No data found',
+        'Negative prompt': 'No data found',
+        'Steps': 'No data found', 
+        'Sampler': 'No data found', 
+        'CFG scale': 'No data found', 
+        'Seed': 'No data found', 
+        'Size': 'No data found', 
+        'Model hash': 'No data found', 
+        'Model': 'No data found', 
+        'Eta': 'No data found',
+        'Hashes': 'No data found',
+        'Postprocessing': 'No data found',
+        'Extras': 'No data found'}
+        metadata_found = False
     
     # Log the exif_data and image_src values.
     logger.debug("exif_data: %s" % exif_data)
     logger.debug("image_viewer: %s " % image_src)
-    logger.debug(f"metadata: {imgview_data.loc[hashlib.sha256(image_src.encode()).hexdigest()]}")
+    if metadata_found:
+        logger.debug(f"metadata: {imgview_data.loc[hashlib.sha256(image_src.encode()).hexdigest()]}")
     global filtered_images
     try:
         metadata_for_filtered_images = imgview_data.loc[[hashlib.sha256(path.encode()).hexdigest() for path in filtered_images]].to_dict()
@@ -602,7 +605,16 @@ def image_viewer():
         #filtered_images = [f.name for f in image_folder.iterdir() if f.is_file() and is_valid_image_extension(f.name)]
         filtered_images = filter_images_in_image_folder_path()
         logger.debug(f"filtered_images: {filtered_images}")
-        metadata_for_filtered_images = imgview_data.loc[[hashlib.sha256(path.encode()).hexdigest() for path in filtered_images]].to_dict()
+        try:
+            metadata_for_filtered_images = imgview_data.loc[[hashlib.sha256(path.encode()).hexdigest() for path in filtered_images]].to_dict()
+        except KeyError as e:
+            logger.error(e)
+            metadata_for_filtered_images = {}
+            # initialize the metadata for the image
+            metadata_for_filtered_images[hashlib.sha256(image_src.encode()).hexdigest()] = {'Favorites': False,
+                            'Rating': 0,
+                            'Tags': [],
+                            'Categorization': []}
          
     #logger.debug(metadata_for_filtered_images)
     #for key, value in metadata_for_filtered_images.items():
@@ -615,7 +627,7 @@ def image_viewer():
                            image_alt=image_alt,
                            image_index=image_index,
                            exif_list=exif_data,
-                           metadata=imgview_data.loc[hashlib.sha256(image_src.encode()).hexdigest()],
+                           metadata = imgview_data.loc[hashlib.sha256(image_src.encode()).hexdigest()] if len(metadata_for_filtered_images) != 1 else pd.Series(metadata_for_filtered_images[hashlib.sha256(image_src.encode()).hexdigest()]),
                            maxindex=len(image_list),
                            complete_metadata=metadata_for_filtered_images)
 
@@ -1032,7 +1044,7 @@ def mp_bulk_exif_read(filtered_images):
     Returns:
         bulk_exif_data (dict): A dictionary containing the EXIF data for all image files.
     """
-    pool = mp.Pool(mp.cpu_count())
+    pool = multiprocessing.Pool(multiprocessing.cpu_count())
     results = []
     for image in filtered_images:
         logger.debug(image)
@@ -1096,12 +1108,16 @@ def dict_to_rows(inputdict):
 
     
 if __name__ == '__main__':
+    if sys.platform.startswith('win'):
+        # On Windows calling this function is necessary.
+        multiprocessing.freeze_support()
     start_time = time.time()
     if args.imagedir:
         image_folder = Path(args.imagedir)
         logger.debug(f"Sat image_folder from args.imagedir: {image_folder}")
     else:
-        raise ValueError("No image folder defined. Please supply image folder. use --h to see help.")
+        #raise ValueError("No image folder defined. Please supply image folder. use --h to see help.")
+        image_folder = Path("sampledir")
     
     metadata_folder = Path("metadata")
     metadata_folder.mkdir(parents=True, exist_ok=True)

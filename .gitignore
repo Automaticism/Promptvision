@@ -6,7 +6,8 @@ venv
 metadata/*
 config.conf
 __pycache__
-dist
+dist/metadata
 build
 .spec
 hook-multiprocessing.py
+sampledir
