@@ -81,7 +81,7 @@ function lazyLoadThumbnails() {
     const limit = maxThumbnails;
     let offset = limit; // Set offset to `limit` to fetch more thumbnails after the initial set
     const img = document.getElementById('active-image');
-    const imgsrc = img.getAttribute('src');
+    const imgsrc = img.getAttribute('alt');
 
     // Fetch the number of images using AJAX
     fetch('/numimages')
@@ -487,6 +487,14 @@ function setThemeCookieXHR(theme) {
     }
   }
   
+  function navigate(direction) {
+    const img = document.getElementById('active-image');
+    const imgsrc = img.getAttribute('alt');
+    var imageName = encodeURIComponent(imgsrc);
+    var url = "/imagedirection?direction=" + direction + "&image_name=" + imageName;
+    location.href = url;
+  }
+
   // Call setThemeFromCookie() on page load
   window.addEventListener('load', setThemeFromCookie);
   

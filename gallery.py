@@ -64,7 +64,8 @@ def filter_images_in_image_folder_path():
     filtered_images = []
     for f in image_folder.glob('**/*'):
         if f.is_file() and is_valid_image_extension(f.name):
-            filtered_images.append(str(f))  # convert Path object to string
+            file_path = str(f)
+            filtered_images.append(file_path)
     return filtered_images
 
 def get_args() -> argparse.Namespace:
@@ -310,7 +311,7 @@ def thumbnails():
     if imgsrc == None:
         pass
     else:
-        offset = get_selected_image_index_by_name(imgsrc[1:])
+        offset = get_image_index_by_name(imgsrc)
     if offset == None:
         offset = 0
     # Fetch thumbnail data from the server
@@ -321,8 +322,8 @@ def thumbnails():
     # Render the thumbnail partial using Jinja2 template
     return render_template('thumbnail_partial.html', thumbnails=thumbnails)
 
-@app.route("/<image_name>")
-def image_data(image_name):
+@app.route("/image")
+def image_data():
     """
     Returns the image data for the specified image name.
 
@@ -332,11 +333,56 @@ def image_data(image_name):
     Returns:
         flask.Response: The HTTP response containing the image data.
     """
-    response = make_response(send_file(Path(image_name)))
+    image_name = request.args.get("image_name")
+    image_path = Path(image_name)
+    if not image_path.exists():
+        bad_request_error("File doesn't exist")
+    user_agent = request.user_agent.string
+    is_mac = 'mac' in user_agent.lower()
+    logger.debug(f"is mac:{is_mac}")
+    logger.debug(image_path.resolve())
+    if is_mac:
+        response = make_response(send_from_directory(str(image_path.parent), image_path.name))
+    else:
+        response = make_response(send_file(str(image_path)))
     response.headers.set('Content-Type', 'image/jpeg')
-    response.headers.set('Content-Disposition', 'inline', filename=Path(image_name).name)
+    response.headers.set('Content-Disposition', 'inline', filename=image_path.name)
     response.headers.set('Cache-Control', 'public,max-age=1209600')
     return response
+
+@app.route("/imagedirection")
+def image_direction():
+    """
+    Returns the image data for the specified image name.
+
+    Args:
+        image_name (str): The name of the image to return.
+        direction (str): The direction of navigation. Can be either "next" or "prev".
+
+    Returns:
+        flask.Response: The HTTP response containing the image data.
+    """
+    image_name = request.args.get("image_name")
+    logger.debug(image_name)
+    image_path = Path(image_name)
+    logger.debug(image_path)
+    if not image_path.exists():
+        bad_request_error("File doesn't exist")
+    image_index = get_image_index_by_name(image_name)
+    number_of_images = len(get_image_names_in_image_dir()) 
+    # Determine the new index based on the direction parameter
+    direction = request.args.get("direction")
+    logger.debug(f"direction:{direction} number_of_images:{number_of_images} image_index:{image_index}")
+    if direction == "next":
+        new_index = (image_index + 1) % number_of_images
+    elif direction == "prev":
+        new_index = (image_index - 1) % number_of_images
+    else:
+        new_index = image_index
+
+    # Get the new image name based on the new index
+    image_name = get_selected_image_by_index(new_index)
+    return redirect(url_for('image_viewer', image_name=image_name))
 
 @app.route('/browse', methods=['POST'])
 def browse():
@@ -435,8 +481,8 @@ def handle_value_error(error):
     return render_template('500.html', message='ValueError occurred. Please try again.', error=error), 500
 
 # Define the URL route for image viewing with image_name as a parameter.
-@app.route("/img/<image_name>")
-def image_viewer(image_name):
+@app.route("/img")
+def image_viewer():
     """
     Defines the URL route for image viewing with image_name as a parameter.
     Retrieves the list of all available images, sets the index of the selected image by name or by digit,
@@ -451,6 +497,8 @@ def image_viewer(image_name):
     Returns:
         render_template: A Flask template with the appropriate variables for viewing the selected image.
     """
+    image_name = request.args.get("image_name")
+    logger.debug(image_name)
     # Get a list of all images available in the image directory.
     image_list = get_image_names_in_image_dir()
 
@@ -467,12 +515,12 @@ def image_viewer(image_name):
     if image_name.isdigit():
         image_index = int(image_name)
     else:
-        image_index = get_selected_image_index_by_name(image_name)
+        image_index = get_image_index_by_name(image_name)
 
     # Ensure that image_index is within the valid range of image_list indices.
     if image_index == None:
         randomimg = get_random_image()
-        image_index = get_selected_image_index_by_name(randomimg)
+        image_index = get_image_index_by_name(randomimg)
         
     if image_index < 0:
         image_index = len(image_list) - 1
@@ -706,6 +754,7 @@ def get_selected_image_by_index(image_id):
     logging.debug("------------")
     logging.debug(image_id)
     logging.debug(images)
+    logging.debug(images[int(image_id)])
     logging.debug("------------")
     return images[int(image_id)]
 
@@ -721,8 +770,8 @@ def get_metadata():
     # Convert the metadata dictionary to a JSON object and return it
     return json.dumps(metadata_dict)
 
-@app.route("/get_image_by_name/<image_name>")
-def get_selected_image_index_by_name(image_name):
+@app.route("/get_image_by_name")
+def get_selected_image_index_by_name():
     """
     Return the index of the image with the given name.
 
@@ -732,12 +781,30 @@ def get_selected_image_index_by_name(image_name):
     Returns:
         An integer representing the index of the image with the given name.
     """
+    image_name = request.args.get("image_name")
     logging.debug("Getting the index of image: %s" % image_name)
     images = get_image_names_in_image_dir()
     logging.debug("------------")
     logging.debug(image_name)
     #logging.debug(images)
     logging.debug("------------")
+    try:
+        return int(images.index(image_name))
+    except ValueError as e:
+        logger.error(e)
+        return None
+    
+def get_image_index_by_name(image_name):
+    logger.debug(image_name)
+    images = get_image_names_in_image_dir()
+    if images[0][0] == "/":
+        logger.debug("Found /")
+        if image_name[0] == "/":
+            pass
+        else:
+            image_name = "/" + image_name
+    logging.debug("Getting the index of image: %s" % image_name)
+    logging.debug(images)
     try:
         return int(images.index(image_name))
     except ValueError as e:
