@@ -112,18 +112,13 @@
             </form>
           </td>
           <td class="nav-buttons">
-            {% if image_index == 0 %}
-            <button class="nav-button prev-button" id="previous" onclick="location.href='/img/{{ (maxindex - 1) }}'">
-              {% else %}
-              <button class="nav-button prev-button" id="previous"
-                onclick="location.href='/img/{{ (image_index - 1) }}'">
-                {% endif %}
+            <button class="nav-button prev-button" id="previous" onclick="location.href='/imagedirection?direction=prev&image_name={{ image_alt }}'">
                 <span class="material-icons">arrow_circle_left</span>
-              </button>
-              <button class="nav-button next-button" id="next" onclick="location.href='/img/{{ (image_index + 1) }}'">
+            </button>
+            <button class="nav-button next-button" id="next" onclick="location.href='/imagedirection?direction=next&image_name={{ image_alt }}'">
                 <span class="material-icons">arrow_circle_right</span>
-              </button>
-          </td>
+            </button>
+        </td>            
         </tr>
         <tr>
           <td class="header">Positive prompt</td>

@@ -81,7 +81,7 @@ function lazyLoadThumbnails() {
     const limit = maxThumbnails;
     let offset = limit; // Set offset to `limit` to fetch more thumbnails after the initial set
     const img = document.getElementById('active-image');
-    const imgsrc = img.getAttribute('src');
+    const imgsrc = img.getAttribute('alt');
 
     // Fetch the number of images using AJAX
     fetch('/numimages')
