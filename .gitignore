@@ -4,3 +4,7 @@
 venv
 .log
 metadata/*
+config.conf
+__pycache__
+dist
+build
