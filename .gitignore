@@ -10,4 +10,4 @@ dist/metadata
 build
 .spec
 hook-multiprocessing.py
-sampledir
+sampledir/
