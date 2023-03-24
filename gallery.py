@@ -34,8 +34,8 @@ from colorlog import ColoredFormatter
 import multiprocessing as mp
 import time
 import json
-import threading
 import re
+import configparser
 
 app = Flask(__name__)
 
@@ -68,20 +68,50 @@ def filter_images_in_image_folder_path():
             filtered_images.append(file_path)
     return filtered_images
 
-def get_args() -> argparse.Namespace:
+def get_args(argv=None) -> argparse.Namespace:
     """Parse command-line arguments.
+
+    Args:
+        argv (List[str], optional): List of arguments to parse. Defaults to None.
 
     Returns:
         argparse.Namespace: The parsed command-line arguments.
 
     """
     parser = argparse.ArgumentParser(
-        description="Image viewer built sith Flask.")
-    parser.add_argument('--imagedir', type=dir_path)
-    parser.add_argument('--port', default=8000, type=int)
+        description="Image viewer built with Flask.")
+    parser.add_argument('--config', type=argparse.FileType('r'),
+                        help='Path to configuration file')
+    parser.add_argument('--imagedir', type=dir_path,
+                        help='Path to image directory')
+    parser.add_argument('--port', default=8000, type=int,
+                        help='Port number for the web server')
     parser.add_argument('--log', dest='loglevel', choices=['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'],
-                    help='Set the logging level', default='ERROR')
-    return parser.parse_args()
+                        help='Set the logging level', default='ERROR')
+    args, unknown = parser.parse_known_args(argv)
+
+    if args.config:
+        config = configparser.ConfigParser()
+        config.read_file(args.config)
+        if 'app' in config:
+            app_config = config['app']
+            if 'imagedir' in app_config:
+                imagedir = Path(app_config['imagedir'])
+                if imagedir.exists() and imagedir.is_dir():
+                    args.imagedir = imagedir
+                    print(f"Using imagedir from configuration file: {imagedir}")
+                else:
+                    print(f"Invalid imagedir specified in configuration file: {imagedir}")
+                    sys.exit(1)
+            if 'port' in app_config:
+                args.port = app_config['port']
+            if 'log' in app_config:
+                args.log = app_config['log']
+
+    if not args.imagedir:
+        raise ValueError("No image folder defined. Please supply image folder. use --h to see help.")
+
+    return args
 
 bulk_exif_data = {}
 imgview_data = {}
@@ -92,7 +122,7 @@ metadata_subdir = ""
 thumbnail_folder = ""
 thumbnails_sent = []
 filtered_images = []
-args = get_args()
+args = get_args(sys.argv[1:])
 
 logger = logging.getLogger(__name__)
 formatter = ColoredFormatter(

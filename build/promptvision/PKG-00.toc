@@ -1,0 +1,3041 @@
+('F:\\Misc coding\\Promptvision\\build\\promptvision\\promptvision.pkg',
+ {'BINARY': True,
+  'DATA': True,
+  'EXECUTABLE': True,
+  'EXTENSION': True,
+  'PYMODULE': True,
+  'PYSOURCE': True,
+  'PYZ': False,
+  'SPLASH': True},
+ [('PYZ-00.pyz',
+   'F:\\Misc coding\\Promptvision\\build\\promptvision\\PYZ-00.pyz',
+   'PYZ'),
+  ('struct',
+   'F:\\Misc coding\\Promptvision\\build\\promptvision\\localpycs\\struct.pyc',
+   'PYMODULE'),
+  ('pyimod01_archive',
+   'F:\\Misc '
+   'coding\\Promptvision\\build\\promptvision\\localpycs\\pyimod01_archive.pyc',
+   'PYMODULE'),
+  ('pyimod02_importers',
+   'F:\\Misc '
+   'coding\\Promptvision\\build\\promptvision\\localpycs\\pyimod02_importers.pyc',
+   'PYMODULE'),
+  ('pyimod03_ctypes',
+   'F:\\Misc '
+   'coding\\Promptvision\\build\\promptvision\\localpycs\\pyimod03_ctypes.pyc',
+   'PYMODULE'),
+  ('pyimod04_pywin32',
+   'F:\\Misc '
+   'coding\\Promptvision\\build\\promptvision\\localpycs\\pyimod04_pywin32.pyc',
+   'PYMODULE'),
+  ('pyiboot01_bootstrap',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\PyInstaller\\loader\\pyiboot01_bootstrap.py',
+   'PYSOURCE'),
+  ('pyi_rth_inspect',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_inspect.py',
+   'PYSOURCE'),
+  ('pyi_rth_multiprocessing',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_multiprocessing.py',
+   'PYSOURCE'),
+  ('pyi_rth_pkgutil',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_pkgutil.py',
+   'PYSOURCE'),
+  ('pyi_rth_pkgres',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\PyInstaller\\hooks\\rthooks\\pyi_rth_pkgres.py',
+   'PYSOURCE'),
+  ('gallery', 'F:\\Misc coding\\Promptvision\\gallery.py', 'PYSOURCE'),
+  ('VCRUNTIME140.dll',
+   'C:\\Users\\Scythe\\AppData\\Local\\Programs\\Python\\Python311\\VCRUNTIME140.dll',
+   'BINARY'),
+  ('api-ms-win-crt-heap-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-crt-heap-l1-1-0.dll',
+   'BINARY'),
+  ('python311.dll',
+   'C:\\Users\\Scythe\\AppData\\Local\\Programs\\Python\\Python311\\python311.dll',
+   'BINARY'),
+  ('api-ms-win-crt-runtime-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-crt-runtime-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-math-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-crt-math-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-stdio-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-crt-stdio-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-locale-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-crt-locale-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-string-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-crt-string-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-convert-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-crt-convert-l1-1-0.dll',
+   'BINARY'),
+  ('ucrtbase.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\ucrtbase.dll',
+   'BINARY'),
+  ('api-ms-win-crt-conio-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-crt-conio-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-process-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-crt-process-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-environment-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-crt-environment-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-time-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-crt-time-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-filesystem-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-crt-filesystem-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-processthreads-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-core-processthreads-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-file-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-core-file-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-datetime-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-core-datetime-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-localization-l1-2-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-core-localization-l1-2-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-file-l1-2-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-core-file-l1-2-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-synch-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-core-synch-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-sysinfo-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-core-sysinfo-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-processthreads-l1-1-1.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-core-processthreads-l1-1-1.dll',
+   'BINARY'),
+  ('api-ms-win-core-memory-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-core-memory-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-heap-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-core-heap-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-file-l2-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-core-file-l2-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-debug-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-core-debug-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-synch-l1-2-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-core-synch-l1-2-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-libraryloader-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-core-libraryloader-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-interlocked-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-core-interlocked-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-namedpipe-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-core-namedpipe-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-rtlsupport-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-core-rtlsupport-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-handle-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-core-handle-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-console-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-core-console-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-util-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-core-util-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-errorhandling-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-core-errorhandling-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-timezone-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-core-timezone-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-profile-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-core-profile-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-string-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-core-string-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-core-processenvironment-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-core-processenvironment-l1-1-0.dll',
+   'BINARY'),
+  ('libopenblas64__v0.3.21-gcc_10_3_0.dll',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\numpy\\.libs\\libopenblas64__v0.3.21-gcc_10_3_0.dll',
+   'BINARY'),
+  ('_socket.pyd',
+   'C:\\Users\\Scythe\\AppData\\Local\\Programs\\Python\\Python311\\DLLs\\_socket.pyd',
+   'EXTENSION'),
+  ('_lzma.pyd',
+   'C:\\Users\\Scythe\\AppData\\Local\\Programs\\Python\\Python311\\DLLs\\_lzma.pyd',
+   'EXTENSION'),
+  ('_bz2.pyd',
+   'C:\\Users\\Scythe\\AppData\\Local\\Programs\\Python\\Python311\\DLLs\\_bz2.pyd',
+   'EXTENSION'),
+  ('select.pyd',
+   'C:\\Users\\Scythe\\AppData\\Local\\Programs\\Python\\Python311\\DLLs\\select.pyd',
+   'EXTENSION'),
+  ('_ssl.pyd',
+   'C:\\Users\\Scythe\\AppData\\Local\\Programs\\Python\\Python311\\DLLs\\_ssl.pyd',
+   'EXTENSION'),
+  ('_ctypes.pyd',
+   'C:\\Users\\Scythe\\AppData\\Local\\Programs\\Python\\Python311\\DLLs\\_ctypes.pyd',
+   'EXTENSION'),
+  ('_queue.pyd',
+   'C:\\Users\\Scythe\\AppData\\Local\\Programs\\Python\\Python311\\DLLs\\_queue.pyd',
+   'EXTENSION'),
+  ('pyexpat.pyd',
+   'C:\\Users\\Scythe\\AppData\\Local\\Programs\\Python\\Python311\\DLLs\\pyexpat.pyd',
+   'EXTENSION'),
+  ('_multiprocessing.pyd',
+   'C:\\Users\\Scythe\\AppData\\Local\\Programs\\Python\\Python311\\DLLs\\_multiprocessing.pyd',
+   'EXTENSION'),
+  ('_decimal.pyd',
+   'C:\\Users\\Scythe\\AppData\\Local\\Programs\\Python\\Python311\\DLLs\\_decimal.pyd',
+   'EXTENSION'),
+  ('_hashlib.pyd',
+   'C:\\Users\\Scythe\\AppData\\Local\\Programs\\Python\\Python311\\DLLs\\_hashlib.pyd',
+   'EXTENSION'),
+  ('unicodedata.pyd',
+   'C:\\Users\\Scythe\\AppData\\Local\\Programs\\Python\\Python311\\DLLs\\unicodedata.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\writers.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\writers.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\window\\indexers.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\window\\indexers.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\window\\aggregations.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\window\\aggregations.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\tslibs\\vectorized.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\tslibs\\vectorized.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\tslibs\\tzconversion.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\tslibs\\tzconversion.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\tslibs\\timezones.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\tslibs\\timezones.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\tslibs\\timestamps.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\tslibs\\timestamps.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\tslibs\\timedeltas.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\tslibs\\timedeltas.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\tslibs\\strptime.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\tslibs\\strptime.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\tslibs\\period.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\tslibs\\period.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\tslibs\\parsing.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\tslibs\\parsing.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\tslibs\\offsets.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\tslibs\\offsets.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\tslibs\\np_datetime.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\tslibs\\np_datetime.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\tslibs\\nattype.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\tslibs\\nattype.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\tslibs\\fields.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\tslibs\\fields.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\tslibs\\dtypes.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\tslibs\\dtypes.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\tslibs\\conversion.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\tslibs\\conversion.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\tslibs\\ccalendar.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\tslibs\\ccalendar.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\tslibs\\base.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\tslibs\\base.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\testing.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\testing.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\sparse.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\sparse.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\reshape.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\reshape.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\reduction.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\reduction.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\properties.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\properties.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\parsers.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\parsers.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\ops_dispatch.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\ops_dispatch.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\ops.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\ops.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\missing.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\missing.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\json.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\json.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\join.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\join.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\interval.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\interval.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\internals.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\internals.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\indexing.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\indexing.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\index.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\index.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\hashing.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\hashing.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\groupby.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\groupby.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\arrays.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\arrays.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\algos.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\algos.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('numpy\\core\\_multiarray_tests.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\numpy\\core\\_multiarray_tests.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('numpy\\core\\_multiarray_umath.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\numpy\\core\\_multiarray_umath.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('numpy\\linalg\\lapack_lite.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\numpy\\linalg\\lapack_lite.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('_overlapped.pyd',
+   'C:\\Users\\Scythe\\AppData\\Local\\Programs\\Python\\Python311\\DLLs\\_overlapped.pyd',
+   'EXTENSION'),
+  ('_asyncio.pyd',
+   'C:\\Users\\Scythe\\AppData\\Local\\Programs\\Python\\Python311\\DLLs\\_asyncio.pyd',
+   'EXTENSION'),
+  ('numpy\\random\\mtrand.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\numpy\\random\\mtrand.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('numpy\\random\\_sfc64.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\numpy\\random\\_sfc64.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('numpy\\random\\_philox.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\numpy\\random\\_philox.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('numpy\\random\\_pcg64.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\numpy\\random\\_pcg64.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('numpy\\random\\_mt19937.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\numpy\\random\\_mt19937.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('numpy\\random\\bit_generator.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\numpy\\random\\bit_generator.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('numpy\\random\\_generator.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\numpy\\random\\_generator.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('numpy\\random\\_bounded_integers.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\numpy\\random\\_bounded_integers.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('numpy\\random\\_common.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\numpy\\random\\_common.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('numpy\\fft\\_pocketfft_internal.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\numpy\\fft\\_pocketfft_internal.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('numpy\\linalg\\_umath_linalg.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\numpy\\linalg\\_umath_linalg.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('markupsafe\\_speedups.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\markupsafe\\_speedups.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('_uuid.pyd',
+   'C:\\Users\\Scythe\\AppData\\Local\\Programs\\Python\\Python311\\DLLs\\_uuid.pyd',
+   'EXTENSION'),
+  ('_elementtree.pyd',
+   'C:\\Users\\Scythe\\AppData\\Local\\Programs\\Python\\Python311\\DLLs\\_elementtree.pyd',
+   'EXTENSION'),
+  ('_sqlite3.pyd',
+   'C:\\Users\\Scythe\\AppData\\Local\\Programs\\Python\\Python311\\DLLs\\_sqlite3.pyd',
+   'EXTENSION'),
+  ('pandas\\io\\sas\\_sas.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\io\\sas\\_sas.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\tslib.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\tslib.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\lib.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\lib.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('pandas\\_libs\\hashtable.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\hashtable.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('PIL\\_webp.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\PIL\\_webp.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('PIL\\_imagingtk.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\PIL\\_imagingtk.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('PIL\\_imagingcms.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\PIL\\_imagingcms.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('PIL\\_imaging.cp311-win_amd64.pyd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\PIL\\_imaging.cp311-win_amd64.pyd',
+   'EXTENSION'),
+  ('api-ms-win-crt-private-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-crt-private-l1-1-0.dll',
+   'BINARY'),
+  ('api-ms-win-crt-utility-l1-1-0.dll',
+   'C:\\Program Files (x86)\\Windows Kits\\10\\Windows Performance '
+   'Toolkit\\api-ms-win-crt-utility-l1-1-0.dll',
+   'BINARY'),
+  ('libcrypto-1_1.dll',
+   'C:\\Users\\Scythe\\AppData\\Local\\Programs\\Python\\Python311\\DLLs\\libcrypto-1_1.dll',
+   'BINARY'),
+  ('libssl-1_1.dll',
+   'C:\\Users\\Scythe\\AppData\\Local\\Programs\\Python\\Python311\\DLLs\\libssl-1_1.dll',
+   'BINARY'),
+  ('libffi-8.dll',
+   'C:\\Users\\Scythe\\AppData\\Local\\Programs\\Python\\Python311\\DLLs\\libffi-8.dll',
+   'BINARY'),
+  ('pandas\\_libs\\window\\MSVCP140.dll',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\window\\MSVCP140.dll',
+   'BINARY'),
+  ('pandas\\_libs\\window\\VCRUNTIME140_1.dll',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\_libs\\window\\VCRUNTIME140_1.dll',
+   'BINARY'),
+  ('sqlite3.dll',
+   'C:\\Users\\Scythe\\AppData\\Local\\Programs\\Python\\Python311\\DLLs\\sqlite3.dll',
+   'BINARY'),
+  ('base_library.zip',
+   'F:\\Misc coding\\Promptvision\\build\\promptvision\\base_library.zip',
+   'DATA'),
+  ('pytz\\zoneinfo\\Israel',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Israel',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Oral',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Oral',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\GMT-3',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\GMT-3',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\New_York',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\New_York',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Monterrey',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Monterrey',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Busingen',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Busingen',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\GMT-5',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\GMT-5',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Bougainville',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Bougainville',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Campo_Grande',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Campo_Grande',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\Greenwich',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\Greenwich',
+   'DATA'),
+  ('pytz\\zoneinfo\\Canada\\Central',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Canada\\Central',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Yakutsk',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Yakutsk',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Ceuta',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Ceuta',
+   'DATA'),
+  ('pytz\\zoneinfo\\Australia\\Eucla',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Australia\\Eucla',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Asuncion',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Asuncion',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Catamarca',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Catamarca',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Chihuahua',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Chihuahua',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Malta',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Malta',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Colombo',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Colombo',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Lisbon',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Lisbon',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Khartoum',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Khartoum',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Vienna',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Vienna',
+   'DATA'),
+  ('pytz\\zoneinfo\\PRC',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\PRC',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Anguilla',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Anguilla',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Bratislava',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Bratislava',
+   'DATA'),
+  ('pytz\\zoneinfo\\Canada\\Yukon',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Canada\\Yukon',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Midway',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Midway',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Saigon',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Saigon',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Gambier',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Gambier',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Chisinau',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Chisinau',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Cairo',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Cairo',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Vientiane',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Vientiane',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Atikokan',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Atikokan',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Luxembourg',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Luxembourg',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Tahiti',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Tahiti',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Pohnpei',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Pohnpei',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\GMT+6',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\GMT+6',
+   'DATA'),
+  ('pytz\\zoneinfo\\iso3166.tab',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\iso3166.tab',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Tarawa',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Tarawa',
+   'DATA'),
+  ('pytz\\zoneinfo\\Jamaica',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Jamaica',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Yellowknife',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Yellowknife',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Grenada',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Grenada',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Argentina\\Salta',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Argentina\\Salta',
+   'DATA'),
+  ('pytz\\zoneinfo\\Australia\\Sydney',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Australia\\Sydney',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Amsterdam',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Amsterdam',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Cuiaba',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Cuiaba',
+   'DATA'),
+  ('pytz\\zoneinfo\\GMT',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\GMT',
+   'DATA'),
+  ('pytz\\zoneinfo\\Australia\\Victoria',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Australia\\Victoria',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Juba',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Juba',
+   'DATA'),
+  ('pytz\\zoneinfo\\Libya',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Libya',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Glace_Bay',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Glace_Bay',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Indianapolis',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Indianapolis',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Ndjamena',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Ndjamena',
+   'DATA'),
+  ('pytz\\zoneinfo\\Canada\\Eastern',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Canada\\Eastern',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Ujung_Pandang',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Ujung_Pandang',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Managua',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Managua',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Dubai',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Dubai',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Argentina\\Mendoza',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Argentina\\Mendoza',
+   'DATA'),
+  ('pandas\\io\\formats\\templates\\latex.tpl',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\io\\formats\\templates\\latex.tpl',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Cayenne',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Cayenne',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\GMT+3',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\GMT+3',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Addis_Ababa',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Addis_Ababa',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\St_Barthelemy',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\St_Barthelemy',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Belfast',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Belfast',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Lome',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Lome',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\St_Thomas',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\St_Thomas',
+   'DATA'),
+  ('pytz\\zoneinfo\\Atlantic\\Azores',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Atlantic\\Azores',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Guam',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Guam',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Port-au-Prince',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Port-au-Prince',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Matamoros',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Matamoros',
+   'DATA'),
+  ('pytz\\zoneinfo\\Universal',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Universal',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Rangoon',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Rangoon',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Santo_Domingo',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Santo_Domingo',
+   'DATA'),
+  ('pytz\\zoneinfo\\Arctic\\Longyearbyen',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Arctic\\Longyearbyen',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Sakhalin',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Sakhalin',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Guernsey',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Guernsey',
+   'DATA'),
+  ('pytz\\zoneinfo\\NZ-CHAT',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\NZ-CHAT',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Simferopol',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Simferopol',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Tongatapu',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Tongatapu',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Montevideo',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Montevideo',
+   'DATA'),
+  ('pytz\\zoneinfo\\Australia\\LHI',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Australia\\LHI',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Aqtobe',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Aqtobe',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Blanc-Sablon',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Blanc-Sablon',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\GMT-8',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\GMT-8',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Kigali',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Kigali',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Goose_Bay',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Goose_Bay',
+   'DATA'),
+  ('pytz\\zoneinfo\\Australia\\Lord_Howe',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Australia\\Lord_Howe',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Djibouti',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Djibouti',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Inuvik',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Inuvik',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Ensenada',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Ensenada',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Khandyga',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Khandyga',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\London',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\London',
+   'DATA'),
+  ('pytz\\zoneinfo\\Hongkong',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Hongkong',
+   'DATA'),
+  ('pytz\\zoneinfo\\Canada\\Saskatchewan',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Canada\\Saskatchewan',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Helsinki',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Helsinki',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Wake',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Wake',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Galapagos',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Galapagos',
+   'DATA'),
+  ('pytz\\zoneinfo\\Antarctica\\Casey',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Antarctica\\Casey',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Sofia',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Sofia',
+   'DATA'),
+  ('pytz\\zoneinfo\\Brazil\\East',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Brazil\\East',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\GMT-1',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\GMT-1',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Lower_Princes',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Lower_Princes',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Bamako',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Bamako',
+   'DATA'),
+  ('pytz\\zoneinfo\\Indian\\Christmas',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Indian\\Christmas',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Budapest',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Budapest',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\San_Marino',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\San_Marino',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Easter',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Easter',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\GMT-9',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\GMT-9',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\GMT+7',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\GMT+7',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Port_Moresby',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Port_Moresby',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\GMT-0',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\GMT-0',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Sitka',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Sitka',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Jamaica',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Jamaica',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Baku',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Baku',
+   'DATA'),
+  ('pandas\\io\\formats\\templates\\latex_table.tpl',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\io\\formats\\templates\\latex_table.tpl',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Vancouver',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Vancouver',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\GMT-4',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\GMT-4',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Irkutsk',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Irkutsk',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Johnston',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Johnston',
+   'DATA'),
+  ('pytz\\zoneinfo\\Antarctica\\South_Pole',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Antarctica\\South_Pole',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Isle_of_Man',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Isle_of_Man',
+   'DATA'),
+  ('pytz\\zoneinfo\\EET',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\EET',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Argentina\\Tucuman',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Argentina\\Tucuman',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Iqaluit',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Iqaluit',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Macao',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Macao',
+   'DATA'),
+  ('pytz\\zoneinfo\\CET',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\CET',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Rosario',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Rosario',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Bangkok',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Bangkok',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Podgorica',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Podgorica',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Chuuk',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Chuuk',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Paris',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Paris',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Hovd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Hovd',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Minsk',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Minsk',
+   'DATA'),
+  ('pytz\\zoneinfo\\Atlantic\\Stanley',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Atlantic\\Stanley',
+   'DATA'),
+  ('pytz\\zoneinfo\\EST5EDT',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\EST5EDT',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Denver',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Denver',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Tripoli',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Tripoli',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Thule',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Thule',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Miquelon',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Miquelon',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\GMT+9',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\GMT+9',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Vatican',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Vatican',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Monrovia',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Monrovia',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Seoul',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Seoul',
+   'DATA'),
+  ('pytz\\zoneinfo\\Indian\\Kerguelen',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Indian\\Kerguelen',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Tunis',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Tunis',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Tashkent',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Tashkent',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Shanghai',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Shanghai',
+   'DATA'),
+  ('pytz\\zoneinfo\\UCT',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\UCT',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Bucharest',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Bucharest',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Virgin',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Virgin',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Kyiv',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Kyiv',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Stockholm',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Stockholm',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Kashgar',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Kashgar',
+   'DATA'),
+  ('pytz\\zoneinfo\\Australia\\Darwin',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Australia\\Darwin',
+   'DATA'),
+  ('pytz\\zoneinfo\\Australia\\Lindeman',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Australia\\Lindeman',
+   'DATA'),
+  ('pytz\\zoneinfo\\Indian\\Maldives',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Indian\\Maldives',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Yekaterinburg',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Yekaterinburg',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Dacca',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Dacca',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Creston',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Creston',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Beirut',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Beirut',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Brunei',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Brunei',
+   'DATA'),
+  ('pytz\\zoneinfo\\Antarctica\\McMurdo',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Antarctica\\McMurdo',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Anadyr',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Anadyr',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Johannesburg',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Johannesburg',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Asmara',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Asmara',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Monaco',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Monaco',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Port_of_Spain',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Port_of_Spain',
+   'DATA'),
+  ('pytz\\zoneinfo\\Antarctica\\DumontDUrville',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Antarctica\\DumontDUrville',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Manaus',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Manaus',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Hong_Kong',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Hong_Kong',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\North_Dakota\\New_Salem',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\North_Dakota\\New_Salem',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\North_Dakota\\Beulah',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\North_Dakota\\Beulah',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Argentina\\Buenos_Aires',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Argentina\\Buenos_Aires',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Halifax',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Halifax',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Chatham',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Chatham',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Cordoba',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Cordoba',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Istanbul',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Istanbul',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Athens',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Athens',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Tallinn',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Tallinn',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Calcutta',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Calcutta',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Almaty',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Almaty',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Adak',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Adak',
+   'DATA'),
+  ('pytz\\zoneinfo\\Antarctica\\Mawson',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Antarctica\\Mawson',
+   'DATA'),
+  ('pytz\\zoneinfo\\Iceland',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Iceland',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Tbilisi',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Tbilisi',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Kabul',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Kabul',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\GMT0',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\GMT0',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Fortaleza',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Fortaleza',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Banjul',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Banjul',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\GMT-2',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\GMT-2',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Godthab',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Godthab',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Madrid',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Madrid',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Kolkata',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Kolkata',
+   'DATA'),
+  ('pytz\\zoneinfo\\GMT-0',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\GMT-0',
+   'DATA'),
+  ('pytz\\zoneinfo\\US\\Aleutian',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\US\\Aleutian',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Tijuana',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Tijuana',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Norfolk',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Norfolk',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Oslo',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Oslo',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Honolulu',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Honolulu',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Yangon',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Yangon',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Fakaofo',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Fakaofo',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Timbuktu',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Timbuktu',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Cambridge_Bay',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Cambridge_Bay',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\GMT+2',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\GMT+2',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Aden',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Aden',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\GMT-14',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\GMT-14',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Thunder_Bay',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Thunder_Bay',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Kanton',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Kanton',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Whitehorse',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Whitehorse',
+   'DATA'),
+  ('pandas\\io\\formats\\templates\\html_style.tpl',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\io\\formats\\templates\\html_style.tpl',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Casablanca',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Casablanca',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Qatar',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Qatar',
+   'DATA'),
+  ('pytz\\zoneinfo\\Antarctica\\Troll',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Antarctica\\Troll',
+   'DATA'),
+  ('pytz\\zoneinfo\\Singapore',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Singapore',
+   'DATA'),
+  ('pytz\\zoneinfo\\WET',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\WET',
+   'DATA'),
+  ('pytz\\zoneinfo\\Atlantic\\Reykjavik',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Atlantic\\Reykjavik',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Uzhgorod',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Uzhgorod',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Freetown',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Freetown',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\St_Lucia',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\St_Lucia',
+   'DATA'),
+  ('pytz\\zoneinfo\\GB',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\GB',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Merida',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Merida',
+   'DATA'),
+  ('pytz\\zoneinfo\\US\\Indiana-Starke',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\US\\Indiana-Starke',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Brussels',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Brussels',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Mexico_City',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Mexico_City',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Famagusta',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Famagusta',
+   'DATA'),
+  ('pytz\\zoneinfo\\Indian\\Antananarivo',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Indian\\Antananarivo',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Abidjan',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Abidjan',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Eirunepe',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Eirunepe',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Tiraspol',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Tiraspol',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Krasnoyarsk',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Krasnoyarsk',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Hermosillo',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Hermosillo',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\GMT+1',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\GMT+1',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Sarajevo',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Sarajevo',
+   'DATA'),
+  ('pytz\\zoneinfo\\leapseconds',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\leapseconds',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Aqtau',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Aqtau',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Montreal',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Montreal',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Rainy_River',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Rainy_River',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Dushanbe',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Dushanbe',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Wallis',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Wallis',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Kathmandu',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Kathmandu',
+   'DATA'),
+  ('pytz\\zoneinfo\\Brazil\\DeNoronha',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Brazil\\DeNoronha',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Pangnirtung',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Pangnirtung',
+   'DATA'),
+  ('pytz\\zoneinfo\\US\\Michigan',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\US\\Michigan',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Tortola',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Tortola',
+   'DATA'),
+  ('pytz\\zoneinfo\\US\\Alaska',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\US\\Alaska',
+   'DATA'),
+  ('pytz\\zoneinfo\\Atlantic\\Cape_Verde',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Atlantic\\Cape_Verde',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Nauru',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Nauru',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Dhaka',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Dhaka',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Omsk',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Omsk',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Argentina\\ComodRivadavia',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Argentina\\ComodRivadavia',
+   'DATA'),
+  ('pytz\\zoneinfo\\US\\Pacific',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\US\\Pacific',
+   'DATA'),
+  ('pandas\\io\\formats\\templates\\string.tpl',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\io\\formats\\templates\\string.tpl',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Winnipeg',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Winnipeg',
+   'DATA'),
+  ('pytz\\zoneinfo\\Mexico\\BajaSur',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Mexico\\BajaSur',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Kosrae',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Kosrae',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Kwajalein',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Kwajalein',
+   'DATA'),
+  ('pytz\\zoneinfo\\Cuba',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Cuba',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Mendoza',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Mendoza',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Manila',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Manila',
+   'DATA'),
+  ('pytz\\zoneinfo\\Eire',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Eire',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Barnaul',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Barnaul',
+   'DATA'),
+  ('pytz\\zoneinfo\\Australia\\Adelaide',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Australia\\Adelaide',
+   'DATA'),
+  ('pytz\\zoneinfo\\Canada\\Pacific',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Canada\\Pacific',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Argentina\\San_Luis',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Argentina\\San_Luis',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Choibalsan',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Choibalsan',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Phoenix',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Phoenix',
+   'DATA'),
+  ('pytz\\zoneinfo\\US\\Eastern',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\US\\Eastern',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Novokuznetsk',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Novokuznetsk',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Bishkek',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Bishkek',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Argentina\\San_Juan',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Argentina\\San_Juan',
+   'DATA'),
+  ('pytz\\zoneinfo\\Atlantic\\Faeroe',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Atlantic\\Faeroe',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Bahia_Banderas',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Bahia_Banderas',
+   'DATA'),
+  ('pytz\\zoneinfo\\MET',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\MET',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Ojinaga',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Ojinaga',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Lusaka',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Lusaka',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\UTC',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\UTC',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Boa_Vista',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Boa_Vista',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Kentucky\\Monticello',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Kentucky\\Monticello',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Accra',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Accra',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Pontianak',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Pontianak',
+   'DATA'),
+  ('pytz\\zoneinfo\\ROK',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\ROK',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Lubumbashi',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Lubumbashi',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Tirane',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Tirane',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Havana',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Havana',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Kinshasa',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Kinshasa',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Macau',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Macau',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Indiana\\Vincennes',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Indiana\\Vincennes',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Yerevan',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Yerevan',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Coral_Harbour',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Coral_Harbour',
+   'DATA'),
+  ('pytz\\zoneinfo\\HST',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\HST',
+   'DATA'),
+  ('pytz\\zoneinfo\\Atlantic\\Bermuda',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Atlantic\\Bermuda',
+   'DATA'),
+  ('pytz\\zoneinfo\\PST8PDT',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\PST8PDT',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Santiago',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Santiago',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Argentina\\Ushuaia',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Argentina\\Ushuaia',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Kiev',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Kiev',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Vilnius',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Vilnius',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Jayapura',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Jayapura',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Santa_Isabel',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Santa_Isabel',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Porto-Novo',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Porto-Novo',
+   'DATA'),
+  ('pytz\\zoneinfo\\US\\Hawaii',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\US\\Hawaii',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Efate',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Efate',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\St_Johns',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\St_Johns',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Novosibirsk',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Novosibirsk',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Dar_es_Salaam',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Dar_es_Salaam',
+   'DATA'),
+  ('pytz\\zoneinfo\\Kwajalein',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Kwajalein',
+   'DATA'),
+  ('pytz\\zoneinfo\\Australia\\Tasmania',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Australia\\Tasmania',
+   'DATA'),
+  ('pytz\\zoneinfo\\US\\Arizona',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\US\\Arizona',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Indiana\\Vevay',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Indiana\\Vevay',
+   'DATA'),
+  ('pytz\\zoneinfo\\Atlantic\\Jan_Mayen',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Atlantic\\Jan_Mayen',
+   'DATA'),
+  ('pytz\\zoneinfo\\Mexico\\BajaNorte',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Mexico\\BajaNorte',
+   'DATA'),
+  ('pytz\\zoneinfo\\Antarctica\\Palmer',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Antarctica\\Palmer',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Zagreb',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Zagreb',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Maseru',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Maseru',
+   'DATA'),
+  ('pytz\\zoneinfo\\Indian\\Mauritius',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Indian\\Mauritius',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Cayman',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Cayman',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Grand_Turk',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Grand_Turk',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Maceio',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Maceio',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Kamchatka',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Kamchatka',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Tomsk',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Tomsk',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Conakry',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Conakry',
+   'DATA'),
+  ('pandas\\io\\formats\\templates\\html_table.tpl',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\io\\formats\\templates\\html_table.tpl',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Thimphu',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Thimphu',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Recife',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Recife',
+   'DATA'),
+  ('pytz\\zoneinfo\\Atlantic\\Faroe',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Atlantic\\Faroe',
+   'DATA'),
+  ('pytz\\zoneinfo\\Canada\\Atlantic',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Canada\\Atlantic',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Indiana\\Tell_City',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Indiana\\Tell_City',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Asmera',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Asmera',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Samara',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Samara',
+   'DATA'),
+  ('pandas\\io\\formats\\templates\\html.tpl',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\io\\formats\\templates\\html.tpl',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Ponape',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Ponape',
+   'DATA'),
+  ('pytz\\zoneinfo\\Zulu',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Zulu',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Blantyre',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Blantyre',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Cancun',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Cancun',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Belgrade',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Belgrade',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Hebron',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Hebron',
+   'DATA'),
+  ('pytz\\zoneinfo\\Australia\\Hobart',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Australia\\Hobart',
+   'DATA'),
+  ('pytz\\zoneinfo\\Antarctica\\Rothera',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Antarctica\\Rothera',
+   'DATA'),
+  ('pytz\\zoneinfo\\Japan',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Japan',
+   'DATA'),
+  ('pytz\\zoneinfo\\US\\Samoa',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\US\\Samoa',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Baghdad',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Baghdad',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Palau',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Palau',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Nouakchott',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Nouakchott',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Thimbu',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Thimbu',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Guadeloupe',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Guadeloupe',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Nassau',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Nassau',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Aruba',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Aruba',
+   'DATA'),
+  ('pytz\\zoneinfo\\US\\Central',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\US\\Central',
+   'DATA'),
+  ('pytz\\zoneinfo\\Australia\\Melbourne',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Australia\\Melbourne',
+   'DATA'),
+  ('pytz\\zoneinfo\\Mexico\\General',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Mexico\\General',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Malabo',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Malabo',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Astrakhan',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Astrakhan',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Santarem',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Santarem',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Guyana',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Guyana',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Zurich',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Zurich',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\GMT+11',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\GMT+11',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Majuro',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Majuro',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Magadan',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Magadan',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Juneau',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Juneau',
+   'DATA'),
+  ('pytz\\zoneinfo\\Brazil\\West',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Brazil\\West',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Niamey',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Niamey',
+   'DATA'),
+  ('pytz\\zoneinfo\\Brazil\\Acre',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Brazil\\Acre',
+   'DATA'),
+  ('pytz\\zoneinfo\\Australia\\Canberra',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Australia\\Canberra',
+   'DATA'),
+  ('pytz\\zoneinfo\\Chile\\EasterIsland',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Chile\\EasterIsland',
+   'DATA'),
+  ('pytz\\zoneinfo\\Australia\\Yancowinna',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Australia\\Yancowinna',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Indiana\\Petersburg',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Indiana\\Petersburg',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Ashkhabad',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Ashkhabad',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Qostanay',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Qostanay',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Pitcairn',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Pitcairn',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Ulaanbaatar',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Ulaanbaatar',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Kuwait',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Kuwait',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Louisville',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Louisville',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Fort_Wayne',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Fort_Wayne',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\El_Salvador',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\El_Salvador',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Paramaribo',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Paramaribo',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Caracas',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Caracas',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Kentucky\\Louisville',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Kentucky\\Louisville',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Harare',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Harare',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Marigot',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Marigot',
+   'DATA'),
+  ('pytz\\zoneinfo\\Indian\\Cocos',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Indian\\Cocos',
+   'DATA'),
+  ('pytz\\zoneinfo\\Indian\\Mayotte',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Indian\\Mayotte',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Gaza',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Gaza',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Ho_Chi_Minh',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Ho_Chi_Minh',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Argentina\\La_Rioja',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Argentina\\La_Rioja',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Belem',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Belem',
+   'DATA'),
+  ('pytz\\zoneinfo\\Antarctica\\Vostok',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Antarctica\\Vostok',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\GMT-13',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\GMT-13',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\GMT-6',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\GMT-6',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Riga',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Riga',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Noronha',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Noronha',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\GMT-10',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\GMT-10',
+   'DATA'),
+  ('pytz\\zoneinfo\\Antarctica\\Davis',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Antarctica\\Davis',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Enderbury',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Enderbury',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Belize',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Belize',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Rankin_Inlet',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Rankin_Inlet',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Bujumbura',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Bujumbura',
+   'DATA'),
+  ('pytz\\zoneinfo\\NZ',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\NZ',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Apia',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Apia',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Argentina\\Catamarca',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Argentina\\Catamarca',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Ouagadougou',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Ouagadougou',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Nome',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Nome',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Nipigon',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Nipigon',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Rome',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Rome',
+   'DATA'),
+  ('pytz\\zoneinfo\\Canada\\Newfoundland',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Canada\\Newfoundland',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Berlin',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Berlin',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Tegucigalpa',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Tegucigalpa',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Lima',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Lima',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Scoresbysund',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Scoresbysund',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Maputo',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Maputo',
+   'DATA'),
+  ('pytz\\zoneinfo\\W-SU',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\W-SU',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Srednekolymsk',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Srednekolymsk',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Samarkand',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Samarkand',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Chicago',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Chicago',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Ust-Nera',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Ust-Nera',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Danmarkshavn',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Danmarkshavn',
+   'DATA'),
+  ('pytz\\zoneinfo\\Australia\\West',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Australia\\West',
+   'DATA'),
+  ('pytz\\zoneinfo\\Egypt',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Egypt',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\GMT+4',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\GMT+4',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Indiana\\Indianapolis',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Indiana\\Indianapolis',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Pago_Pago',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Pago_Pago',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Ulan_Bator',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Ulan_Bator',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Jujuy',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Jujuy',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Tehran',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Tehran',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Guayaquil',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Guayaquil',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\GMT+5',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\GMT+5',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Bissau',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Bissau',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Yap',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Yap',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Porto_Velho',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Porto_Velho',
+   'DATA'),
+  ('pytz\\zoneinfo\\Atlantic\\St_Helena',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Atlantic\\St_Helena',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Montserrat',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Montserrat',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Puerto_Rico',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Puerto_Rico',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Vladivostok',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Vladivostok',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Copenhagen',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Copenhagen',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Gibraltar',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Gibraltar',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Saratov',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Saratov',
+   'DATA'),
+  ('pytz\\zoneinfo\\Australia\\Queensland',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Australia\\Queensland',
+   'DATA'),
+  ('pytz\\zoneinfo\\GMT0',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\GMT0',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Atyrau',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Atyrau',
+   'DATA'),
+  ('pytz\\zoneinfo\\Atlantic\\Madeira',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Atlantic\\Madeira',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Boise',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Boise',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Bahia',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Bahia',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Moncton',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Moncton',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Qyzylorda',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Qyzylorda',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Araguaina',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Araguaina',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Singapore',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Singapore',
+   'DATA'),
+  ('pytz\\zoneinfo\\Australia\\NSW',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Australia\\NSW',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Taipei',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Taipei',
+   'DATA'),
+  ('pytz\\zoneinfo\\Indian\\Reunion',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Indian\\Reunion',
+   'DATA'),
+  ('pytz\\zoneinfo\\zone1970.tab',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\zone1970.tab',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Dawson',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Dawson',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Niue',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Niue',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Guadalcanal',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Guadalcanal',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Edmonton',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Edmonton',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Bogota',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Bogota',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Detroit',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Detroit',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\UCT',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\UCT',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Chungking',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Chungking',
+   'DATA'),
+  ('pytz\\zoneinfo\\Chile\\Continental',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Chile\\Continental',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Anchorage',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Anchorage',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Martinique',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Martinique',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Jerusalem',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Jerusalem',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Harbin',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Harbin',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Libreville',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Libreville',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\GMT+0',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\GMT+0',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Auckland',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Auckland',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Karachi',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Karachi',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Skopje',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Skopje',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Windhoek',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Windhoek',
+   'DATA'),
+  ('pytz\\zoneinfo\\US\\East-Indiana',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\US\\East-Indiana',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Brazzaville',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Brazzaville',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Mogadishu',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Mogadishu',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Tel_Aviv',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Tel_Aviv',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Guatemala',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Guatemala',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Nicosia',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Nicosia',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Argentina\\Jujuy',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Argentina\\Jujuy',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Indiana\\Knox',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Indiana\\Knox',
+   'DATA'),
+  ('pytz\\zoneinfo\\MST7MDT',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\MST7MDT',
+   'DATA'),
+  ('pytz\\zoneinfo\\Greenwich',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Greenwich',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Zaporozhye',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Zaporozhye',
+   'DATA'),
+  ('pytz\\zoneinfo\\Iran',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Iran',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Marquesas',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Marquesas',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Dawson_Creek',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Dawson_Creek',
+   'DATA'),
+  ('pytz\\zoneinfo\\Antarctica\\Syowa',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Antarctica\\Syowa',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Ciudad_Juarez',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Ciudad_Juarez',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Ljubljana',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Ljubljana',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\GMT-12',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\GMT-12',
+   'DATA'),
+  ('pytz\\zoneinfo\\tzdata.zi',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\tzdata.zi',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Nuuk',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Nuuk',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Los_Angeles',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Los_Angeles',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Volgograd',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Volgograd',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Indiana\\Winamac',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Indiana\\Winamac',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Atka',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Atka',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Kuala_Lumpur',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Kuala_Lumpur',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\GMT',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\GMT',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Amman',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Amman',
+   'DATA'),
+  ('pytz\\zoneinfo\\Australia\\Brisbane',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Australia\\Brisbane',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\North_Dakota\\Center',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\North_Dakota\\Center',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Metlakatla',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Metlakatla',
+   'DATA'),
+  ('pytz\\zoneinfo\\CST6CDT',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\CST6CDT',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Makassar',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Makassar',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Nicosia',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Nicosia',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Saipan',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Saipan',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\Universal',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\Universal',
+   'DATA'),
+  ('pytz\\zoneinfo\\GB-Eire',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\GB-Eire',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Phnom_Penh',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Phnom_Penh',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Noumea',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Noumea',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\Zulu',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\Zulu',
+   'DATA'),
+  ('pytz\\zoneinfo\\UTC',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\UTC',
+   'DATA'),
+  ('pytz\\zoneinfo\\Australia\\Currie',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Australia\\Currie',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\GMT+10',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\GMT+10',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Warsaw',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Warsaw',
+   'DATA'),
+  ('pytz\\zoneinfo\\Atlantic\\South_Georgia',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Atlantic\\South_Georgia',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Algiers',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Algiers',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Muscat',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Muscat',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Knox_IN',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Knox_IN',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Vaduz',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Vaduz',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\St_Vincent',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\St_Vincent',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Dublin',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Dublin',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Yakutat',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Yakutat',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Pyongyang',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Pyongyang',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Prague',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Prague',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Kirov',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Kirov',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Curacao',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Curacao',
+   'DATA'),
+  ('pytz\\zoneinfo\\Canada\\Mountain',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Canada\\Mountain',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Punta_Arenas',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Punta_Arenas',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\St_Kitts',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\St_Kitts',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Andorra',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Andorra',
+   'DATA'),
+  ('pytz\\zoneinfo\\Australia\\South',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Australia\\South',
+   'DATA'),
+  ('pytz\\zoneinfo\\Antarctica\\Macquarie',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Antarctica\\Macquarie',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Samoa',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Samoa',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Damascus',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Damascus',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Riyadh',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Riyadh',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\GMT+8',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\GMT+8',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Kralendijk',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Kralendijk',
+   'DATA'),
+  ('pytz\\zoneinfo\\Navajo',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Navajo',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Gaborone',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Gaborone',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Menominee',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Menominee',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\GMT-7',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\GMT-7',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Truk',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Truk',
+   'DATA'),
+  ('pytz\\zoneinfo\\Atlantic\\Canary',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Atlantic\\Canary',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Moscow',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Moscow',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Nairobi',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Nairobi',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Funafuti',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Funafuti',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Luanda',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Luanda',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Ulyanovsk',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Ulyanovsk',
+   'DATA'),
+  ('pytz\\zoneinfo\\Indian\\Comoro',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Indian\\Comoro',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Regina',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Regina',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Rio_Branco',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Rio_Branco',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\GMT+12',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\GMT+12',
+   'DATA'),
+  ('pytz\\zoneinfo\\MST',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\MST',
+   'DATA'),
+  ('pytz\\zoneinfo\\Australia\\Perth',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Australia\\Perth',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Ashgabat',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Ashgabat',
+   'DATA'),
+  ('pytz\\zoneinfo\\ROC',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\ROC',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Costa_Rica',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Costa_Rica',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Swift_Current',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Swift_Current',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Mazatlan',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Mazatlan',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Dili',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Dili',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Mariehamn',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Mariehamn',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Katmandu',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Katmandu',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Rarotonga',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Rarotonga',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Toronto',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Toronto',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Chongqing',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Chongqing',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Kaliningrad',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Kaliningrad',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Chita',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Chita',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Sao_Paulo',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Sao_Paulo',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Urumqi',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Urumqi',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Kampala',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Kampala',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Douala',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Douala',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Antigua',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Antigua',
+   'DATA'),
+  ('pytz\\zoneinfo\\Australia\\Broken_Hill',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Australia\\Broken_Hill',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Lagos',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Lagos',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Fiji',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Fiji',
+   'DATA'),
+  ('pytz\\zoneinfo\\Turkey',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Turkey',
+   'DATA'),
+  ('pytz\\zoneinfo\\GMT+0',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\GMT+0',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Dominica',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Dominica',
+   'DATA'),
+  ('pytz\\zoneinfo\\Portugal',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Portugal',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Shiprock',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Shiprock',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Resolute',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Resolute',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Bahrain',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Bahrain',
+   'DATA'),
+  ('pytz\\zoneinfo\\EST',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\EST',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Tokyo',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Tokyo',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Barbados',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Barbados',
+   'DATA'),
+  ('pytz\\zoneinfo\\Indian\\Mahe',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Indian\\Mahe',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Panama',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Panama',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Porto_Acre',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Porto_Acre',
+   'DATA'),
+  ('pytz\\zoneinfo\\zone.tab',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\zone.tab',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Jakarta',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Jakarta',
+   'DATA'),
+  ('pytz\\zoneinfo\\Pacific\\Kiritimati',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Pacific\\Kiritimati',
+   'DATA'),
+  ('pytz\\zoneinfo\\Australia\\North',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Australia\\North',
+   'DATA'),
+  ('pytz\\zoneinfo\\Asia\\Kuching',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Asia\\Kuching',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Buenos_Aires',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Buenos_Aires',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Bangui',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Bangui',
+   'DATA'),
+  ('pandas\\io\\formats\\templates\\latex_longtable.tpl',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pandas\\io\\formats\\templates\\latex_longtable.tpl',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Sao_Tome',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Sao_Tome',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Mbabane',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Mbabane',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Argentina\\Cordoba',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Argentina\\Cordoba',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Argentina\\Rio_Gallegos',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Argentina\\Rio_Gallegos',
+   'DATA'),
+  ('pytz\\zoneinfo\\Poland',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Poland',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Istanbul',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Istanbul',
+   'DATA'),
+  ('pytz\\zoneinfo\\Australia\\ACT',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Australia\\ACT',
+   'DATA'),
+  ('pytz\\zoneinfo\\Factory',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Factory',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\Dakar',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\Dakar',
+   'DATA'),
+  ('pytz\\zoneinfo\\Europe\\Jersey',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Europe\\Jersey',
+   'DATA'),
+  ('pytz\\zoneinfo\\Etc\\GMT-11',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Etc\\GMT-11',
+   'DATA'),
+  ('pytz\\zoneinfo\\Africa\\El_Aaiun',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Africa\\El_Aaiun',
+   'DATA'),
+  ('pytz\\zoneinfo\\US\\Mountain',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\US\\Mountain',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Fort_Nelson',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Fort_Nelson',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\Indiana\\Marengo',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\Indiana\\Marengo',
+   'DATA'),
+  ('pytz\\zoneinfo\\America\\La_Paz',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\America\\La_Paz',
+   'DATA'),
+  ('pytz\\zoneinfo\\Indian\\Chagos',
+   'F:\\Misc '
+   'coding\\Promptvision\\venv\\Lib\\site-packages\\pytz\\zoneinfo\\Indian\\Chagos',
+   'DATA'),
+  ('templates\\base.html',
+   'F:\\Misc coding\\Promptvision\\templates\\base.html',
+   'DATA'),
+  ('static\\css\\dark.css',
+   'F:\\Misc coding\\Promptvision\\static\\css\\dark.css',
+   'DATA'),
+  ('static\\favicon.ico',
+   'F:\\Misc coding\\Promptvision\\static\\favicon.ico',
+   'DATA'),
+  ('templates\\error.html',
+   'F:\\Misc coding\\Promptvision\\templates\\error.html',
+   'DATA'),
+  ('templates\\filter_images.html',
+   'F:\\Misc coding\\Promptvision\\templates\\filter_images.html',
+   'DATA'),
+  ('static\\css\\light.css',
+   'F:\\Misc coding\\Promptvision\\static\\css\\light.css',
+   'DATA'),
+  ('templates\\thumbnail_partial.html',
+   'F:\\Misc coding\\Promptvision\\templates\\thumbnail_partial.html',
+   'DATA'),
+  ('templates\\image_template_primercss.html',
+   'F:\\Misc coding\\Promptvision\\templates\\image_template_primercss.html',
+   'DATA'),
+  ('static\\css\\dark copy.css',
+   'F:\\Misc coding\\Promptvision\\static\\css\\dark copy.css',
+   'DATA'),
+  ('templates\\form.html',
+   'F:\\Misc coding\\Promptvision\\templates\\form.html',
+   'DATA'),
+  ('templates\\filterbar.html',
+   'F:\\Misc coding\\Promptvision\\templates\\filterbar.html',
+   'DATA'),
+  ('static\\js\\app.js',
+   'F:\\Misc coding\\Promptvision\\static\\js\\app.js',
+   'DATA'),
+  ('templates\\500.html',
+   'F:\\Misc coding\\Promptvision\\templates\\500.html',
+   'DATA'),
+  ('templates\\old_thumbnail.html',
+   'F:\\Misc coding\\Promptvision\\templates\\old_thumbnail.html',
+   'DATA'),
+  ('templates\\filtering.html',
+   'F:\\Misc coding\\Promptvision\\templates\\filtering.html',
+   'DATA'),
+  ('templates\\400.html',
+   'F:\\Misc coding\\Promptvision\\templates\\400.html',
+   'DATA'),
+  ('templates\\zen.html',
+   'F:\\Misc coding\\Promptvision\\templates\\zen.html',
+   'DATA'),
+  ('templates\\image_template.html',
+   'F:\\Misc coding\\Promptvision\\templates\\image_template.html',
+   'DATA'),
+  ('static\\css\\default.css',
+   'F:\\Misc coding\\Promptvision\\static\\css\\default.css',
+   'DATA'),
+  ('config.conf', 'F:\\Misc coding\\Promptvision\\config.conf', 'DATA')],
+ False,
+ False,
+ False,
+ [],
+ None,
+ None,
+ None)

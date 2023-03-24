@@ -4,3 +4,4 @@
 venv
 .log
 metadata/*
+config.conf
