@@ -11,3 +11,4 @@ build
 .spec
 hook-multiprocessing.py
 sampledir/
+.zip
