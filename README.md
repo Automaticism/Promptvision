@@ -18,9 +18,88 @@ Clone the repository using git:
 ```git clone https://github.com/Automaticism/GalleryViewerSD.git```
 
 ### Setup
-Install the required dependencies using pip:
-```pip install -r requirements.txt```
+How to install
 
+Here are step-by-step instructions for opening a terminal, navigating to a folder, cloning a Git repository, creating and activating a virtual environment, installing the necessary dependencies, and running a Python script.
+
+#### For Windows:
+
+Open the Start Menu and type "Command Prompt" or "PowerShell" in the search bar. Click on the application that appears.
+
+Use the cd command to navigate to the "Documents" folder. Type cd Documents and press enter.
+
+Use the git clone command to clone the repository. Type git clone [repository URL] and press enter. Replace "[repository URL]" with the URL of the repository you want to clone. For example:
+```
+git clone https://github.com/Automaticism/Promptvision.git
+```
+Use the "cd" command to navigate to the cloned repository. Type "cd repository" and press enter. Replace "repository" with the name of the cloned repository.
+
+Use the following commands to create a virtual environment, activate it, and install the necessary dependencies:
+```
+python -m venv venv
+
+venv\Scripts\activate
+
+pip install -r requirements.txt
+```
+These commands will create a virtual environment named "venv," activate it, and install the dependencies listed in the "requirements.txt" file.
+
+Finally, run the Python script with the following command, replacing "[your image folder]" with the name of the folder containing your images:
+```
+python gallery.py --imagedir "[your image folder]"
+```
+#### For Mac:
+
+Open the Terminal application. You can find it in the Utilities folder, which is inside the Applications folder, or by searching for it in Spotlight.
+
+Use the "cd" command to navigate to the "Documents" folder. Type "cd Documents" and press enter.
+
+Use the "git clone" command to clone the repository. Type "git clone [repository URL]" and press enter. Replace "[repository URL]" with the URL of the repository you want to clone. For example:
+```
+git clone https://github.com/Automaticism/Promptvision.git
+```
+Use the "cd" command to navigate to the cloned repository. Type "cd repository" and press enter. Replace "repository" with the name of the cloned repository.
+
+Use the following commands to create a virtual environment, activate it, and install the necessary dependencies:
+```
+python3 -m venv venv
+
+source venv/bin/activate
+
+pip install -r requirements.txt
+```
+These commands will create a virtual environment named "venv," activate it, and install the dependencies listed in the "requirements.txt" file.
+
+Finally, run the Python script with the following command, replacing "[your image folder]" with the name of the folder containing your images:
+```
+python3 gallery.py --imagedir "[your image folder]"
+```
+#### For Linux:
+
+Open the Terminal application. You can usually find it in the Applications menu or by pressing Ctrl+Alt+T.
+
+Use the "cd" command to navigate to the "Documents" folder. Type "cd Documents" and press enter.
+
+Use the "git clone" command to clone the repository. Type "git clone [repository URL]" and press enter. Replace "[repository URL]" with the URL of the repository you want to clone. For example:
+```
+git clone https://github.com/Automaticism/Promptvision.git
+```
+Use the "cd" command to navigate to the cloned repository. Type "cd repository" and press enter. Replace "repository" with the name of the cloned repository.
+
+Use the following commands to create a virtual environment, activate it, and install the necessary dependencies:
+```
+python3 -m venv venv
+
+source venv/bin/activate
+
+pip install -r requirements.txt
+```
+These commands will create a virtual environment named "venv," activate it, and install the dependencies listed in the "requirements.txt" file.
+
+Finally, run the Python script with the following command, replacing "[your image folder]" with the name of the folder containing your images:
+```
+python3 gallery.py --imagedir "[your image folder]"
+```
 ### Usage
 Run the application:
 ```
