@@ -9,3 +9,4 @@ __pycache__
 dist
 build
 .spec
+hook-multiprocessing.py
