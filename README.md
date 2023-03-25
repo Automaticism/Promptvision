@@ -9,6 +9,8 @@ Promptvision is a web application that allows users to view and browse images. I
 
 ![image](https://user-images.githubusercontent.com/20763070/226770028-7b34bd9f-af06-420d-a2a1-015f91d443c6.png)
 
+## Executable
+Windows exeuctable can be found under releases: https://github.com/Automaticism/Promptvision/releases/
 
 ## Installation
 
@@ -18,11 +20,12 @@ Clone the repository using git:
 ```git clone https://github.com/Automaticism/GalleryViewerSD.git```
 
 ### Setup
-How to install
+
+#### How to install
 
 Here are step-by-step instructions for opening a terminal, navigating to a folder, cloning a Git repository, creating and activating a virtual environment, installing the necessary dependencies, and running a Python script.
 
-#### For Windows:
+##### For Windows:
 
 Open the Start Menu and type "Command Prompt" or "PowerShell" in the search bar. Click on the application that appears.
 
@@ -48,7 +51,7 @@ Finally, run the Python script with the following command, replacing "[your imag
 ```
 python gallery.py --imagedir "[your image folder]"
 ```
-#### For Mac:
+##### For Mac:
 
 Open the Terminal application. You can find it in the Utilities folder, which is inside the Applications folder, or by searching for it in Spotlight.
 
@@ -74,7 +77,7 @@ Finally, run the Python script with the following command, replacing "[your imag
 ```
 python3 gallery.py --imagedir "[your image folder]"
 ```
-#### For Linux:
+##### For Linux:
 
 Open the Terminal application. You can usually find it in the Applications menu or by pressing Ctrl+Alt+T.
 
