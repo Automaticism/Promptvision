@@ -1121,7 +1121,7 @@ if __name__ == '__main__':
     
     metadata_folder = Path("metadata")
     metadata_folder.mkdir(parents=True, exist_ok=True)
-    metadata_subdir = metadata_folder / image_folder.name
+    metadata_subdir = metadata_folder / (image_folder.parent.name + '_' + image_folder.name)
     metadata_subdir.mkdir(parents=True, exist_ok=True)
     thumbnail_folder = metadata_subdir / 'thumbnails'
     thumbnail_folder.mkdir(parents=True, exist_ok=True)
