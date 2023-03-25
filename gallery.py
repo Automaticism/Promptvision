@@ -68,6 +68,28 @@ def filter_images_in_image_folder_path():
             filtered_images.append(file_path)
     return filtered_images
 
+def check_images_in_dataframe(image_list, df):
+    """
+    Checks whether all the images in image_list are in the DataFrame df.
+    Assumes that the DataFrame is indexed by sha256 keys.
+    """
+    sha256_keys = [hashlib.sha256(image.encode()).hexdigest() for image in image_list]
+    result = df.index.isin(sha256_keys)
+    if sum(result) == len(image_list):
+        logger.debug("check_images_in_dataframe: True")
+        return True
+    else:
+        logger.debug("check_images_in_dataframe: False")
+        return False
+
+def remove_missing_sha256(dataframe, image_list):
+    sha256_set = set(hashlib.sha256(image.encode()).hexdigest() for image in image_list)
+    missing_sha256 = dataframe.index.difference(sha256_set)
+    logger.debug(f"Length before drop: {len(dataframe)}")
+    dataframe = dataframe.drop(missing_sha256)
+    logger.debug(f"Length after drop: {len(dataframe)}")
+    return dataframe
+
 def get_args(argv=None) -> argparse.Namespace:
     """Parse command-line arguments.
 
@@ -88,6 +110,7 @@ def get_args(argv=None) -> argparse.Namespace:
                         help='Port number for the web server')
     parser.add_argument('--log', dest='loglevel', choices=['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'],
                         help='Set the logging level', default='ERROR')
+    parser.add_argument('--cleanup', default=False, type=bool, help="Clean up metadata for deleted files.")
     args, unknown = parser.parse_known_args(argv)
 
     if args.config:
@@ -1134,7 +1157,7 @@ if __name__ == '__main__':
         bulk_exif_data.set_index('sha256', inplace=True)
         #bulk_exif_data['Sampler settings'] = pd.array(bulk_exif_data['Sampler settings'].tolist())
         logger.warning(len(bulk_exif_data))
-        if len(filtered_images) == len(bulk_exif_data):
+        if check_images_in_dataframe(filtered_images, bulk_exif_data):
             pass
         else:
             bulk_exif_data = mp_bulk_exif_read(filtered_images)
@@ -1149,7 +1172,7 @@ if __name__ == '__main__':
         imgview_data = pd.read_csv(metadata_path)
         imgview_data.set_index('sha256', inplace=True)
         logger.warning(len(imgview_data))
-        if len(os.listdir(image_folder)) == len(imgview_data):
+        if check_images_in_dataframe(filtered_images, imgview_data):
             pass
         else:
             imgview_data = update_metadata()
@@ -1157,6 +1180,10 @@ if __name__ == '__main__':
         logger.debug("Initializing imgview data")
         # Initialize metadata for images
         imgview_data = metadata_initialization()
+
+    if args.cleanup:
+        imgview_data = remove_missing_sha256(imgview_data, filtered_images)
+        bulk_exif_data = remove_missing_sha256(bulk_exif_data, filtered_images)
 
     end_time = time.time()
     execution_time = end_time - start_time
