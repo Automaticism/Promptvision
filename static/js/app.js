@@ -77,53 +77,51 @@ function lazyLoadThumbnails() {
     const maxThumbnailsPerRow = Math.floor(thumbnailContainerWidth / 50);
     const maxThumbnailsPerColumn = Math.floor(container.clientHeight / 65);
     let numImages;
-    const maxThumbnails = Math.min(maxThumbnailsPerRow * maxThumbnailsPerColumn, numImages); // Limit to the number of available images
-    const limit = maxThumbnails;
-    let offset = limit; // Set offset to `limit` to fetch more thumbnails after the initial set
+    let limit;
+    let offset;
     const img = document.getElementById('active-image');
     const imgsrc = img.getAttribute('alt');
-
+  
     // Fetch the number of images using AJAX
     fetch('/numimages')
-        .then(response => response.json())
-        .then(data => {
-            numImages = data.num_images;
-            const maxThumbnails = Math.min(maxThumbnailsPerRow * maxThumbnailsPerColumn, numImages); // Limit to the number of available images
-            const limit = maxThumbnails;
-            let offset = limit; // Set offset to `limit` to fetch more thumbnails after the initial set
-
-            // Fetch some initial thumbnails using AJAX
-            fetch(`/thumbnails?limit=${limit}&offset=0&imgsrc=${imgsrc}`)
-                .then(response => response.text())
-                .then(html => {
-                    container.insertAdjacentHTML('beforeend', `<div class="thumbnail">${html}</div>`);
-                });
-        });
-
+      .then(response => response.json())
+      .then(data => {
+        numImages = data.num_images;
+        limit = Math.min(maxThumbnailsPerRow * maxThumbnailsPerColumn, numImages); // Limit to the number of available images
+        offset = limit; // Set offset to `limit` to fetch more thumbnails after the initial set
+  
+        // Fetch some initial thumbnails using AJAX
+        fetch(`/thumbnails?limit=${limit}&offset=0&imgsrc=${imgsrc}`)
+          .then(response => response.text())
+          .then(html => {
+            container.insertAdjacentHTML('beforeend', `<div class="thumbnail">${html}</div>`);
+          });
+      });
+  
     function loadMoreThumbnails() {
-        if (container.getBoundingClientRect().top < window.innerHeight && offset < numImages) {
-            // Fetch more thumbnails using AJAX
-            fetch(`/thumbnails?limit=${limit}&offset=${offset}&imgsrc=${imgsrc}`)
-                .then(response => response.text())
-                .then(html => {
-                    container.insertAdjacentHTML('beforeend', `<div class="thumbnail">${html}</div>`);
-                    offset += limit;
-                });
-        }
+      if (container.getBoundingClientRect().top < window.innerHeight && offset < numImages) {
+        // Fetch more thumbnails using AJAX
+        fetch(`/thumbnails?limit=${numImages}&offset=${offset}&imgsrc=${imgsrc}`)
+          .then(response => response.text())
+          .then(html => {
+            container.insertAdjacentHTML('beforeend', `<div class="thumbnail">${html}</div>`);
+            offset += limit; // Update the offset
+          });
+      }
     }
-
+  
     // Load more thumbnails when user scrolls near the end of the container
     window.addEventListener('scroll', loadMoreThumbnails);
-
+  
     // Load more thumbnails when container is resized and becomes visible
     const resizeObserver = new ResizeObserver(() => {
-        if (container.getBoundingClientRect().top < window.innerHeight && offset < numImages) {
-            loadMoreThumbnails();
-        }
+      if (container.getBoundingClientRect().top < window.innerHeight && offset < numImages) {
+        loadMoreThumbnails();
+      }
     });
     resizeObserver.observe(container);
-}
-
+  }
+  
 lazyLoadThumbnails();
 
 function clearThumbnails() {
