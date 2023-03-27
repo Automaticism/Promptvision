@@ -29,7 +29,7 @@ function keyhandler(event) {
                     const response = JSON.parse(this.responseText);
                     // Update the star icons to reflect the new rating
                     starIcons.forEach((icon, index) => {
-                        if (index< response.rating) {
+                        if (index < response.rating) {
                             icon.textContent = 'star';
                         } else {
                             icon.textContent = 'star_border';
@@ -38,7 +38,7 @@ function keyhandler(event) {
                 }
             };
             xhr.send(JSON.stringify({ rating: rating, image_name: image_name }));
-        }  else if ((event.ctrlKey || event.metaKey) && event.key === "s") {
+        } else if ((event.ctrlKey || event.metaKey) && event.key === "s") {
             // Prevent the default behavior of the key combination
             event.preventDefault();
             // Trigger the "submit" event on the "Save" form
@@ -81,47 +81,74 @@ function lazyLoadThumbnails() {
     let offset;
     const img = document.getElementById('active-image');
     const imgsrc = img.getAttribute('alt');
-  
+    const imgage_url = img.getAttribute('src')
+    const urlParams = imgage_url.split("?")[1];
+
     // Fetch the number of images using AJAX
     fetch('/numimages')
-      .then(response => response.json())
-      .then(data => {
-        numImages = data.num_images;
-        limit = Math.min(maxThumbnailsPerRow * maxThumbnailsPerColumn, numImages); // Limit to the number of available images
-        offset = limit; // Set offset to `limit` to fetch more thumbnails after the initial set
-  
-        // Fetch some initial thumbnails using AJAX
-        fetch(`/thumbnails?limit=${limit}&offset=0&imgsrc=${imgsrc}`)
-          .then(response => response.text())
-          .then(html => {
-            container.insertAdjacentHTML('beforeend', `<div class="thumbnail">${html}</div>`);
-          });
-      });
-  
+        .then(response => response.json())
+        .then(data => {
+            numImages = data.num_images;
+            limit = Math.min(maxThumbnailsPerRow * maxThumbnailsPerColumn, numImages); // Limit to the number of available images
+            offset = limit; // Set offset to `limit` to fetch more thumbnails after the initial set
+
+            // Fetch some initial thumbnails using AJAX
+            fetch(`/thumbnails?limit=${limit}&offset=0&imgsrc=${imgsrc}`)
+                .then(response => response.text())
+                .then(html => {
+                    console.log(urlParams)
+                    console.log(html)
+                    if (html.indexOf(urlParams) !== -1) {
+                        console.log('The substring was found in the HTML.');
+                        console.log(html.indexOf(urlParams))
+
+                        // locate the <img> tag within the html string
+                        const imgStartIndex = html.indexOf('<a href="/img?' + urlParams);
+                        const imgEndIndex = html.indexOf('/a>', imgStartIndex) + 3;
+                        const imgTag = html.substring(imgStartIndex, imgEndIndex);
+                        console.log(imgTag)
+                        // add "active-thumbnail" class to the <img> tag
+                        const modifiedImgTag = imgTag.replace('<img ', '<img class="active-thumbnail" ');
+                        console.log(modifiedImgTag)
+                        // replace the original <img> tag with the modified version in the html string
+                        const modifiedHtml = html.substring(0, imgStartIndex) + modifiedImgTag + html.substring(imgEndIndex);
+                        
+                        container.insertAdjacentHTML('beforeend', `<div class="thumbnail">${modifiedHtml}</div>`);
+                    } else {
+                        console.log('The substring was not found in the HTML.');
+                        container.insertAdjacentHTML('beforeend', `<div class="thumbnail">${html}</div>`);
+                    }
+                });
+        });
+
     function loadMoreThumbnails() {
-      if (container.getBoundingClientRect().top < window.innerHeight && offset < numImages) {
-        // Fetch more thumbnails using AJAX
-        fetch(`/thumbnails?limit=${numImages}&offset=${offset}&imgsrc=${imgsrc}`)
-          .then(response => response.text())
-          .then(html => {
-            container.insertAdjacentHTML('beforeend', `<div class="thumbnail">${html}</div>`);
-            offset += limit; // Update the offset
-          });
-      }
+        if (offset >= numImages) {
+            // All thumbnails have been loaded, so return early
+            return;
+        }
+
+        if (container.getBoundingClientRect().top < window.innerHeight) {
+            // Fetch more thumbnails using AJAX
+            fetch(`/thumbnails?limit=${numImages}&offset=${offset}&imgsrc=${imgsrc}`)
+                .then(response => response.text())
+                .then(html => {
+                    container.insertAdjacentHTML('beforeend', `<div class="thumbnail">${html}</div>`);
+                    offset += limit; // Update the offset
+                });
+        }
     }
-  
     // Load more thumbnails when user scrolls near the end of the container
     window.addEventListener('scroll', loadMoreThumbnails);
-  
+
     // Load more thumbnails when container is resized and becomes visible
     const resizeObserver = new ResizeObserver(() => {
-      if (container.getBoundingClientRect().top < window.innerHeight && offset < numImages) {
-        loadMoreThumbnails();
-      }
+        if (container.getBoundingClientRect().top < window.innerHeight && offset < numImages) {
+            loadMoreThumbnails();
+        }
     });
     resizeObserver.observe(container);
-  }
-  
+}
+
 lazyLoadThumbnails();
 
 function clearThumbnails() {
@@ -149,10 +176,10 @@ favoriteForms.forEach(form => {
                 if (formMethodInput) {
                     formMethodInput.value = formMethod;
                 }
-                currentForm.querySelector('.favorite-toggle').innerHTML = newFavorite ? '<span class="material-icons">favorite</span>' : '<span class="material-icons">favorite_border</span>' ; // Update button label with heart icon
+                currentForm.querySelector('.favorite-toggle').innerHTML = newFavorite ? '<span class="material-icons">favorite</span>' : '<span class="material-icons">favorite_border</span>'; // Update button label with heart icon
             }
         };
-        xhr.send(JSON.stringify({image_name: image_name}));
+        xhr.send(JSON.stringify({ image_name: image_name }));
     });
 });
 
@@ -209,7 +236,7 @@ addTagsForm.addEventListener('submit', event => {
 
     const image_name = document.getElementById('active-image').alt;
     const tags = document.getElementById('tagsinput').value.trim().split(/\s*,\s*/);
-    
+
     console.log('image_name:', image_name);
     console.log('tags:', tags);
 
@@ -314,21 +341,21 @@ categoryForm.addEventListener('submit', (event) => {
             const xhr2 = new XMLHttpRequest();
             xhr2.open('GET', `/get-metadata?image_name=${image_name}`);
             xhr2.onreadystatechange = function () {
-            if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-                const metadata = JSON.parse(this.responseText);
-                console.log(metadata)
-                // Update the category in the HTML
-                const categoryList = document.querySelector('#category-list');
-                categoryList.innerHTML = '';
-                metadata.Categorization.forEach(category => {
-                const categoryItem = document.createElement('li');
-                categoryItem.textContent = category;
-                categoryList.appendChild(categoryItem);
-                categoryItem.addEventListener('click', function () {
-                    removeCategory(image_name, category);
-                });
-                });
-            }
+                if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
+                    const metadata = JSON.parse(this.responseText);
+                    console.log(metadata)
+                    // Update the category in the HTML
+                    const categoryList = document.querySelector('#category-list');
+                    categoryList.innerHTML = '';
+                    metadata.Categorization.forEach(category => {
+                        const categoryItem = document.createElement('li');
+                        categoryItem.textContent = category;
+                        categoryList.appendChild(categoryItem);
+                        categoryItem.addEventListener('click', function () {
+                            removeCategory(image_name, category);
+                        });
+                    });
+                }
             };
             xhr2.send();
         }
@@ -398,7 +425,7 @@ function saveData() {
 }
 
 // Send an autosave request every 5 minutes
-setInterval(function() {
+setInterval(function () {
     var xhr = new XMLHttpRequest();
     xhr.open('PUT', '/save');
     xhr.onload = function () {
@@ -432,7 +459,7 @@ $(document).ready(function () {
                 console.log(response)
                 window.location.replace(response); // redirect to the image viewer with a filtered image
             },
-            error: function(jqXHR, textStatus, errorThrown) { // handle http errors
+            error: function (jqXHR, textStatus, errorThrown) { // handle http errors
                 console.log(response)
                 alert(textStatus + ": " + errorThrown);
             }
@@ -444,66 +471,66 @@ function setThemeCookieXHR(theme) {
     var xhr = new XMLHttpRequest();
     xhr.open('POST', '/set_theme_cookie');
     xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-    xhr.onreadystatechange = function() {
-      if (xhr.readyState === 4 && xhr.status === 200) {
-        var response = JSON.parse(xhr.responseText);
-        // Update any data in the frontend that needs to be updated
-      }
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4 && xhr.status === 200) {
+            var response = JSON.parse(xhr.responseText);
+            // Update any data in the frontend that needs to be updated
+        }
     };
     xhr.send('theme=' + encodeURIComponent(theme));
-  }
-  
-  function setThemeCookieDOM(theme) {
+}
+
+function setThemeCookieDOM(theme) {
     document.cookie = "theme=" + encodeURIComponent(theme) + "; path=/";
     console.log('Setting theme cookie to:', theme);
-  }
-  
-  function setStyle(style) {
+}
+
+function setStyle(style) {
     console.log('Setting style to:', style);
     var link = document.querySelector('link[href*="/css/"]');
     link.href = link.href.replace(/\/css\/\w+\.css/, '/css/' + style + '.css');
     setThemeCookieDOM(style); // Set theme cookie with new value
-  }
-  
-  function getCookie(name) {
+}
+
+function getCookie(name) {
     var cookies = document.cookie.split(';');
     for (var i = 0; i < cookies.length; i++) {
-      var cookie = cookies[i].trim();
-      if (cookie.indexOf(name + '=') === 0) {
-        return decodeURIComponent(cookie.substring(name.length + 1));
-      }
+        var cookie = cookies[i].trim();
+        if (cookie.indexOf(name + '=') === 0) {
+            return decodeURIComponent(cookie.substring(name.length + 1));
+        }
     }
     return null;
-  }
-  
-  function setThemeFromCookie() {
+}
+
+function setThemeFromCookie() {
     var theme = getCookie('theme');
     console.log('Setting theme cookie to:', theme);
     if (theme) {
-      setStyle(theme);
-      setThemeCookieXHR(theme); // Update cookie on server side
+        setStyle(theme);
+        setThemeCookieXHR(theme); // Update cookie on server side
     }
-  }
-  
-  function navigate(direction) {
+}
+
+function navigate(direction) {
     const img = document.getElementById('active-image');
     const imgsrc = img.getAttribute('alt');
     var imageName = encodeURIComponent(imgsrc);
     var url = "/imagedirection?direction=" + direction + "&image_name=" + imageName;
     location.href = url;
-  }
+}
 
-  // Call setThemeFromCookie() on page load
-  window.addEventListener('load', setThemeFromCookie);
-  
-  // Call setThemeFromCookie() whenever the theme selector is changed
-  document.getElementById('default-style').addEventListener('click', setThemeFromCookie);
-  document.getElementById('dark-style').addEventListener('click', setThemeFromCookie);
-  document.getElementById('light-style').addEventListener('click', setThemeFromCookie);
+// Call setThemeFromCookie() on page load
+window.addEventListener('load', setThemeFromCookie);
 
-  $(document).ready(function() {
+// Call setThemeFromCookie() whenever the theme selector is changed
+document.getElementById('default-style').addEventListener('click', setThemeFromCookie);
+document.getElementById('dark-style').addEventListener('click', setThemeFromCookie);
+document.getElementById('light-style').addEventListener('click', setThemeFromCookie);
+
+$(document).ready(function () {
     $(".filterbar").hide();
-    $("#filter-toggle").click(function() {
-      $(".filterbar").slideToggle("fast");
+    $("#filter-toggle").click(function () {
+        $(".filterbar").slideToggle("fast");
     });
-  });
+});

@@ -10,7 +10,7 @@ read by calling `mp_bulk_exif_read` function.
 The application is then started by calling the `run` method of the `Flask` object.
 
 Usage:
-    python app.py --imagedir <image folder>
+    python gallery.py --imagedir <image folder>
 
 """
 
@@ -58,7 +58,6 @@ def dir_path(string):
     else:
         raise NotADirectoryError(string)
 
-#filtered_images = [f.name for f in image_folder.iterdir() if f.is_file() and is_valid_image_extension(f.name)]
 def filter_images_in_image_folder_path():
     logger.debug(image_folder)
     filtered_images = []
@@ -218,7 +217,17 @@ def get_thumbnail_from_image(image):
     with open(thumbnail_path, 'rb') as f:
         return BytesIO(f.read())
 
-def fetch_thumbnails(limit, offset):
+# Define a sorting function to sort based on filename and parent folder
+def sort_by_filename_and_parent_folder(image_path):
+    # Get the parent folder and filename using pathlib
+    path = Path(image_path)
+    parent_folder = path.parent
+    filename = path.name
+    
+    # Sort first by parent folder, then by filename
+    return (parent_folder, filename)
+
+def fetch_thumbnails(limit, offset, imgsrc):
     """Fetch a list of image thumbnails.
 
     Args:
@@ -229,14 +238,15 @@ def fetch_thumbnails(limit, offset):
         List[Dict[str, Any]]: A list of thumbnail responses and image source URLs.
 
     """
-    logger.debug("limit: %d. offset: %d." % (limit, offset))
+    logger.debug("limit: %d. offset: %d. imgsrc: %s" % (limit, offset, imgsrc))
     images = get_image_names_in_image_dir()
     if offset > len(images):
         offset = len(images) - limit
     if limit+offset > len(images):
         offset = len(images) - limit
     thumbnails = []
-    for image in images[offset:offset+limit]:
+    sorted_image_paths = sorted(images[offset:offset+limit], key=sort_by_filename_and_parent_folder)
+    for image in sorted_image_paths:
         thumbnail = (get_thumbnail_from_image(image))
         response = make_response(thumbnail)
         response.headers.set('Content-Type', 'image/jpeg')
@@ -267,17 +277,16 @@ def filter_images():
 
     # Filter the metadata dataframe based on user input
     filtered_df = imgview_data.copy()
+    filtered_exif_df = bulk_exif_data.copy()
     logger.debug(filtered_df)
     if search_query:
         logger.debug("search_query")
         found_images = [(hashlib.sha256(elem.encode()).hexdigest(), elem) for elem in get_image_names_in_image_dir() if search_query in elem]
+        logger.debug(filtered_exif_df)
         if found_images:
             found_hashes = [x[0] for x in found_images]
             filtered_df = filtered_df.loc[found_hashes]
-        else:
-            # if search query does not match any image name, return an empty list
-            return jsonify({"image_list": []})
-
+            
     if favorites in ['True', 'False']:
         favorites = ast.literal_eval(favorites)
         filtered_df = filtered_df[filtered_df["Favorites"] == favorites]
@@ -304,6 +313,8 @@ def filter_images():
         response = url_for('image_viewer', image_name=get_random_image())
         logger.debug(response)
     else:
+        filtered_images = filter_images_in_image_folder_path()
+        logger.debug(f"Resetting filtered_images to the ones in your vieweing directory. You have {len(filtered_images)} in your viewing direcotry images.")
         response = url_for('zen', message="No images found for your filter")
         logger.debug(response)
     #return redirect(url_for('image_viewer', image_name=get_random_image()))
@@ -366,7 +377,7 @@ def thumbnails():
         offset = 0
     # Fetch thumbnail data from the server
     logger.debug("sending this to fetch_thumbnails limit: %d. offset: %d." % (limit, offset))
-    thumbnails = fetch_thumbnails(limit=limit, offset=offset)
+    thumbnails = fetch_thumbnails(limit=limit, offset=offset, imgsrc=imgsrc)
     thumbnails_sent.append((offset, limit))
     logger.debug(thumbnails_sent) # Ask ChatGPT about this way of doing it later.
     # Render the thumbnail partial using Jinja2 template

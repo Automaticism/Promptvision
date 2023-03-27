@@ -93,6 +93,22 @@ body {
     max-width: 70px;
 }
 
+.thumbnail a {
+    display: inline-block;
+    border: 1px solid transparent; /* add transparent border to all images */
+    padding: 5px;
+}
+
+.thumbnail a.active-thumbnail {
+    border-color: #ccc; /* change border color for active thumbnail */
+    border-width: 2px; /* change border width for active thumbnail */
+}
+
+.thumbnail a img.active-thumbnail {
+    border-color: #ccc; /* change border color for active thumbnail image */
+    border-width: 2px; /* change border width for active thumbnail image */
+    border-style: solid;
+}
 
 /* Hide default dropdown */
 #style-selector {
