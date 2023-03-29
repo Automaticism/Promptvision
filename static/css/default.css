@@ -4,19 +4,20 @@ body {
     width: 100%;
     margin: 0;
     background-color: #2e353d;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 /* Main container */
 .main-container {
     display: grid;
-    grid-template-columns: 50% 40% 10%;
-    /* 3 columns with 60%, 1fr, and 1fr widths respectively */
+    /* Set the first column to 40% width, with a minimum width of 300px */
+    grid-template-columns: minmax(300px, 40%) 2.5fr 1fr;
     grid-template-rows: repeat(1, 1fr);
-    /* 1 row */
     gap: 10px;
-    max-width: 1600px;
-    margin: 0 auto;
-    height: 100vh;
+    max-width: calc(100% - 20px);
+    height: calc(100% - 20px);
 }
 
 /* Image viewer container */
@@ -62,22 +63,22 @@ body {
 }
 
 .thumbnail-wrapper {
+    grid-column: 3 / 3;
+    grid-row: 1 / 1;
     background-color: #3b414a;
     box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
-    overflow-x: auto;
   }
 
 .thumbnail-container {
     max-width: 1600px;
     width: 100%;
     display: inline-grid;
-    grid-template-columns: repeat(auto-fit, minmax(180, 1fr));
-    grid-auto-rows: minmax(120px, 1fr);
+    grid-template-columns: repeat(auto-fit, minmax(70, 210));
+    grid-auto-rows: minmax(70px, 1fr);
     overflow-y: auto;
     grid-template-areas:
         "thumb thumb";
     margin: 0;
-    overflow-x: auto;
     padding: 1px;
 }
 
@@ -90,7 +91,7 @@ body {
     height: auto;
     object-fit: cover;
     border-radius: 5px;
-    max-width: 70px;
+    max-width: 60px;
 }
 
 .thumbnail a {
@@ -105,9 +106,11 @@ body {
 }
 
 .thumbnail a img.active-thumbnail {
-    border-color: #ccc; /* change border color for active thumbnail image */
-    border-width: 2px; /* change border width for active thumbnail image */
+    border-color: #25b951; /* change border color for active thumbnail image */
+    border-width: 3px; /* change border width for active thumbnail image */
     border-style: solid;
+    box-shadow: 0 0 10px 5px rgba(37, 185, 81, 0.5);
+    transform: scale(1.05);
 }
 
 /* Hide default dropdown */
@@ -445,21 +448,19 @@ option {
     display: flex;
     width: 100%;
     overflow-x: auto;
-    position: -webkit-sticky;
-    position: sticky;
+    position: fixed; /* Change to fixed positioning */
     top: 0;
+    left: 0;
+    right: 0;
     z-index: 1;
-}
-
-.filterbar.hidden {
-    display: none;
-}
-
-.filterbtn {
+    justify-content: center; /* Center the filterbtn horizontally */
+    transform: translateY(-100%); /* Move filterbar offscreen initially */
+    transition: transform 0.2s ease-in-out; /* Add a transition for smooth animation */
+  }
+  
+  .filterbtn {
     position: relative;
     top: 0;
-    left: 50%;
-    transform: translateX(-50%);
     padding: 5px 5px;
     font-weight: bold;
     text-align: center;
@@ -471,4 +472,9 @@ option {
     box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
     border: none;
     cursor: pointer;
-}
+    z-index: 2; /* Increase z-index to appear on top of content */
+  }
+  
+  .filterbar.open {
+    transform: translateY(0); /* Move filterbar onscreen when open class is applied */
+  }  

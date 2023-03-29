@@ -286,34 +286,46 @@ def filter_images():
         if found_images:
             found_hashes = [x[0] for x in found_images]
             filtered_df = filtered_df.loc[found_hashes]
+        else:
+            filtered_df = None
             
-    if favorites in ['True', 'False']:
-        favorites = ast.literal_eval(favorites)
-        filtered_df = filtered_df[filtered_df["Favorites"] == favorites]
-    if rating is not None:
-        logger.debug("rating is not None")
-        filtered_df["Rating"] = filtered_df["Rating"].astype(int)
-        filtered_df = filtered_df[filtered_df["Rating"] >= rating]
-    if tags is not None:
-        logger.debug("tags is not None")
-        filtered_df = filtered_df[filtered_df["Tags"].str.contains(tags)]
-    if categories is not None:
-        logger.debug("categories is not None")
-        filtered_df = filtered_df[filtered_df["Categorization"].str.contains(categories)]
+    if filtered_df:        
+        if favorites in ['True', 'False']:
+            favorites = ast.literal_eval(favorites)
+            filtered_df = filtered_df[filtered_df["Favorites"] == favorites]
+        if rating is not None:
+            logger.debug("rating is not None")
+            filtered_df["Rating"] = filtered_df["Rating"].astype(int)
+            filtered_df = filtered_df[filtered_df["Rating"] >= rating]
+        if tags is not None:
+            logger.debug("tags is not None")
+            filtered_df = filtered_df[filtered_df["Tags"].str.contains(tags)]
+        if categories is not None:
+            logger.debug("categories is not None")
+            filtered_df = filtered_df[filtered_df["Categorization"].str.contains(categories)]
 
-    # Retrieve list of filtered image filenames
-    logger.debug(filtered_df)
-    filtered_image_list = filtered_df.index.tolist()
-    if len(filtered_image_list) > 0:
-        global filtered_images
-        filtered_images = filter_images_in_image_folder_path()
-        found_images = [(hashlib.sha256(elem.encode()).hexdigest(), elem) for elem in get_image_names_in_image_dir() if search_query in elem]
-        filtered_images = [x[1] for x in found_images if x[0] in filtered_image_list]
-        logger.debug(filtered_images)
-        response = url_for('image_viewer', image_name=get_random_image())
-        logger.debug(response)
+        # Retrieve list of filtered image filenames
+        logger.debug(filtered_df)
+        filtered_image_list = filtered_df.index.tolist()
+        logger.debug(filtered_image_list)
+        if len(filtered_image_list) > 0:
+            global filtered_images
+            #filtered_images = filter_images_in_image_folder_path()
+            filtered_images = sorted(filter_images_in_image_folder_path(), key=sort_by_filename_and_parent_folder)
+            #found_images = [(hashlib.sha256(elem.encode()).hexdigest(), elem) for elem in get_image_names_in_image_dir() if search_query in elem]
+            filtered_images = [x[1] for x in filtered_images if x[0] in filtered_image_list]
+            logger.debug(filtered_images)
+            response = url_for('image_viewer', image_name=get_random_image())
+            logger.debug(response)
+        else:
+            #filtered_images = filter_images_in_image_folder_path()
+            filtered_images = sorted(filter_images_in_image_folder_path(), key=sort_by_filename_and_parent_folder)
+            logger.debug(f"Resetting filtered_images to the ones in your vieweing directory. You have {len(filtered_images)} in your viewing direcotry images.")
+            response = url_for('zen', message="No images found for your filter")
+            logger.debug(response)
     else:
-        filtered_images = filter_images_in_image_folder_path()
+        #filtered_images = filter_images_in_image_folder_path()
+        filtered_images = sorted(filter_images_in_image_folder_path(), key=sort_by_filename_and_parent_folder)
         logger.debug(f"Resetting filtered_images to the ones in your vieweing directory. You have {len(filtered_images)} in your viewing direcotry images.")
         response = url_for('zen', message="No images found for your filter")
         logger.debug(response)
@@ -473,7 +485,8 @@ def browse():
     logger.debug(thumbnail_folder)
     global filtered_images
     #filtered_images = [f.name for f in image_folder.iterdir() if f.is_file() and is_valid_image_extension(f.name)]
-    filtered_images = filter_images_in_image_folder_path()
+    #filtered_images = filter_images_in_image_folder_path()
+    filtered_images = sorted(filter_images_in_image_folder_path(), key=sort_by_filename_and_parent_folder)
     logger.debug(f"filtered_images: {filtered_images}")
     start_time = time.time()
     
@@ -637,7 +650,8 @@ def image_viewer():
     except KeyError as e:
         logger.error(e)
         #filtered_images = [f.name for f in image_folder.iterdir() if f.is_file() and is_valid_image_extension(f.name)]
-        filtered_images = filter_images_in_image_folder_path()
+        #filtered_images = filter_images_in_image_folder_path()
+        filtered_images = sorted(filter_images_in_image_folder_path(), key=sort_by_filename_and_parent_folder)
         logger.debug(f"filtered_images: {filtered_images}")
         try:
             metadata_for_filtered_images = imgview_data.loc[[hashlib.sha256(path.encode()).hexdigest() for path in filtered_images]].to_dict()
@@ -673,6 +687,7 @@ def get_random_image():
         A string representing the file name of a random image from the image directory.
     """
     images = get_image_names_in_image_dir()
+    logger.debug(images)
     image = random.sample(images, 1)[0]
     logging.debug(image)
     return image
@@ -897,6 +912,8 @@ def is_valid_image_extension(filename):
     Returns:
         True if the file name has a valid image extension (i.e. .jpg, .jpeg, or .png), False otherwise.
     """
+    if sys.platform == 'darwin' and filename.startswith('._'):
+        return False
     return filename.endswith(".jpg") or filename.endswith(".jpeg") or filename.endswith(".png")
 
 def get_image_names_in_image_dir():
@@ -1160,7 +1177,9 @@ if __name__ == '__main__':
     thumbnail_folder = metadata_subdir / 'thumbnails'
     thumbnail_folder.mkdir(parents=True, exist_ok=True)
     #filtered_images = [f.name for f in image_folder.iterdir() if f.is_file() and is_valid_image_extension(f.name)]
-    filtered_images = filter_images_in_image_folder_path()
+    #filtered_images = filter_images_in_image_folder_path()
+    filtered_images = sorted(filter_images_in_image_folder_path(), key=sort_by_filename_and_parent_folder)
+
     # Check if EXIF data already exists
     exif_df_path = metadata_subdir.joinpath("exif_df.csv")
     if exif_df_path.exists():

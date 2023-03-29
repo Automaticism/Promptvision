@@ -96,20 +96,20 @@ function lazyLoadThumbnails() {
             fetch(`/thumbnails?limit=${limit}&offset=0&imgsrc=${imgsrc}`)
                 .then(response => response.text())
                 .then(html => {
-                    console.log(urlParams)
-                    console.log(html)
+                    //console.log(urlParams)
+                    //console.log(html)
                     if (html.indexOf(urlParams) !== -1) {
                         console.log('The substring was found in the HTML.');
-                        console.log(html.indexOf(urlParams))
+                        //console.log(html.indexOf(urlParams))
 
                         // locate the <img> tag within the html string
                         const imgStartIndex = html.indexOf('<a href="/img?' + urlParams);
                         const imgEndIndex = html.indexOf('/a>', imgStartIndex) + 3;
                         const imgTag = html.substring(imgStartIndex, imgEndIndex);
-                        console.log(imgTag)
+                        //console.log(imgTag)
                         // add "active-thumbnail" class to the <img> tag
                         const modifiedImgTag = imgTag.replace('<img ', '<img class="active-thumbnail" ');
-                        console.log(modifiedImgTag)
+                        //console.log(modifiedImgTag)
                         // replace the original <img> tag with the modified version in the html string
                         const modifiedHtml = html.substring(0, imgStartIndex) + modifiedImgTag + html.substring(imgEndIndex);
                         
@@ -132,8 +132,28 @@ function lazyLoadThumbnails() {
             fetch(`/thumbnails?limit=${numImages}&offset=${offset}&imgsrc=${imgsrc}`)
                 .then(response => response.text())
                 .then(html => {
-                    container.insertAdjacentHTML('beforeend', `<div class="thumbnail">${html}</div>`);
-                    offset += limit; // Update the offset
+                    //console.log(urlParams)
+                    //console.log(html)
+                    if (html.indexOf(urlParams) !== -1) {
+                        console.log('The substring was found in the HTML.');
+                        console.log(html.indexOf(urlParams))
+
+                        // locate the <img> tag within the html string
+                        const imgStartIndex = html.indexOf('<a href="/img?' + urlParams);
+                        const imgEndIndex = html.indexOf('/a>', imgStartIndex) + 3;
+                        const imgTag = html.substring(imgStartIndex, imgEndIndex);
+                        //console.log(imgTag)
+                        // add "active-thumbnail" class to the <img> tag
+                        const modifiedImgTag = imgTag.replace('<img ', '<img class="active-thumbnail" ');
+                        //console.log(modifiedImgTag)
+                        // replace the original <img> tag with the modified version in the html string
+                        const modifiedHtml = html.substring(0, imgStartIndex) + modifiedImgTag + html.substring(imgEndIndex);
+                        
+                        container.insertAdjacentHTML('beforeend', `<div class="thumbnail">${modifiedHtml}</div>`);
+                    } else {
+                        console.log('The substring was not found in the HTML.');
+                        container.insertAdjacentHTML('beforeend', `<div class="thumbnail">${html}</div>`);
+                    }
                 });
         }
     }
@@ -168,7 +188,7 @@ favoriteForms.forEach(form => {
         xhr.setRequestHeader('Content-Type', 'application/json');
         xhr.onreadystatechange = function () {
             if (this.readyState === XMLHttpRequest.DONE && this.status === 200) {
-                console.log(this)
+                //console.log(this)
                 const newFavorite = JSON.parse(this.responseText);
                 const formMethod = newFavorite ? "PUT" : "POST"; // Define form method based on current state
                 const currentForm = event.target.closest('form'); // Get the current form being processed
@@ -528,9 +548,9 @@ document.getElementById('default-style').addEventListener('click', setThemeFromC
 document.getElementById('dark-style').addEventListener('click', setThemeFromCookie);
 document.getElementById('light-style').addEventListener('click', setThemeFromCookie);
 
-$(document).ready(function () {
-    $(".filterbar").hide();
-    $("#filter-toggle").click(function () {
-        $(".filterbar").slideToggle("fast");
-    });
+const filterbar = document.querySelector('.filterbar');
+const filterbtn = document.querySelector('.filterbtn');
+
+filterbtn.addEventListener('click', () => {
+  filterbar.classList.toggle('open');
 });
