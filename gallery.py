@@ -959,7 +959,9 @@ def metadata_initialization():
         metadata[key] = {'Favorites': False,
                         'Rating': 0,
                         'Tags': [],
-                        'Categorization': []}
+                        'Categorization': [],
+                        'Reviewed': False,
+                        'Todelete': False}
     
     # create the dataframe from the metadata dictionary
     df = pd.DataFrame.from_dict(metadata, orient='index')
