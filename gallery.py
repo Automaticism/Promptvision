@@ -37,6 +37,9 @@ import json
 import re
 import configparser
 
+# Increase the maximum pixel count limit
+Image.MAX_IMAGE_PIXELS = None
+
 app = Flask(__name__)
 
 def dir_path(string):
