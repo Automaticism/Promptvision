@@ -210,6 +210,9 @@ def get_thumbnail_from_image(image):
     if not thumbnail_path.exists():
         image_file = image
         img = Image.open(image_file)
+        if img.format == "PNG":
+            img = img.convert("P")
+            img = img.convert("RGB")
         ratio = img.width / img.height
         img.thumbnail((int(256 * ratio), 256), Image.LANCZOS)
         img.save(thumbnail_path, format='JPEG', quality=85)
