@@ -253,7 +253,7 @@ button.btn.btn-primary {
     font-weight: 500;
     line-height: 1.2;
     color: #FFF;
-    background-color: #646e7c;
+    background-color: #2e353d;;
     border-radius: 12px;
     border: none;
     cursor: pointer;
@@ -333,7 +333,7 @@ input[type="text"]:valid {
 
 /* Style form control submit input element */
 input[type="submit"] {
-    background-color: #3b414a;
+    background-color: #2e353d;;
     border-color: #3b414a;
     color: #FFFFFF;
     font-weight: 500;
@@ -467,19 +467,21 @@ option {
   .filterbtn {
     position: relative;
     top: 0;
-    padding: 5px 5px;
-    font-weight: bold;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 500;
     text-align: center;
     text-decoration: none;
     white-space: nowrap;
     color: #fff;
-    background-color: #3b414a;
-    border-radius: 4px;
-    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
+    background-color: #535f71;
+    border-radius: 12px;
     border: none;
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
     cursor: pointer;
-    z-index: 2; /* Increase z-index to appear on top of content */
+    z-index: 2; /* Keep z-index to appear on top of content */
   }
+  
   
   .filterbar.open {
     transform: translateY(0); /* Move filterbar onscreen when open class is applied */
@@ -487,4 +489,12 @@ option {
 
   .hide {
     display: none;
+  }
+
+  .green-icon {
+    color: #00bfa5; /* Change color to match the design */
+  }
+  
+  .red-icon {
+    color: #f44336; /* Change color to match the design */
   }

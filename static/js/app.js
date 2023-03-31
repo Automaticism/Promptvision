@@ -478,6 +478,32 @@ document.getElementById('save-form').addEventListener('submit', function (event)
     saveData();
 });
 
+// Listen for submit event on the "resetfilter" form
+document.getElementById('resetfilter').addEventListener('submit', function (event) {
+    // Prevent the default form submission behavior
+    event.preventDefault();
+    
+    // Send a POST request to reset the filter
+    fetch('/resetfilter', {
+      method: 'POST',
+    })
+    .then(response => {
+      // Check if the response was successful
+      if (response.ok) {
+        // Redirect to the new URL
+        window.location.href = response.url;
+      } else {
+        // Handle error response
+        console.error('Error resetting filter');
+      }
+    })
+    .catch(error => {
+      // Handle network errors
+      console.error('Network error:', error);
+    });
+  });
+  
+
 $(document).ready(function () {
     $("#filter-form").submit(function (event) { // Submit the filter form via AJAX when the "Filter" button is clicked
         event.preventDefault();

@@ -88,7 +88,15 @@
     <div class="metadata">
       <table class="metadata-table">
         <tr>
-          <td class="" colspan="2"><button class="filterbtn" id="filter-toggle">Filters</button></td>
+          <td class="">
+            <button class="filterbtn" id="filter-toggle">Filters</button>
+          </td>
+          <td>
+            <form id="resetfilter" action="/resetfilter" method="POST">
+              <input class="form-control" type="submit" value="Reset filter">
+            </form>
+            
+          </td>
         </tr>
         <tr>
           <td class="" colspan="2">
@@ -227,6 +235,26 @@
                                       </ul>
                                     </td>
                                   </tr>
+                                  <tr>
+                                    <td class="header">Reviewed</td>
+                                    <td>
+                                      {% if metadata.Reviewed %}
+                                        <i class="material-icons green-icon">check_circle</i>
+                                      {% else %}
+                                        <i class="material-icons red-icon">cancel</i>
+                                      {% endif %}
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td class="header">Mark for removal</td>
+                                    <td>
+                                      {% if metadata.Todelete %}
+                                      <i class="material-icons">delete</i>
+                                      {% else %}
+                                      <i class="material-icons">delete_forever</i>
+                                      {% endif %}
+                                    </td>
+                                  </tr>                                  
                                   <tr>
                                     <td class="header">
                                       <form id="save-form">
