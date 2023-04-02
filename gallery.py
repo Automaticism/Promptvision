@@ -37,6 +37,8 @@ import time
 import json
 import re
 import configparser
+import piexif
+import piexif.helper
 
 # Increase the maximum pixel count limit
 Image.MAX_IMAGE_PIXELS = None
@@ -1072,42 +1074,42 @@ def read_exif_data(image):
         'Extras': 'No data found'
     }
     try:
-        exif_data = img.text
+        exif_data = img.info
+        parameters = None
+        if 'parameters' in exif_data:
+            parameters = exif_data.get('parameters', '')
+        elif 'exif' in exif_data:
+            exif_info = piexif.load(exif_data['exif'])
+            user_comment_info = exif_info.get('Exif', {}).get(piexif.ExifIFD.UserComment, b'')
+            parameters = piexif.helper.UserComment.load(user_comment_info)
         logger.debug(f"-------\nexif_data:{exif_data}\nexif_data_type:{type(exif_data)}----------\n")
     except AttributeError as e:
         logger.warning(img)
         logger.warning(e)
         return pd.DataFrame(parsed_data, index=["exifdataindex"])
 
+    logger.debug(parameters)
+    logger.debug(type(parameters))
+    if not parameters:
+        logger.warning("No exif parameters found")
+        return pd.DataFrame(parsed_data, index=["exifdataindex"])
     try:
-        regex = r'(\w+( \w+)*):\s*([\w{}":,]+)'
-        for key_value in exif_data['parameters'].split('\n'):
+        regex = r"(\w+(?:\s+\w+)*)\s*:\s*([\w.+@-]+(?:\s+[\w.+@-]+)*(?:\s*\([\w\s.+@-]*\))?)"
+        param_lines = parameters.splitlines()
+        first_line = param_lines.pop(0)
+        
+        parsed_data['Positive prompt'] = first_line
+        for key_value in param_lines:
+            #logger.debug(f"key_value:{key_value}")
             if 'Negative prompt:' in key_value:
-                parsed_data['Negative prompt'] = key_value.split(': ')[1]
-            elif all(x in key_value for x in ['Steps:', 'Sampler:', 'CFG scale:', 'Seed:', 'Size:', 'Model hash:', 'Model:']):
-                logger.debug(key_value)
+                negative_prompt_values = key_value.split('Negative prompt: ')[1:]
+                negative_prompt_value = negative_prompt_values[-1]
+                parsed_data['Negative prompt'] = negative_prompt_value.strip()
+            elif all(x in key_value for x in ['Steps:', 'Sampler:', 'CFG scale:', 'Seed:', 'Size:', 'Model:']):
+                logger.debug(f"diff prompt: {key_value}")
                 matches = re.findall(regex, key_value)
                 for match in matches:
-                    if match[0] == 'Steps':
-                        parsed_data['Steps'] = match[2].rstrip(',')
-                    elif match[0] == 'Sampler':
-                        parsed_data['Sampler'] = match[2].rstrip(',')
-                    elif match[0] == 'CFG scale':
-                        parsed_data['CFG scale'] = match[2].rstrip(',')
-                    elif match[0] == 'Seed':
-                        parsed_data['Seed'] = match[2].rstrip(',')
-                    elif match[0] == 'Size':
-                        parsed_data['Size'] = match[2].rstrip(',')
-                    elif match[0]== 'Model hash':
-                        parsed_data['Model hash'] = match[2].rstrip(',')
-                    elif match[0] == 'Model':
-                        parsed_data['Model'] = match[2].rstrip(',')
-                    elif match[0] == 'Eta':
-                        parsed_data['Eta'] = match[2].rstrip(',')
-                    elif match[0] == 'Hashes':
-                        parsed_data['Hashes'] = match[2].rstrip(',')
-            else:
-                parsed_data['Positive prompt'] = key_value
+                    parsed_data[match[0]] = match[1]
 
 
         # Parse the "postprocessing" key
@@ -1126,7 +1128,7 @@ def read_exif_data(image):
 
     logger.debug(parsed_data)
     return pd.DataFrame(parsed_data, index=["exifdataindex"])
-    
+
 def mp_bulk_exif_read(filtered_images):
     """
     Reads the EXIF data from all image files in parallel using multiprocessing.
