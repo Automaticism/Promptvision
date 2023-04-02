@@ -72,6 +72,7 @@ document.addEventListener("keydown", function (event) {
 });
 
 function lazyLoadThumbnails() {
+    console.log("lazyLoadingThumbnails")
     const container = document.getElementById('thumbnails');
     const thumbnailContainerWidth = window.innerWidth * 0.2;
     const maxThumbnailsPerRow = Math.floor(thumbnailContainerWidth / 50);
@@ -112,7 +113,7 @@ function lazyLoadThumbnails() {
                         //console.log(modifiedImgTag)
                         // replace the original <img> tag with the modified version in the html string
                         const modifiedHtml = html.substring(0, imgStartIndex) + modifiedImgTag + html.substring(imgEndIndex);
-                        
+
                         container.insertAdjacentHTML('beforeend', `<div class="thumbnail">${modifiedHtml}</div>`);
                     } else {
                         console.log('The substring was not found in the HTML.');
@@ -120,56 +121,67 @@ function lazyLoadThumbnails() {
                     }
                 });
         });
-
-    function loadMoreThumbnails() {
-        if (offset >= numImages) {
-            // All thumbnails have been loaded, so return early
-            return;
-        }
-
-        if (container.getBoundingClientRect().top < window.innerHeight) {
-            // Fetch more thumbnails using AJAX
-            fetch(`/thumbnails?limit=${numImages}&offset=${offset}&imgsrc=${imgsrc}`)
-                .then(response => response.text())
-                .then(html => {
-                    //console.log(urlParams)
-                    //console.log(html)
-                    if (html.indexOf(urlParams) !== -1) {
-                        console.log('The substring was found in the HTML.');
-                        console.log(html.indexOf(urlParams))
-
-                        // locate the <img> tag within the html string
-                        const imgStartIndex = html.indexOf('<a href="/img?' + urlParams);
-                        const imgEndIndex = html.indexOf('/a>', imgStartIndex) + 3;
-                        const imgTag = html.substring(imgStartIndex, imgEndIndex);
-                        //console.log(imgTag)
-                        // add "active-thumbnail" class to the <img> tag
-                        const modifiedImgTag = imgTag.replace('<img ', '<img class="active-thumbnail" ');
-                        //console.log(modifiedImgTag)
-                        // replace the original <img> tag with the modified version in the html string
-                        const modifiedHtml = html.substring(0, imgStartIndex) + modifiedImgTag + html.substring(imgEndIndex);
-                        
-                        container.insertAdjacentHTML('beforeend', `<div class="thumbnail">${modifiedHtml}</div>`);
-                    } else {
-                        console.log('The substring was not found in the HTML.');
-                        container.insertAdjacentHTML('beforeend', `<div class="thumbnail">${html}</div>`);
-                    }
-                });
-        }
-    }
     // Load more thumbnails when user scrolls near the end of the container
-    window.addEventListener('scroll', loadMoreThumbnails);
-
-    // Load more thumbnails when container is resized and becomes visible
-    const resizeObserver = new ResizeObserver(() => {
-        if (container.getBoundingClientRect().top < window.innerHeight && offset < numImages) {
-            loadMoreThumbnails();
-        }
-    });
-    resizeObserver.observe(container);
+    container.addEventListener('scroll', loadMoreThumbnails);
 }
 
-lazyLoadThumbnails();
+function loadMoreThumbnails() {
+    const container = document.getElementById('thumbnails');
+    container.removeEventListener('scroll', loadMoreThumbnails);
+    const thumbnailContainerWidth = window.innerWidth * 0.2;
+    const maxThumbnailsPerRow = Math.floor(thumbnailContainerWidth / 50);
+    const maxThumbnailsPerColumn = Math.floor(container.clientHeight / 65);
+    let numImages;
+    let offset;
+    const img = document.getElementById('active-image');
+    const imgsrc = img.getAttribute('alt');
+    const imgage_url = img.getAttribute('src');
+    const urlParams = imgage_url.split("?")[1];
+    // Fetch the number of images using AJAX
+    fetch('/numimages')
+        .then(response => response.json())
+        .then(data => {
+            numImages = data.num_images;
+            limit = Math.min(maxThumbnailsPerRow * maxThumbnailsPerColumn, numImages); // Limit to the number of available images
+            offset = limit; // Set offset to `limit` to fetch more thumbnails after the initial set
+            console.log("Should be loading more thumbnails");
+            if (offset >= numImages) {
+                // All thumbnails have been loaded, so return early
+                return;
+            }
+
+            if (container.getBoundingClientRect().top < window.innerHeight) {
+                // Fetch more thumbnails using AJAX
+                fetch(`/thumbnails?limit=${numImages}&offset=${offset}&imgsrc=${imgsrc}`)
+                    .then(response => response.text())
+                    .then(html => {
+                        if (html.indexOf(urlParams) !== -1) {
+                            console.log('The substring was found in the HTML.');
+                            console.log(html.indexOf(urlParams));
+
+                            // locate the <img> tag within the html string
+                            const imgStartIndex = html.indexOf('<a href="/img?' + urlParams);
+                            const imgEndIndex = html.indexOf('/a>', imgStartIndex) + 3;
+                            const imgTag = html.substring(imgStartIndex, imgEndIndex);
+                            
+                            // add "active-thumbnail" class to the <img> tag
+                            const modifiedImgTag = imgTag.replace('<img ', '<img class="active-thumbnail" ');
+
+                            // replace the original <img> tag with the modified version in the html string
+                            const modifiedHtml = html.substring(0, imgStartIndex) + modifiedImgTag + html.substring(imgEndIndex);
+
+                            container.insertAdjacentHTML('beforeend', `<div class="thumbnail">${modifiedHtml}</div>`);
+                        } else {
+                            console.log('The substring was not found in the HTML.');
+                            container.insertAdjacentHTML('beforeend', `<div class="thumbnail">${html}</div>`);
+                        }
+                        offset += numImages;
+                        console.log(`offset: ${offset}, numImages: ${numImages}, container top: ${container.getBoundingClientRect().top}, window height: ${window.innerHeight}`);
+                    });
+            }
+        });
+} 
+
 
 function clearThumbnails() {
     const container = document.getElementById('thumbnails');
@@ -466,6 +478,32 @@ document.getElementById('save-form').addEventListener('submit', function (event)
     saveData();
 });
 
+// Listen for submit event on the "resetfilter" form
+document.getElementById('resetfilter').addEventListener('submit', function (event) {
+    // Prevent the default form submission behavior
+    event.preventDefault();
+    
+    // Send a POST request to reset the filter
+    fetch('/resetfilter', {
+      method: 'POST',
+    })
+    .then(response => {
+      // Check if the response was successful
+      if (response.ok) {
+        // Redirect to the new URL
+        window.location.href = response.url;
+      } else {
+        // Handle error response
+        console.error('Error resetting filter');
+      }
+    })
+    .catch(error => {
+      // Handle network errors
+      console.error('Network error:', error);
+    });
+  });
+  
+
 $(document).ready(function () {
     $("#filter-form").submit(function (event) { // Submit the filter form via AJAX when the "Filter" button is clicked
         event.preventDefault();
@@ -548,9 +586,12 @@ document.getElementById('default-style').addEventListener('click', setThemeFromC
 document.getElementById('dark-style').addEventListener('click', setThemeFromCookie);
 document.getElementById('light-style').addEventListener('click', setThemeFromCookie);
 
+// Load initial thumbnails
+lazyLoadThumbnails();
+
 const filterbar = document.querySelector('.filterbar');
 const filterbtn = document.querySelector('.filterbtn');
 
 filterbtn.addEventListener('click', () => {
-  filterbar.classList.toggle('open');
+    filterbar.classList.toggle('open');
 });

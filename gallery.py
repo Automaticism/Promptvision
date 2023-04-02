@@ -18,6 +18,7 @@ import ast
 from logging.handlers import RotatingFileHandler
 import os
 import sys
+import traceback
 from flask import Flask, url_for, render_template, send_from_directory,redirect, request, make_response, stream_template, jsonify, send_file
 import logging
 from jinja2 import Environment, FileSystemLoader
@@ -36,6 +37,8 @@ import time
 import json
 import re
 import configparser
+import piexif
+import piexif.helper
 
 # Increase the maximum pixel count limit
 Image.MAX_IMAGE_PIXELS = None
@@ -91,6 +94,9 @@ def remove_missing_sha256(dataframe, image_list):
     dataframe = dataframe.drop(missing_sha256)
     logger.debug(f"Length after drop: {len(dataframe)}")
     return dataframe
+
+def my_type(value):
+    return type(value).__name__
 
 def get_args(argv=None) -> argparse.Namespace:
     """Parse command-line arguments.
@@ -192,6 +198,7 @@ def strip_chars(string, chars):
 app.jinja_env.filters['strip_chars'] = strip_chars
 app.jinja_env.filters['json_loads'] = json.loads
 app.jinja_env.globals['type'] = type
+app.jinja_env.filters['my_type'] = my_type
 
 def get_thumbnail_from_image(image):
     """Get the thumbnail of an image.
@@ -264,79 +271,87 @@ def fetch_thumbnails(limit, offset, imgsrc):
 # Route to display the filtered images
 @app.route("/filter_images", methods=["POST"])
 def filter_images():
-    logger.debug("filtering")
-    global imgview_data
-    for key, value in request.form.items():
-        logger.debug(f"{key}: {value}")
-    # Retrieve user input from AJAX request
     try:
-        search_query = request.form.get("search_query")
-        favorites = request.form.get("favorites") if request.form.get("favorites") is not None else None
-        rating_str = request.form.get("rating")
-        rating = int(rating_str) if rating_str and rating_str.strip() else None
-        tags = request.form.get("tags") if request.form.get("tags") is not None else None
-        categories = request.form.get("categories") if request.form.get("categories") is not None else None
-        logger.debug(f"search_query: {search_query} favorites: {favorites} rating: {rating} tags: {tags} categories: {categories}")
-    except Exception as e:
-        logger.error(str(e))
-        return handle_value_error(e)
+        logger.debug("filtering")
+        global imgview_data
+        for key, value in request.form.items():
+            logger.debug(f"{key}: {value}")
+        # Retrieve user input from AJAX request
+        try:
+            search_query = request.form.get("search_query")
+            favorites = request.form.get("favorites") if request.form.get("favorites") is not None else None
+            rating_str = request.form.get("rating")
+            rating = int(rating_str) if rating_str and rating_str.strip() else None
+            tags = request.form.get("tags") if request.form.get("tags") is not None else None
+            categories = request.form.get("categories") if request.form.get("categories") is not None else None
+            logger.debug(f"search_query: {search_query} favorites: {favorites} rating: {rating} tags: {tags} categories: {categories}")
+        except Exception as e:
+            logger.error(str(e))
+            return handle_value_error(e)
 
-    # Filter the metadata dataframe based on user input
-    filtered_df = imgview_data.copy()
-    filtered_exif_df = bulk_exif_data.copy()
-    logger.debug(filtered_df)
-    if search_query:
-        logger.debug("search_query")
-        found_images = [(hashlib.sha256(elem.encode()).hexdigest(), elem) for elem in get_image_names_in_image_dir() if search_query in elem]
-        logger.debug(filtered_exif_df)
-        if found_images:
-            found_hashes = [x[0] for x in found_images]
-            filtered_df = filtered_df.loc[found_hashes]
-        else:
-            filtered_df = None
-            
-    if filtered_df:        
-        if favorites in ['True', 'False']:
-            favorites = ast.literal_eval(favorites)
-            filtered_df = filtered_df[filtered_df["Favorites"] == favorites]
-        if rating is not None:
-            logger.debug("rating is not None")
-            filtered_df["Rating"] = filtered_df["Rating"].astype(int)
-            filtered_df = filtered_df[filtered_df["Rating"] >= rating]
-        if tags is not None:
-            logger.debug("tags is not None")
-            filtered_df = filtered_df[filtered_df["Tags"].str.contains(tags)]
-        if categories is not None:
-            logger.debug("categories is not None")
-            filtered_df = filtered_df[filtered_df["Categorization"].str.contains(categories)]
-
-        # Retrieve list of filtered image filenames
+        # Filter the metadata dataframe based on user input
+        filtered_df = imgview_data.copy()
+        filtered_exif_df = bulk_exif_data.copy()
         logger.debug(filtered_df)
-        filtered_image_list = filtered_df.index.tolist()
-        logger.debug(filtered_image_list)
-        if len(filtered_image_list) > 0:
-            global filtered_images
-            #filtered_images = filter_images_in_image_folder_path()
-            filtered_images = sorted(filter_images_in_image_folder_path(), key=sort_by_filename_and_parent_folder)
-            #found_images = [(hashlib.sha256(elem.encode()).hexdigest(), elem) for elem in get_image_names_in_image_dir() if search_query in elem]
-            filtered_images = [x[1] for x in filtered_images if x[0] in filtered_image_list]
-            logger.debug(filtered_images)
-            response = url_for('image_viewer', image_name=get_random_image())
-            logger.debug(response)
+        if search_query:
+            logger.debug("search_query")
+            found_images = [(hashlib.sha256(elem.encode()).hexdigest(), elem) for elem in get_image_names_in_image_dir() if search_query in elem]
+            logger.debug(filtered_exif_df)
+            if found_images:
+                found_hashes = [x[0] for x in found_images]
+                filtered_df = filtered_df.loc[found_hashes]
+            else:
+                filtered_df = None
+                
+        if not filtered_df.empty:        
+            if favorites in ['True', 'False']:
+                favorites = ast.literal_eval(favorites)
+                filtered_df = filtered_df[filtered_df["Favorites"] == favorites]
+            if rating:
+                logger.debug(f"rating is not None: {rating}")
+                filtered_df["Rating"] = filtered_df["Rating"].astype(int)
+                filtered_df = filtered_df[filtered_df["Rating"] >= rating]
+            if tags:
+                logger.debug(f"tags is not None: {tags}")
+                logger.debug(filtered_df["Tags"].dtype)
+                filtered_df["Tags"] = filtered_df["Tags"].apply(lambda x: [x] if not isinstance(x, list) else x)
+            if categories:
+                logger.debug(f"categories is not None: {categories}")
+                filtered_df = filtered_df[filtered_df["Categorization"].apply(lambda x: any(categories in category for category in x))]
+
+
+            # Retrieve list of filtered image filenames
+            logger.debug(filtered_df)
+            filtered_image_list = filtered_df.index.tolist()
+            logger.debug(filtered_image_list)
+            if len(filtered_image_list) > 0:
+                global filtered_images
+                filtered_images = [x for x in filtered_images if hashlib.sha256(x.encode()).hexdigest()  in filtered_image_list]
+                if len(filtered_images) == 0:
+                    filtered_images = sorted(filter_images_in_image_folder_path(), key=sort_by_filename_and_parent_folder)
+                    logger.debug(f"Resetting filtered_images to the ones in your vieweing directory. You have {len(filtered_images)} in your viewing direcotry images.")
+                    response = url_for('zen', message="No images found for your filter")
+                else:
+                    logger.debug(filtered_images)
+                    response = url_for('image_viewer', image_name=get_random_image())
+                    logger.debug(response)
+            else:
+                #filtered_images = filter_images_in_image_folder_path()
+                filtered_images = sorted(filter_images_in_image_folder_path(), key=sort_by_filename_and_parent_folder)
+                logger.debug(f"Resetting filtered_images to the ones in your vieweing directory. You have {len(filtered_images)} in your viewing direcotry images.")
+                response = url_for('zen', message="No images found for your filter")
+                logger.debug(response)
         else:
             #filtered_images = filter_images_in_image_folder_path()
             filtered_images = sorted(filter_images_in_image_folder_path(), key=sort_by_filename_and_parent_folder)
             logger.debug(f"Resetting filtered_images to the ones in your vieweing directory. You have {len(filtered_images)} in your viewing direcotry images.")
             response = url_for('zen', message="No images found for your filter")
             logger.debug(response)
-    else:
-        #filtered_images = filter_images_in_image_folder_path()
-        filtered_images = sorted(filter_images_in_image_folder_path(), key=sort_by_filename_and_parent_folder)
-        logger.debug(f"Resetting filtered_images to the ones in your vieweing directory. You have {len(filtered_images)} in your viewing direcotry images.")
-        response = url_for('zen', message="No images found for your filter")
-        logger.debug(response)
-    #return redirect(url_for('image_viewer', image_name=get_random_image()))
-    return jsonify(response)
+        #return redirect(url_for('image_viewer', image_name=get_random_image()))
+        return jsonify(response)
+    except Exception as e:
+        logger.error(traceback.format_exc())
+        return bad_request_error(e)
 
 @app.route('/')
 def index(): 
@@ -543,6 +558,20 @@ def save():
         logger.error(f"Error saving metadata: {str(e)}")
         return jsonify("Error saving metadata"), 500
 
+@app.route('/resetfilter', methods=['POST'])
+def reset_filter():
+    """
+    Resets filter
+    """
+    try:
+        global filtered_images
+        filtered_images = sorted(filter_images_in_image_folder_path(), key=sort_by_filename_and_parent_folder)
+        logger.debug("Resetting filter")
+        return redirect(url_for('image_viewer', image_name=get_random_image()))
+    except ValueError as e:
+        logger.error(f"Error resetting filter: {str(e)}")
+        return handle_value_error("Error resetting filter")
+
 @app.errorhandler(400)
 def bad_request_error(error):
     """
@@ -626,53 +655,72 @@ def image_viewer():
 
     except KeyError as e:
         # If the image is not found in the EXIF data, log a warning message.
-        logger.warning(e)
-        logger.warning(image_src)
-        logger.warning(bulk_exif_data.index)
-        exif_data =  {
-        'Positive prompt': 'No data found',
-        'Negative prompt': 'No data found',
-        'Steps': 'No data found', 
-        'Sampler': 'No data found', 
-        'CFG scale': 'No data found', 
-        'Seed': 'No data found', 
-        'Size': 'No data found', 
-        'Model hash': 'No data found', 
-        'Model': 'No data found', 
-        'Eta': 'No data found',
-        'Hashes': 'No data found',
-        'Postprocessing': 'No data found',
-        'Extras': 'No data found'}
-        metadata_found = False
+        try:
+            bulk_exif_data.loc[hashlib.sha256(image_src.encode()).hexdigest()] = read_exif_data(image_src).loc['exifdataindex']
+            exif_data = bulk_exif_data.loc[hashlib.sha256(image_src.encode()).hexdigest()].to_dict()
+            metadata_found = True
+        except KeyError as e:
+            logger.error(e)
+            logger.warning(e)
+            logger.warning(image_src)
+            logger.warning(bulk_exif_data.index)
+            exif_data =  {
+            'Positive prompt': 'No data found',
+            'Negative prompt': 'No data found',
+            'Steps': 'No data found', 
+            'Sampler': 'No data found', 
+            'CFG scale': 'No data found', 
+            'Seed': 'No data found', 
+            'Size': 'No data found', 
+            'Model hash': 'No data found', 
+            'Model': 'No data found', 
+            'Eta': 'No data found',
+            'Hashes': 'No data found',
+            'Postprocessing': 'No data found',
+            'Extras': 'No data found'}
+            metadata_found = False
     
     # Log the exif_data and image_src values.
     logger.debug("exif_data: %s" % exif_data)
     logger.debug("image_viewer: %s " % image_src)
     if metadata_found:
         logger.debug(f"metadata: {imgview_data.loc[hashlib.sha256(image_src.encode()).hexdigest()]}")
+    
     global filtered_images
-    try:
-        metadata_for_filtered_images = imgview_data.loc[[hashlib.sha256(path.encode()).hexdigest() for path in filtered_images]].to_dict()
-    except KeyError as e:
-        logger.error(e)
-        #filtered_images = [f.name for f in image_folder.iterdir() if f.is_file() and is_valid_image_extension(f.name)]
-        #filtered_images = filter_images_in_image_folder_path()
-        filtered_images = sorted(filter_images_in_image_folder_path(), key=sort_by_filename_and_parent_folder)
-        logger.debug(f"filtered_images: {filtered_images}")
+    metadata_for_filtered_images = {}
+
+    for image_path in filtered_images:
+        hash_value = hashlib.sha256(image_path.encode()).hexdigest()
         try:
-            metadata_for_filtered_images = imgview_data.loc[[hashlib.sha256(path.encode()).hexdigest() for path in filtered_images]].to_dict()
-        except KeyError as e:
-            logger.error(e)
-            metadata_for_filtered_images = {}
-            # initialize the metadata for the image
-            metadata_for_filtered_images[hashlib.sha256(image_src.encode()).hexdigest()] = {'Favorites': False,
-                            'Rating': 0,
-                            'Tags': [],
-                            'Categorization': []}
-         
-    #logger.debug(metadata_for_filtered_images)
-    #for key, value in metadata_for_filtered_images.items():
-    #    logger.debug(f"key:{key} value:{value}")
+            metadata_for_filtered_images[hash_value] = imgview_data.loc[hash_value].to_dict()
+        except KeyError:
+            logger.error(f"Metadata not found for image: {image_path}")
+            metadata_for_filtered_images[hash_value] = {'Favorites': False,
+                                                        'Rating': 0,
+                                                        'Tags': [],
+                                                        'Categorization': [],
+                                                        'Reviewed': False,
+                                                        'Todelete': False}
+            imgview_data.loc[hashlib.sha256(image_src.encode()).hexdigest()] = metadata_for_filtered_images[hash_value]
+
+    metadata = None
+    try:
+        metadata = imgview_data.loc[hashlib.sha256(image_src.encode()).hexdigest()]
+        metadata.loc['Reviewed'] = True
+        if len(metadata_for_filtered_images) != 1:
+            metadata_for_filtered_images = metadata.to_dict()
+        else:
+            metadata_for_filtered_images[hashlib.sha256(image_src.encode()).hexdigest()] = metadata.to_dict()
+    except KeyError:
+        logger.error(f"Metadata not found for image: {image_src}")
+        metadata_for_filtered_images[hashlib.sha256(image_src.encode()).hexdigest()] = {'Favorites': False,
+                                                                                        'Rating': 0,
+                                                                                        'Tags': [],
+                                                                                        'Categorization': [],
+                                                                                        'Reviewed': True,
+                                                                                        'Todelete': False}
+        metadata = metadata_for_filtered_images[hashlib.sha256(image_src.encode()).hexdigest()]
+        imgview_data.loc[hashlib.sha256(image_src.encode()).hexdigest()] = metadata
 
     # Render the image_template.html template with the appropriate variables.
     return render_template("image_template.html",
@@ -681,7 +729,7 @@ def image_viewer():
                            image_alt=image_alt,
                            image_index=image_index,
                            exif_list=exif_data,
-                           metadata = imgview_data.loc[hashlib.sha256(image_src.encode()).hexdigest()] if len(metadata_for_filtered_images) != 1 else pd.Series(metadata_for_filtered_images[hashlib.sha256(image_src.encode()).hexdigest()]),
+                           metadata = metadata,
                            maxindex=len(image_list),
                            complete_metadata=metadata_for_filtered_images)
 
@@ -753,7 +801,9 @@ def add_tags():
     logger.debug(row.dtypes)
     # Otherwise, get the current tags list and append the new tags
     current_tags_str = row["Tags"]
+    logger.debug(current_tags_str)
     current_tags_list = ast.literal_eval(current_tags_str)
+    logger.debug(current_tags_list)
     incoming_tags = tags
     new_tags_list = current_tags_list + incoming_tags
     logger.debug(new_tags_list)
@@ -959,7 +1009,9 @@ def metadata_initialization():
         metadata[key] = {'Favorites': False,
                         'Rating': 0,
                         'Tags': [],
-                        'Categorization': []}
+                        'Categorization': [],
+                        'Reviewed': False,
+                        'Todelete': False}
     
     # create the dataframe from the metadata dictionary
     df = pd.DataFrame.from_dict(metadata, orient='index')
@@ -1039,42 +1091,50 @@ def read_exif_data(image):
         'Extras': 'No data found'
     }
     try:
-        exif_data = img.text
+        exif_data = img.info
+        parameters = None
+        if 'parameters' in exif_data:
+            parameters = exif_data.get('parameters', '')
+        elif 'exif' in exif_data:
+            exif_info = piexif.load(exif_data['exif'])
+            user_comment_info = exif_info.get('Exif', {}).get(piexif.ExifIFD.UserComment, b'')
+            parameters = piexif.helper.UserComment.load(user_comment_info)
         logger.debug(f"-------\nexif_data:{exif_data}\nexif_data_type:{type(exif_data)}----------\n")
     except AttributeError as e:
         logger.warning(img)
         logger.warning(e)
         return pd.DataFrame(parsed_data, index=["exifdataindex"])
 
+    logger.debug(parameters)
+    logger.debug(type(parameters))
+    if not parameters:
+        logger.warning("No exif parameters found")
+        return pd.DataFrame(parsed_data, index=["exifdataindex"])
     try:
-        regex = r'(\w+( \w+)*):\s*([\w{}":,]+)'
-        for key_value in exif_data['parameters'].split('\n'):
+        regex = r'(\w+(?:\s+\w+)*)\s*:\s*([\w.+@-]+(?:\s+[\w.+@-]+)*(?:\s*\([\w\s.+@-]*\))?)'
+        param_lines = parameters.splitlines()
+        first_line = None
+        logger.debug(f"Length of  param_lines: {len(param_lines)}")
+        if len(param_lines) > 2 and any("Negative prompt:" in s for s in param_lines):
+            print(""" len(param_lines) > 2 and "Negative prompt:" in param_lines:""")
+            first_line = param_lines.pop(0)
+        elif len(param_lines) == 2 and not any("Negative prompt:" in s for s in param_lines):
+            print(""" len(param_lines) == 2 and not "Negative prompt:" in param_lines:""")
+            first_line = param_lines.pop(0)
+        if first_line:
+            parsed_data['Positive prompt'] = first_line
+        print(first_line)
+        for key_value in param_lines:
+            logger.debug(f"key_value:{key_value}")
             if 'Negative prompt:' in key_value:
-                parsed_data['Negative prompt'] = key_value.split(': ')[1]
-            elif all(x in key_value for x in ['Steps:', 'Sampler:', 'CFG scale:', 'Seed:', 'Size:', 'Model hash:', 'Model:']):
-                logger.debug(key_value)
+                negative_prompt_values = key_value.split('Negative prompt: ')[1:]
+                negative_prompt_value = negative_prompt_values[-1]
+                parsed_data['Negative prompt'] = negative_prompt_value.strip()
+            elif all(x in key_value for x in ['Steps:', 'Sampler:', 'CFG scale:', 'Seed:', 'Size:', 'Model:']):
+                logger.debug(f"diff prompt: {key_value}")
                 matches = re.findall(regex, key_value)
                 for match in matches:
-                    if match[0] == 'Steps':
-                        parsed_data['Steps'] = match[2].rstrip(',')
-                    elif match[0] == 'Sampler':
-                        parsed_data['Sampler'] = match[2].rstrip(',')
-                    elif match[0] == 'CFG scale':
-                        parsed_data['CFG scale'] = match[2].rstrip(',')
-                    elif match[0] == 'Seed':
-                        parsed_data['Seed'] = match[2].rstrip(',')
-                    elif match[0] == 'Size':
-                        parsed_data['Size'] = match[2].rstrip(',')
-                    elif match[0]== 'Model hash':
-                        parsed_data['Model hash'] = match[2].rstrip(',')
-                    elif match[0] == 'Model':
-                        parsed_data['Model'] = match[2].rstrip(',')
-                    elif match[0] == 'Eta':
-                        parsed_data['Eta'] = match[2].rstrip(',')
-                    elif match[0] == 'Hashes':
-                        parsed_data['Hashes'] = match[2].rstrip(',')
-            else:
-                parsed_data['Positive prompt'] = key_value
+                    parsed_data[match[0]] = match[1]
 
 
         # Parse the "postprocessing" key
@@ -1092,7 +1152,7 @@ def read_exif_data(image):
         return pd.DataFrame(parsed_data, index=["exifdataindex"])
 
     logger.debug(parsed_data)
-    return pd.DataFrame(parsed_data, index=["exifdataindex"])
+    return pd.DataFrame(parsed_data, index=["exifdataindex"]) 
     
 def mp_bulk_exif_read(filtered_images):
     """
@@ -1115,7 +1175,9 @@ def mp_bulk_exif_read(filtered_images):
 
     df = pd.DataFrame(columns=['Positive prompt', 'Negative prompt', 'Sampler settings',
                                'Steps', 'Sampler', 'CFG scale', 'Seed', 'Size', 'Model hash',
-                               'Model', 'Eta', 'Hashes', 'Postprocessing', 'Extras'])
+                               'Model', 'Eta', 'Hashes', 'Postprocessing', 'Extras',  'Denoising strength', 'ENSD', '0 Enabled',
+                                '0 Module', '0 Model', '0 Weight', '0 Guidance Start', '0 Guidance End',
+                                'Hires upscale', 'Hires steps', 'Hires upscaler'])
     df.index.name = "sha256"
 
     for result, image in zip(results, filtered_images):

@@ -68,36 +68,38 @@ body {
     background-color: #3b414a;
     box-shadow: 0px 3px 3px rgba(0, 0, 0, 0.1);
   }
-
-.thumbnail-container {
+  
+  .thumbnail-container {
     max-width: 1600px;
     width: 100%;
     display: inline-grid;
     grid-template-columns: repeat(auto-fit, minmax(70, 210));
     grid-auto-rows: minmax(70px, 1fr);
     overflow-y: auto;
-    grid-template-areas:
-        "thumb thumb";
+    grid-template-areas:"thumb";
     margin: 0;
     padding: 1px;
-}
-
-.thumbnail {
+    grid-auto-flow: dense;
+  }
+  
+  .thumbnail {
     grid-area: thumb;
-}
-
-.thumbnail img {
+  }
+  
+  .thumbnail img {
     width: 100%;
     height: auto;
     object-fit: cover;
     border-radius: 5px;
+    margin-right: 2px;
+    margin-bottom: 2px;
+    border: 1px solid transparent; /* add transparent border to all images */
     max-width: 60px;
-}
+  }
+  
 
 .thumbnail a {
     display: inline-block;
-    border: 1px solid transparent; /* add transparent border to all images */
-    padding: 5px;
 }
 
 .thumbnail a.active-thumbnail {
@@ -111,6 +113,10 @@ body {
     border-style: solid;
     box-shadow: 0 0 10px 5px rgba(37, 185, 81, 0.5);
     transform: scale(1.05);
+}
+
+.thumbnail-container.loading {
+    visibility: hidden;
 }
 
 /* Hide default dropdown */
@@ -247,7 +253,7 @@ button.btn.btn-primary {
     font-weight: 500;
     line-height: 1.2;
     color: #FFF;
-    background-color: #646e7c;
+    background-color: #2e353d;;
     border-radius: 12px;
     border: none;
     cursor: pointer;
@@ -327,7 +333,7 @@ input[type="text"]:valid {
 
 /* Style form control submit input element */
 input[type="submit"] {
-    background-color: #3b414a;
+    background-color: #2e353d;;
     border-color: #3b414a;
     color: #FFFFFF;
     font-weight: 500;
@@ -461,20 +467,34 @@ option {
   .filterbtn {
     position: relative;
     top: 0;
-    padding: 5px 5px;
-    font-weight: bold;
+    padding: 12px;
+    font-size: 16px;
+    font-weight: 500;
     text-align: center;
     text-decoration: none;
     white-space: nowrap;
     color: #fff;
-    background-color: #3b414a;
-    border-radius: 4px;
-    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
+    background-color: #535f71;
+    border-radius: 12px;
     border: none;
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.25);
     cursor: pointer;
-    z-index: 2; /* Increase z-index to appear on top of content */
+    z-index: 2; /* Keep z-index to appear on top of content */
   }
+  
   
   .filterbar.open {
     transform: translateY(0); /* Move filterbar onscreen when open class is applied */
   }  
+
+  .hide {
+    display: none;
+  }
+
+  .green-icon {
+    color: #00bfa5; /* Change color to match the design */
+  }
+  
+  .red-icon {
+    color: #f44336; /* Change color to match the design */
+  }
