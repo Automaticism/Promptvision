@@ -11,7 +11,6 @@ The application is then started by calling the `run` method of the `Flask` objec
 
 Usage:
     python gallery.py --imagedir <image folder>
-
 """
 
 import ast

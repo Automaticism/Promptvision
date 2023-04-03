@@ -3,3 +3,6 @@ jinja2
 pillow
 colorlog
 pandas
+piexif
+opencv-python
+imwatermark

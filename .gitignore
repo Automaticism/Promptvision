@@ -10,3 +10,4 @@ dist
 build
 .spec
 hook-multiprocessing.py
+.toml
