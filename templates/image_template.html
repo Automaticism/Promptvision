@@ -84,6 +84,14 @@
     </div>
     <div class="image-viewer-container">
       <img class="img" id="active-image" src="{{ image_src }}" alt="{{ image_alt }}" />
+      <div class="nav-buttons">
+        <button class="nav-button prev-button" id="previous" onclick="navigate('prev')">
+          <span class="material-icons">arrow_circle_left</span>
+        </button>
+        <button class="nav-button next-button" id="next" onclick="navigate('next')">
+          <span class="material-icons">arrow_circle_right</span>
+        </button>
+      </div>
     </div>
     <div class="metadata">
       <table class="metadata-table">
@@ -125,7 +133,7 @@
               </button>
             </form>
           </td>
-          <td class="nav-buttons">
+          <td class="nav-buttons hide">
             <button class="nav-button prev-button" id="previous" onclick="navigate('prev')">
               <span class="material-icons">arrow_circle_left</span>
             </button>
