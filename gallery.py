@@ -118,6 +118,7 @@ def get_args(argv=None) -> argparse.Namespace:
     parser.add_argument('--log', dest='loglevel', choices=['DEBUG', 'INFO', 'WARNING', 'ERROR', 'CRITICAL'],
                         help='Set the logging level', default='ERROR')
     parser.add_argument('--cleanup', default=False, type=bool, help="Clean up metadata for deleted files.")
+    parser.add_argument('--aesthetic', default=False, type=bool, help="Calculate Aesthetic score for images using method derived from https://github.com/AUTOMATIC1111/stable-diffusion-webui/discussions/1831")
     args, unknown = parser.parse_known_args(argv)
 
     if args.config:
@@ -149,6 +150,7 @@ metadata_subdir = ""
 thumbnail_folder = ""
 thumbnails_sent = []
 filtered_images = []
+aesthetic_engine = None
 args = get_args(sys.argv[1:])
 
 logger = logging.getLogger(__name__)
@@ -187,8 +189,6 @@ def b64encode(data):
     """
     return base64.b64encode(data).decode('utf-8')
 
-app.jinja_env.filters['b64encode'] = b64encode
-
 def strip_chars(string, chars):
     for char in chars:
         string = string.replace(char, '')
@@ -198,6 +198,7 @@ app.jinja_env.filters['strip_chars'] = strip_chars
 app.jinja_env.filters['json_loads'] = json.loads
 app.jinja_env.globals['type'] = type
 app.jinja_env.filters['my_type'] = my_type
+app.jinja_env.filters['b64encode'] = b64encode
 
 def get_thumbnail_from_image(image):
     """Get the thumbnail of an image.
@@ -695,11 +696,15 @@ def image_viewer():
         except KeyError:
             logger.error(f"Metadata not found for image: {image_path}")
             metadata_for_filtered_images[hash_value] = {'Favorites': False,
-                                                        'Rating': 0,
-                                                        'Tags': [],
-                                                        'Categorization': [],
-                                                        'Reviewed': False,
-                                                        'Todelete': False}
+                                                'Rating': 0,
+                                                'Tags': [],
+                                                'Categorization': [],
+                                                'Reviewed': False,
+                                                'Todelete': False}
+
+            if args.aesthetic:
+                metadata_for_filtered_images[hash_value]['Aesthetic_score'] = aesthetic_engine.score(image_src)
+
             imgview_data.loc[hashlib.sha256(image_src.encode()).hexdigest()] = metadata_for_filtered_images[hash_value]
 
     metadata = None
@@ -712,12 +717,15 @@ def image_viewer():
             metadata_for_filtered_images[hashlib.sha256(image_src.encode()).hexdigest()] = metadata.to_dict()
     except KeyError:
         logger.error(f"Metadata not found for image: {image_src}")
-        metadata_for_filtered_images[hashlib.sha256(image_src.encode()).hexdigest()] = {'Favorites': False,
-                                                                                        'Rating': 0,
-                                                                                        'Tags': [],
-                                                                                        'Categorization': [],
-                                                                                        'Reviewed': True,
-                                                                                        'Todelete': False}
+        metadata_for_filtered_images[hash_value] = {'Favorites': False,
+                                            'Rating': 0,
+                                            'Tags': [],
+                                            'Categorization': [],
+                                            'Reviewed': False,
+                                            'Todelete': False}
+
+        if args.aesthetic:
+            metadata_for_filtered_images[hash_value]['Aesthetic_score'] = aesthetic_engine.score(image_src)
         metadata = metadata_for_filtered_images[hashlib.sha256(image_src.encode()).hexdigest()]
         imgview_data.loc[hashlib.sha256(image_src.encode()).hexdigest()] = metadata
 
@@ -1006,11 +1014,14 @@ def metadata_initialization():
         
         # initialize the metadata for the image
         metadata[key] = {'Favorites': False,
-                        'Rating': 0,
-                        'Tags': [],
-                        'Categorization': [],
-                        'Reviewed': False,
-                        'Todelete': False}
+                                            'Rating': 0,
+                                            'Tags': [],
+                                            'Categorization': [],
+                                            'Reviewed': False,
+                                            'Todelete': False}
+
+        if args.aesthetic:
+            metadata[key]['Aesthetic_score'] = aesthetic_engine.score(image)
     
     # create the dataframe from the metadata dictionary
     df = pd.DataFrame.from_dict(metadata, orient='index')
@@ -1115,14 +1126,11 @@ def read_exif_data(image):
         first_line = None
         logger.debug(f"Length of  param_lines: {len(param_lines)}")
         if len(param_lines) > 2 and any("Negative prompt:" in s for s in param_lines):
-            print(""" len(param_lines) > 2 and "Negative prompt:" in param_lines:""")
             first_line = param_lines.pop(0)
         elif len(param_lines) == 2 and not any("Negative prompt:" in s for s in param_lines):
-            print(""" len(param_lines) == 2 and not "Negative prompt:" in param_lines:""")
             first_line = param_lines.pop(0)
         if first_line:
             parsed_data['Positive prompt'] = first_line
-        print(first_line)
         for key_value in param_lines:
             logger.debug(f"key_value:{key_value}")
             if 'Negative prompt:' in key_value:
@@ -1134,7 +1142,6 @@ def read_exif_data(image):
                 matches = re.findall(regex, key_value)
                 for match in matches:
                     parsed_data[match[0]] = match[1]
-
 
         # Parse the "postprocessing" key
         postprocessing = exif_data.get('postprocessing', '')
@@ -1230,6 +1237,11 @@ if __name__ == '__main__':
         # On Windows calling this function is necessary.
         multiprocessing.freeze_support()
     start_time = time.time()
+    logger.debug(args)
+    if args.aesthetic:
+        import gallery_engine as ge
+        aesthetic_engine = ge.aesthetic_engine()
+
     if args.imagedir:
         image_folder = Path(args.imagedir)
         logger.debug(f"Sat image_folder from args.imagedir: {image_folder}")
