@@ -1,6 +1,8 @@
 # PromptVision
 Promptvision is a web application that allows users to view and browse images. It allows quickly browsing through generations and changing directories in the "web" app. It's running locally using Flask. 
 
+![image](https://user-images.githubusercontent.com/20763070/229656587-0a159b8a-cbb2-40d0-a030-82e648886489.png)
+
 ![image](https://user-images.githubusercontent.com/20763070/229390468-bae0b93b-0ccc-4f11-b64b-4e443609a03d.png)
 
 - [PromptVision](#promptvision)
