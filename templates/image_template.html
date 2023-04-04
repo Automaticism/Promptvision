@@ -84,6 +84,14 @@
     </div>
     <div class="image-viewer-container">
       <img class="img" id="active-image" src="{{ image_src }}" alt="{{ image_alt }}" />
+      <div class="nav-buttons">
+        <button class="nav-button prev-button" id="previous" onclick="navigate('prev')">
+          <span class="material-icons">arrow_circle_left</span>
+        </button>
+        <button class="nav-button next-button" id="next" onclick="navigate('next')">
+          <span class="material-icons">arrow_circle_right</span>
+        </button>
+      </div>
     </div>
     <div class="metadata">
       <table class="metadata-table">
@@ -125,7 +133,7 @@
               </button>
             </form>
           </td>
-          <td class="nav-buttons">
+          <td class="nav-buttons hide">
             <button class="nav-button prev-button" id="previous" onclick="navigate('prev')">
               <span class="material-icons">arrow_circle_left</span>
             </button>
@@ -164,6 +172,31 @@
               <i class="material-icons">delete_forever</i>
               {% endif %}
             </td>
+          </tr>
+          <tr>
+            {% if metadata.Aesthetic_score is defined %}
+            <td class="header">Aesthetic score</td>
+            <td>
+              <div class="rating-container">
+                {% for i in range(1, 11) %}
+                  {% if i <= metadata.Aesthetic_score|round(0) %}
+                    {% if i < metadata.Aesthetic_score %}
+                      <span class="material-icons rating-icon">star</span>
+                    {% else %}
+                      {% if metadata.Aesthetic_score - i + 0.5 >= 0 %}
+                        <span class="material-icons rating-icon">star_half</span>
+                      {% else %}
+                        <span class="material-icons rating-icon">star_border</span>
+                      {% endif %}
+                    {% endif %}
+                  {% else %}
+                    <span class="material-icons rating-icon">star_border</span>
+                  {% endif %}
+                {% endfor %}
+              </div>
+              <span class="score-label">{{ '%.2f'|format(metadata.Aesthetic_score) }}</span>
+            </td>
+          {% endif %}                                   
           </tr>
           <tr>
             <td>
