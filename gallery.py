@@ -295,7 +295,7 @@ def filter_images():
         logger.debug(filtered_df)
         if search_query:
             logger.debug("search_query")
-            found_images = [(hashlib.sha256(elem.encode()).hexdigest(), elem) for elem in get_image_names_in_image_dir() if search_query in elem]
+            found_images = filtered_exif_df[filtered_exif_df['Positive prompt'].str.contains(search_query, na=False) | filtered_exif_df['Negative prompt'].str.contains(search_query, na=False)]
             logger.debug(filtered_exif_df)
             if found_images:
                 found_hashes = [x[0] for x in found_images]
