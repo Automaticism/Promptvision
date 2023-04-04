@@ -1,6 +1,10 @@
 
 /* Add key bindings for left and right arrow keys */
 function keyhandler(event) {
+    var activeElement = document.activeElement;
+    if (activeElement.tagName === 'INPUT' || activeElement.tagName === 'TEXTAREA') {
+      return true;
+    }
     var key = event.keyCode;
     if (key == 37) {
         document.getElementById('previous').click();
@@ -589,9 +593,9 @@ document.getElementById('light-style').addEventListener('click', setThemeFromCoo
 // Load initial thumbnails
 lazyLoadThumbnails();
 
-const filterbar = document.querySelector('.filterbar');
-const filterbtn = document.querySelector('.filterbtn');
+var filterbtn = document.querySelector('.filterbtn');
+var filterform = document.querySelector('.filterform');
 
-filterbtn.addEventListener('click', () => {
-    filterbar.classList.toggle('open');
+filterbtn.addEventListener('click', function() {
+  filterform.classList.toggle('open');
 });

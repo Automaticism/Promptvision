@@ -282,9 +282,11 @@ def filter_images():
             favorites = request.form.get("favorites") if request.form.get("favorites") is not None else None
             rating_str = request.form.get("rating")
             rating = int(rating_str) if rating_str and rating_str.strip() else None
+            ascore_str = request.form.get("ascore")
+            ascore = int(ascore_str) if ascore_str and ascore_str.strip() else None
             tags = request.form.get("tags") if request.form.get("tags") is not None else None
             categories = request.form.get("categories") if request.form.get("categories") is not None else None
-            logger.debug(f"search_query: {search_query} favorites: {favorites} rating: {rating} tags: {tags} categories: {categories}")
+            logger.debug(f"search_query: {search_query} favorites: {favorites} rating: {rating} ascore: {ascore} tags: {tags} categories: {categories}")
         except Exception as e:
             logger.error(str(e))
             return handle_value_error(e)
@@ -313,12 +315,16 @@ def filter_images():
                 filtered_df = filtered_df[filtered_df["Rating"] >= rating]
             if tags:
                 logger.debug(f"tags is not None: {tags}")
-                logger.debug(filtered_df["Tags"].dtype)
-                filtered_df["Tags"] = filtered_df["Tags"].apply(lambda x: [x] if not isinstance(x, list) else x)
+                tags_list = tags.split(",")
+                filtered_df = filtered_df[filtered_df["Tags"].apply(lambda x: [x] if not isinstance(x, list) else x).apply(lambda x: any(tag in x for tag in tags_list))]
             if categories:
                 logger.debug(f"categories is not None: {categories}")
-                filtered_df = filtered_df[filtered_df["Categorization"].apply(lambda x: any(categories in category for category in x))]
-
+                categories_list = categories.split(",")
+                filtered_df = filtered_df[filtered_df["Categorization"].apply(lambda x: [x] if not isinstance(x, list) else x).apply(lambda x: any(category in categories_list for category in categories_list))]
+            if ascore:
+                logger.debug(f"ascore is not None: {ascore}")
+                filtered_df["Aesthetic_score"] = filtered_df["Aesthetic_score"].astype(int)
+                filtered_df = filtered_df[filtered_df["Aesthetic_score"] >= ascore]
 
             # Retrieve list of filtered image filenames
             logger.debug(filtered_df)
@@ -707,6 +713,7 @@ def image_viewer():
 
             imgview_data.loc[hashlib.sha256(image_src.encode()).hexdigest()] = metadata_for_filtered_images[hash_value]
 
+    logger.debug(metadata_for_filtered_images)
     metadata = None
     try:
         metadata = imgview_data.loc[hashlib.sha256(image_src.encode()).hexdigest()]
@@ -728,6 +735,9 @@ def image_viewer():
             metadata_for_filtered_images[hash_value]['Aesthetic_score'] = aesthetic_engine.score(image_src)
         metadata = metadata_for_filtered_images[hashlib.sha256(image_src.encode()).hexdigest()]
         imgview_data.loc[hashlib.sha256(image_src.encode()).hexdigest()] = metadata
+    
+    logger.debug(metadata)
+    logger.debug(metadata_for_filtered_images)
 
     # Render the image_template.html template with the appropriate variables.
     return render_template("image_template.html",
