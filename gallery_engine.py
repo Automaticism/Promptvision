@@ -2,6 +2,14 @@ import torch
 import clip
 from pathlib import Path
 from PIL import Image
+import atexit
+
+# Define a function to deallocate PyTorch memory
+def cleanup():
+    torch.cuda.empty_cache()
+
+# Register the function to be called on exit
+atexit.register(cleanup)
 
 STATE_NAME = "static/models/sac+logos+ava1-l14-linearMSE.pth"
 MODEL_DIM = 768
