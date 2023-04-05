@@ -294,13 +294,13 @@ def filter_images():
         # Filter the metadata dataframe based on user input
         filtered_df = imgview_data.copy()
         filtered_exif_df = bulk_exif_data.copy()
-        logger.debug(filtered_df)
+        logger.debug(filtered_exif_df.index)
         if search_query:
             logger.debug("search_query")
             found_images = filtered_exif_df[filtered_exif_df['Positive prompt'].str.contains(search_query, na=False) | filtered_exif_df['Negative prompt'].str.contains(search_query, na=False)]
-            logger.debug(filtered_exif_df)
-            if found_images:
-                found_hashes = [x[0] for x in found_images]
+            logger.debug(found_images)
+            if not found_images.empty:
+                found_hashes = found_images.index.tolist()
                 filtered_df = filtered_df.loc[found_hashes]
             else:
                 filtered_df = None
