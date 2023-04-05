@@ -754,7 +754,7 @@ def image_viewer():
 
     # Render the image_template.html template with the appropriate variables.
     return render_template("image_template.html",
-                           title='PromptViewer',
+                           title='Promptvision',
                            image_src=url_for('image_data', image_name=image_src),
                            image_alt=image_alt,
                            image_index=image_index,
