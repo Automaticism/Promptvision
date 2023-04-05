@@ -854,6 +854,8 @@ def remove_tags():
     # If no row is found, return an error message
     if row.empty:
         return bad_request_error(f"No image named {image_name} found")
+    logger.debug(row)
+    logger.debug(type(tag_to_remove))
     imgview_data.loc[hashlib.sha256(image_name.encode()).hexdigest(), "Tags"].remove(tag_to_remove)
     # Return a success message with the updated tags
     return jsonify(tags=imgview_data.loc[hashlib.sha256(image_name.encode()).hexdigest(), "Tags"])
@@ -890,7 +892,7 @@ def remove_categories():
         return bad_request_error(f"No image named {image_name} found")
     imgview_data.loc[hashlib.sha256(image_name.encode()).hexdigest(), "Categorization"].remove(category_to_remove)
     # Return a success message with the updated tags
-    return jsonify(tags= imgview_data.loc[hashlib.sha256(image_name.encode()).hexdigest(), "Categorization"])
+    return jsonify(tags=imgview_data.loc[hashlib.sha256(image_name.encode()).hexdigest(), "Categorization"])
 
 def get_selected_image_by_index(image_id):
     """
