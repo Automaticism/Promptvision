@@ -63,6 +63,12 @@ def dir_path(string):
     else:
         raise NotADirectoryError(string)
 
+def convert_string_to_list(x):
+    return eval(x) if isinstance(x, str) else []
+
+# Define the column dtypes
+dtypes = {"Tags": "object", "Categorization": "object"}
+
 def filter_images_in_image_folder_path():
     logger.debug(image_folder)
     filtered_images = []
@@ -534,7 +540,7 @@ def browse():
     # Check if metadata already exists
     metadata_path = metadata_subdir.joinpath("imgview_metadata.csv")
     if metadata_path.exists():
-        imgview_data = pd.read_csv(metadata_path)
+        imgview_data = pd.read_csv(metadata_path, converters={'Tags': convert_string_to_list, 'Categorization': convert_string_to_list}, dtype=dtypes)
         imgview_data.set_index('sha256', inplace=True)
         logger.warning(len(imgview_data))
     else:
@@ -700,44 +706,51 @@ def image_viewer():
         try:
             metadata_for_filtered_images[hash_value] = imgview_data.loc[hash_value].to_dict()
         except KeyError:
-            logger.error(f"Metadata not found for image: {image_path}")
-            metadata_for_filtered_images[hash_value] = {'Favorites': False,
-                                                'Rating': 0,
-                                                'Tags': [],
-                                                'Categorization': [],
-                                                'Reviewed': False,
-                                                'Todelete': False}
-
+            metadata_for_filtered_images[hash_value] = {
+                'Favorites': False,
+                'Rating': 0,
+                'Tags': [],
+                'Categorization': [],
+                'Reviewed': False,
+                'Todelete': False
+            }
             if args.aesthetic:
-                metadata_for_filtered_images[hash_value]['Aesthetic_score'] = aesthetic_engine.score(image_src)
-
-            imgview_data.loc[hashlib.sha256(image_src.encode()).hexdigest()] = metadata_for_filtered_images[hash_value]
+                metadata_for_filtered_images[hash_value]['Aesthetic_score'] = aesthetic_engine.score(image_path)
+            imgview_data.loc[hash_value] = metadata_for_filtered_images[hash_value]
 
     logger.debug(metadata_for_filtered_images)
-    metadata = None
-    try:
-        metadata = imgview_data.loc[hashlib.sha256(image_src.encode()).hexdigest()]
-        metadata.loc['Reviewed'] = True
-        if len(metadata_for_filtered_images) != 1:
-            metadata_for_filtered_images = metadata.to_dict()
-        else:
-            metadata_for_filtered_images[hashlib.sha256(image_src.encode()).hexdigest()] = metadata.to_dict()
-    except KeyError:
-        logger.error(f"Metadata not found for image: {image_src}")
-        metadata_for_filtered_images[hash_value] = {'Favorites': False,
-                                            'Rating': 0,
-                                            'Tags': [],
-                                            'Categorization': [],
-                                            'Reviewed': False,
-                                            'Todelete': False}
 
+    hash_value = hashlib.sha256(image_src.encode()).hexdigest()
+    metadata = metadata_for_filtered_images.get(hash_value)
+    if metadata is None:
+        metadata = {
+            'Favorites': False,
+            'Rating': 0,
+            'Tags': [],
+            'Categorization': [],
+            'Reviewed': False,
+            'Todelete': False
+        }
         if args.aesthetic:
-            metadata_for_filtered_images[hash_value]['Aesthetic_score'] = aesthetic_engine.score(image_src)
-        metadata = metadata_for_filtered_images[hashlib.sha256(image_src.encode()).hexdigest()]
-        imgview_data.loc[hashlib.sha256(image_src.encode()).hexdigest()] = metadata
-    
+            metadata['Aesthetic_score'] = aesthetic_engine.score(image_src)
+        imgview_data.loc[hash_value] = metadata
+        metadata_for_filtered_images[hash_value] = metadata
+    else:
+        metadata['Reviewed'] = True
+        imgview_data.loc[hash_value, 'Reviewed'] = True
+
     logger.debug(metadata)
     logger.debug(metadata_for_filtered_images)
+
+    tags = set()
+    categories = set()
+
+    for meta in metadata_for_filtered_images.values():
+        tags.update(meta['Tags'])
+        categories.update(meta['Categorization'])
+
+    tags = list(tags)
+    categories = list(categories)
 
     # Render the image_template.html template with the appropriate variables.
     return render_template("image_template.html",
@@ -748,7 +761,8 @@ def image_viewer():
                            exif_list=exif_data,
                            metadata = metadata,
                            maxindex=len(image_list),
-                           complete_metadata=metadata_for_filtered_images)
+                           all_meta_tags=tags,
+                           all_meta_categories=categories)
 
 def get_random_image():
     """
@@ -817,41 +831,32 @@ def add_tags():
     logger.debug(row)
     logger.debug(row.dtypes)
     # Otherwise, get the current tags list and append the new tags
-    current_tags_str = row["Tags"]
-    logger.debug(current_tags_str)
-    current_tags_list = ast.literal_eval(current_tags_str)
+    current_tags_list = row["Tags"]
     logger.debug(current_tags_list)
     incoming_tags = tags
-    new_tags_list = current_tags_list + incoming_tags
-    logger.debug(new_tags_list)
-    imgview_data.loc[hashlib.sha256(image_name.encode()).hexdigest(), "Tags"] = str(new_tags_list)
+    if not isinstance(incoming_tags, list):
+        incoming_tags = [incoming_tags]
+    logger.debug(imgview_data.dtypes)
+    # Check the type of the column
+    logger.debug(type(imgview_data.loc[hashlib.sha256(image_name.encode()).hexdigest(), "Tags"]))
+    imgview_data.loc[hashlib.sha256(image_name.encode()).hexdigest(), "Tags"].extend(incoming_tags)
     # Return a success message with the new tags
-    return jsonify(tags=new_tags_list)
+    return jsonify(tags=imgview_data.loc[hashlib.sha256(image_name.encode()).hexdigest(), "Tags"])
 
 @app.route("/remove-tags", methods=["PUT"])
 def remove_tags():
     data = request.json
     image_name = data.get("image_name")
     logger.debug("removing tags")
-    tags_to_remove = data.get("tag")
+    tag_to_remove = data.get("tag")
     logger.debug(tags_to_remove)
     row = imgview_data.loc[hashlib.sha256(image_name.encode()).hexdigest()]
     # If no row is found, return an error message
     if row.empty:
         return bad_request_error(f"No image named {image_name} found")
-    logger.debug(row)
-    logger.debug(row.dtypes)
-    # Otherwise, get the current tags list and remove the specified tags
-    current_tags_str = row["Tags"]
-    current_tags_list = ast.literal_eval(current_tags_str)
-    logger.debug(current_tags_list)
-    logger.debug(current_tags_str)
-    logger.debug(tags_to_remove)
-    new_tags_list = [tag for tag in current_tags_list if tag not in tags_to_remove]
-    logger.debug(new_tags_list)
-    imgview_data.loc[hashlib.sha256(image_name.encode()).hexdigest(), "Tags"] = str(new_tags_list)
+    imgview_data.loc[hashlib.sha256(image_name.encode()).hexdigest(), "Tags"].remove(tag_to_remove)
     # Return a success message with the updated tags
-    return jsonify(tags=new_tags_list)
+    return jsonify(tags=imgview_data.loc[hashlib.sha256(image_name.encode()).hexdigest(), "Tags"])
 
 @app.route("/assign-category", methods=["PUT"])
 def assign_category():
@@ -863,20 +868,14 @@ def assign_category():
     # If no row is found, return an error message
     if row.empty:
         return bad_request_error(f"No image named {image_name} found")
-    logger.debug(row)
-    logger.debug(row.dtypes)
-    # Otherwise, get the current tags list and append the new tags
-    current_categories = row["Categorization"]
-    current_categories_list = ast.literal_eval(current_categories)
     incomming_category = category
-    logger.debug(type(incomming_category))
-    logger.debug(type(current_categories_list))
-    new_category_list = current_categories_list + incomming_category
-    logger.debug(new_category_list)
-     # Update the dataframe with the new value
-    imgview_data.loc[hashlib.sha256(image_name.encode()).hexdigest(), "Categorization"] = str(new_category_list)
+    if not isinstance(incomming_category, list):
+        incomming_category = [incomming_category]
+    # Update the dataframe with the new value
+    imgview_data.loc[hashlib.sha256(image_name.encode()).hexdigest(), "Categorization"].extend(incomming_category)
+    logger.debug(imgview_data.loc[hashlib.sha256(image_name.encode()).hexdigest(), "Categorization"])
     # Return a success message with the new value
-    return jsonify(category=new_category_list)
+    return jsonify(category=imgview_data.loc[hashlib.sha256(image_name.encode()).hexdigest(), "Categorization"])
 
 @app.route("/remove-category", methods=["PUT"])
 def remove_categories():
@@ -889,19 +888,9 @@ def remove_categories():
     # If no row is found, return an error message
     if row.empty:
         return bad_request_error(f"No image named {image_name} found")
-    logger.debug(row)
-    logger.debug(row.dtypes)
-    # Otherwise, get the current tags list and remove the specified tags
-    current_categories = row["Categorization"]
-    current_categories_list = ast.literal_eval(current_categories)
-    logger.debug(current_categories)
-    logger.debug(current_categories_list)
-    logger.debug(category_to_remove)
-    new_category_list = [tag for tag in current_categories_list if tag not in category_to_remove]
-    logger.debug(new_category_list)
-    imgview_data.loc[hashlib.sha256(image_name.encode()).hexdigest(), "Categorization"] = str(new_category_list)
+    imgview_data.loc[hashlib.sha256(image_name.encode()).hexdigest(), "Categorization"].remove(category_to_remove)
     # Return a success message with the updated tags
-    return jsonify(tags=new_category_list)
+    return jsonify(tags= imgview_data.loc[hashlib.sha256(image_name.encode()).hexdigest(), "Categorization"])
 
 def get_selected_image_by_index(image_id):
     """
@@ -926,9 +915,9 @@ def get_selected_image_by_index(image_id):
 def get_metadata():
     image_name = request.args.get("image_name")
     metadata_dict = imgview_data.loc[hashlib.sha256(image_name.encode()).hexdigest()].to_dict()
-    tags_str = metadata_dict['Tags'].strip('[]').replace("'", '').split(', ')
+    tags_str = str(metadata_dict['Tags'])
     metadata_dict['Tags'] = tags_str
-    category_str = metadata_dict['Categorization'].strip('[]').replace("'", '').split(', ')
+    category_str = str(metadata_dict['Categorization'])
     metadata_dict['Categorization'] = category_str
     logger.debug(metadata_dict)
     # Convert the metadata dictionary to a JSON object and return it
@@ -1053,7 +1042,7 @@ def update_metadata():
     A Pandas DataFrame object containing the updated metadata for all images, saved to a CSV file.
     """
     # read in the existing metadata CSV file
-    metadata_df = pd.read_csv(metadata_subdir.joinpath("imgview_metadata.csv"), index_col='sha256')
+    metadata_df = pd.read_csv(metadata_subdir.joinpath("imgview_metadata.csv"), index_col='sha256', converters={'Tags': convert_string_to_list, 'Categorization': convert_string_to_list}, dtype=dtypes)
 
     # create a set of SHA256 hashes for all images already in the dataframe
     existing_hashes = set(metadata_df.index)
@@ -1288,7 +1277,7 @@ if __name__ == '__main__':
     # Check if metadata already exists
     metadata_path = metadata_subdir.joinpath("imgview_metadata.csv")
     if metadata_path.exists():
-        imgview_data = pd.read_csv(metadata_path)
+        imgview_data = pd.read_csv(metadata_path, converters={'Tags': convert_string_to_list, 'Categorization': convert_string_to_list}, dtype=dtypes)
         imgview_data.set_index('sha256', inplace=True)
         logger.warning(len(imgview_data))
         if check_images_in_dataframe(filtered_images, imgview_data):
