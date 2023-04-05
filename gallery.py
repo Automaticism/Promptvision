@@ -1107,13 +1107,16 @@ def read_exif_data(image):
         if 'parameters' in exif_data:
             parameters = exif_data.get('parameters', '')
         elif 'exif' in exif_data:
-            exif_info = piexif.load(exif_data['exif'])
-            user_comment_info = exif_info.get('Exif', {}).get(piexif.ExifIFD.UserComment, b'')
-            parameters = piexif.helper.UserComment.load(user_comment_info)
+            try:
+                exif_info = piexif.load(exif_data['exif'])
+                user_comment_info = exif_info.get('Exif', {}).get(piexif.ExifIFD.UserComment, b'')
+                parameters = piexif.helper.UserComment.load(user_comment_info)
+            except FileNotFoundError as e:
+                logger.error(e)
+                return pd.DataFrame(parsed_data, index=["exifdataindex"])
         logger.debug(f"-------\nexif_data:{exif_data}\nexif_data_type:{type(exif_data)}----------\n")
     except AttributeError as e:
-        logger.warning(img)
-        logger.warning(e)
+        logger.warning(f"{img}\n{e}")
         return pd.DataFrame(parsed_data, index=["exifdataindex"])
 
     logger.debug(parameters)
