@@ -849,7 +849,7 @@ def remove_tags():
     image_name = data.get("image_name")
     logger.debug("removing tags")
     tag_to_remove = data.get("tag")
-    logger.debug(tags_to_remove)
+    logger.debug(tag_to_remove)
     row = imgview_data.loc[hashlib.sha256(image_name.encode()).hexdigest()]
     # If no row is found, return an error message
     if row.empty:
