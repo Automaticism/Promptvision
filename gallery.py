@@ -712,7 +712,8 @@ def image_viewer():
                 'Tags': [],
                 'Categorization': [],
                 'Reviewed': False,
-                'Todelete': False
+                'Todelete': False,
+                'Path': image_src
             }
             if args.aesthetic:
                 metadata_for_filtered_images[hash_value]['Aesthetic_score'] = aesthetic_engine.score(image_path)
@@ -729,7 +730,8 @@ def image_viewer():
             'Tags': [],
             'Categorization': [],
             'Reviewed': False,
-            'Todelete': False
+            'Todelete': False,
+            'Path': image_src
         }
         if args.aesthetic:
             metadata['Aesthetic_score'] = aesthetic_engine.score(image_src)
@@ -1019,7 +1021,8 @@ def metadata_initialization():
                                             'Tags': [],
                                             'Categorization': [],
                                             'Reviewed': False,
-                                            'Todelete': False}
+                                            'Todelete': False,
+                                            'Path': image}
 
         if args.aesthetic:
             metadata[key]['Aesthetic_score'] = aesthetic_engine.score(image)
@@ -1061,7 +1064,12 @@ def update_metadata():
             updated_metadata[key] = {'Favorites': False,
                                      'Rating': 0,
                                      'Tags': [],
-                                     'Categorization': []}
+                                     'Categorization': [], 
+                                     'Reviewed': False,
+                                     'Todelete': False,
+                                     'Path': image}
+            if args.aesthetic:
+                updated_metadata[key]['Aesthetic_score'] = aesthetic_engine.score(image)
 
     # update the existing metadata dictionary with the initialized metadata for new images
     updated_metadata.update(metadata_df.to_dict('index'))
