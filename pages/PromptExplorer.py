@@ -130,4 +130,4 @@ elif model_type == "hdp":
     n_topics = st.slider("Select the number of topics:", 1, 20, 10)
     perform_hdp_topic_modeling(st.session_state.df, column, n_topics=n_topics)
 else:
-    st.wr
+    st.write
