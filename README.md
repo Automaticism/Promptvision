@@ -1,3 +1,5 @@
+
+
 # Promptvision
 
 Promptvision is a powerful and user-friendly image viewer application built with Python and customtkinter. It provides an intuitive interface for browsing, organizing, and managing your image collections.
@@ -17,7 +19,7 @@ Promptvision is a powerful and user-friendly image viewer application built with
 
 1. Clone the repository:
 ``` 
-   git clone https://github.com/yourusername/promptvision.git
+   git clone https://github.com/Automaticism/Promptvision.git
    cd promptvision
 ```
 
@@ -27,6 +29,7 @@ Promptvision is a powerful and user-friendly image viewer application built with
    pip install -r requirements.txt
 ```
    
+
 
 3. For Linux users, install tkinter:
 
